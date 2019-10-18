@@ -6,9 +6,13 @@ if (env === 'development') {
 import express from 'express'
 import Airtable from 'airtable'
 import redis from 'redis'
-import redisCache from 'express-redis-cache'
+import apicache from 'apicache'
+
 const redisClient = redis.createClient(process.env.REDIS_URL)
-const cache = redisCache({ client: redisClient })
+const cacheWithRedis = apicache.options({
+  redisClient,
+  statusCodes: { include: [200] },
+}).middleware
 
 const filterClubData = input => {
   const allowed = ['Name', 'Slack Channel ID', 'Leader Slack IDs']
@@ -26,37 +30,35 @@ const operationsBase = new Airtable({
 const app = express()
 
 app.get('/ping', (req, res) => {
-  res.status(200).json({ message: 'pong!' })
+  setTimeout(() => {
+    res.status(200).json({ message: 'pong!' })
+  }, 1000)
 })
 
-app.get(
-  '/',
-  cache.route({ expire: { 200: 5, 403: 60, xxx: 0 } }),
-  (req, res, next) => {
-    const timestamp = Date.now()
-    console.log('Getting request for club list')
-    operationsBase('Clubs')
-      .select()
-      .all((err, records) => {
-        if (err) {
-          console.error(err)
-          res
-            .status(500)
-            .send(
-              `Received error code '${err.statusCode}' from Airtable: '${err.message}'`
-            )
-        } else {
-          const result = records.map(filterClubData)
-          console.log(
-            `Responded to club list request in ${Date.now() - timestamp}ms`
+app.get('/', cacheWithRedis('30 seconds'), (req, res, next) => {
+  const timestamp = Date.now()
+  console.log('Getting request for club list')
+  operationsBase('Clubs')
+    .select()
+    .all((err, records) => {
+      if (err) {
+        console.error(err)
+        res
+          .status(500)
+          .send(
+            `Received error code '${err.statusCode}' from Airtable: '${err.message}'`
           )
+      } else {
+        const result = records.map(filterClubData)
+        console.log(
+          `Responded to club list request in ${Date.now() - timestamp}ms`
+        )
 
-          res.status(200).json(result)
-        }
-      })
-  }
-)
+        res.status(200).json(result)
+      }
+    })
+})
 
-const server = app.listen(process.env.PORT || 2346, () =>
+const server = app.listen(process.env.PORT || 5000, () =>
   console.log(`Up and listening on ${server.address().port}`)
 )
