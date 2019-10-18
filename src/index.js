@@ -22,6 +22,9 @@ const filterClubData = input => {
     'Name',
     'Slack Channel ID',
     'Leader Slack IDs',
+    'Address City',
+    'Address State',
+    'Address Postal Code',
     'Address Country',
   ]
   const result = {}
