@@ -33,6 +33,8 @@ app.get(
   '/',
   cache.route({ expire: { 200: 5, 403: 60, xxx: 0 } }),
   (req, res, next) => {
+    const timestamp = Date.now()
+    console.log('Getting request for club list')
     operationsBase('Clubs')
       .select()
       .all((err, records) => {
@@ -45,6 +47,9 @@ app.get(
             )
         } else {
           const result = records.map(filterClubData)
+          console.log(
+            `Responded to club list request in ${Date.now() - timestamp}ms`
+          )
 
           res.status(200).json(result)
         }
