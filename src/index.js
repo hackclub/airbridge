@@ -39,7 +39,7 @@ app.get('/', cacheWithRedis('30 seconds'), (req, res, next) => {
   const timestamp = Date.now()
   console.log('Getting request for club list')
   operationsBase('Clubs')
-    .select({ filterByFormula: '{Dummy}' })
+    .select({ filterByFormula: '!{Dummy}' })
     .all((err, records) => {
       if (err) {
         console.error(err)
