@@ -12,6 +12,9 @@ const redisClient = redis.createClient(process.env.REDIS_URL)
 const cacheWithRedis = apicache.options({
   redisClient,
   statusCodes: { include: [200, 304] },
+  headers: {
+    'cache-control': 'no-cache',
+  },
 }).middleware
 
 const filterClubData = input => {
