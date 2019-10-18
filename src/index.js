@@ -11,7 +11,7 @@ import apicache from 'apicache'
 const redisClient = redis.createClient(process.env.REDIS_URL)
 const cacheWithRedis = apicache.options({
   redisClient,
-  statusCodes: { include: [200] },
+  statusCodes: { include: [200, 304] },
 }).middleware
 
 const filterClubData = input => {
@@ -39,7 +39,7 @@ app.get('/', cacheWithRedis('30 seconds'), (req, res, next) => {
   const timestamp = Date.now()
   console.log('Getting request for club list')
   operationsBase('Clubs')
-    .select()
+    .select({ filterByFormula: '{Dummy}' })
     .all((err, records) => {
       if (err) {
         console.error(err)
