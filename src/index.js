@@ -51,7 +51,7 @@ app.get('/', cacheWithRedis('30 seconds'), (req, res, next) => {
   const timestamp = Date.now()
   console.log('Getting request for club list')
   operationsBase('Clubs')
-    .select({ filterByFormula: 'AND({Dummy} = 0, {Dropped} = 0)' })
+    .select({ filterByFormula: 'AND({Dummy} = 0, {Dropped} = 0, {Rejected} = 0)' })
     .all((err, records) => {
       if (err) {
         console.error(err)
