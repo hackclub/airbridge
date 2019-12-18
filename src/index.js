@@ -27,6 +27,8 @@ const filterClubData = input => {
     'Address Postal Code',
     'Address Country',
     'Club URL',
+    'Latitude',
+    'Longitude',
   ]
   const result = {}
   allowed.forEach(key => {
