@@ -35,7 +35,7 @@ app.get('/ping', (req, res) => {
   res.status(200).json({ message: 'pong!' })
 })
 
-app.get('/:version/:base/:tableName?/:recordID?', async(req, res, next) => {
+app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
   /*
     version: api version to use. Before version 1.0 this isn't being checked– go ahead and put a 0 there
     base: Either base ID ("apptEEFG5HTfGQE7h") or base name ("Operations")
