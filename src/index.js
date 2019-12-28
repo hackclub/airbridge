@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV || 'development'
-if (env === 'development') {
+if (env === 'development' || env === 'test') {
   require('dotenv').config()
 }
 if (!process.env.AIRTABLE_API_KEY) {
@@ -56,6 +56,6 @@ app.get('/:version/:base/:tableName?/:recordID?', async(req, res, next) => {
   }
 })
 
-const server = app.listen(process.env.PORT || 5000, () =>
+export const server = app.listen(process.env.PORT || 5000, () =>
   console.log(`Up and listening on ${server.address().port}`)
 )
