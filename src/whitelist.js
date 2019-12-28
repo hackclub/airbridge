@@ -1,5 +1,3 @@
-import { lookupBaseID } from './utils'
-
 const whitelistInfo = {
   'Operations': {
     'Clubs': [
