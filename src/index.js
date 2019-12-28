@@ -52,7 +52,7 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
     res.json(results)
   } catch (err) {
     console.error(err)
-    res.status(500).json(err)
+    res.status(500).json(err.message)
   }
 })
 
