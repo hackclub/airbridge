@@ -43,7 +43,12 @@ app.get('/:version/:base/:tableName?/:recordID?', async(req, res, next) => {
     recordID: Required if no tableName is provided. ex "rec02xw3TpmHOj7CA"
   */
   try {
-    const results = await airtableLookup(req.params)
+    let providedAuth
+    if (req.headers.authorization) {
+      // example auth header "Bearer key9uu912ij9e"
+      providedAuth = req.headers.authorization.replace('Bearer ', '')
+    }
+    const results = await airtableLookup(req.params, providedAuth)
     res.json(results)
   } catch (err) {
     console.error(err)
