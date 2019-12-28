@@ -27,6 +27,10 @@ if (process.env.REDIS_URL) {
 
 const app = express()
 
+app.get('/', (req, res) => {
+  res.redirect(302, 'https://github.com/hackclub/api2')
+})
+
 app.get('/ping', (req, res) => {
   res.status(200).json({ message: 'pong!' })
 })
