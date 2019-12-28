@@ -2,75 +2,49 @@ const env = process.env.NODE_ENV || 'development'
 if (env === 'development') {
   require('dotenv').config()
 }
+if (!process.env.AIRTABLE_API_KEY) {
+  throw 'Missing AIRTABLE_API_KEY from environmental variables'
+}
 
+import { airtableLookup } from './utils'
 import express from 'express'
-import Airtable from 'airtable'
 import redis from 'redis'
 import apicache from 'apicache'
 
-const redisClient = redis.createClient(process.env.REDIS_URL)
-const cacheWithRedis = apicache.options({
-  redisClient,
-  statusCodes: { include: [200, 304] },
-  headers: {
-    'cache-control': 'no-cache',
-  },
-}).middleware
-
-const filterClubData = input => {
-  const allowed = [
-    'Name',
-    'Slack Channel ID',
-    'Leader Slack IDs',
-    'Address City',
-    'Address State',
-    'Address Postal Code',
-    'Address Country',
-    'Club URL',
-    'Latitude',
-    'Longitude',
-  ]
-  const result = {}
-  allowed.forEach(key => {
-    result[key] = input.fields[key]
-  })
-  return result
+let cacheWithRedis
+if (process.env.REDIS_URL) {
+  const redisClient = redis.createClient(process.env.REDIS_URL)
+  cacheWithRedis = apicache.options({
+    redisClient,
+    statusCodes: { include: [200, 304] },
+    headers: {
+      'cache-control': 'no-cache',
+    },
+  }).middleware
+} else {
+  console.log('No REDIS_URL env variable found, skipping caching!')
 }
-
-const operationsBase = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base(process.env.AIRTABLE_OPERATIONS_TABLE)
 
 const app = express()
 
 app.get('/ping', (req, res) => {
-  setTimeout(() => {
-    res.status(200).json({ message: 'pong!' })
-  }, 1000)
+  res.status(200).json({ message: 'pong!' })
 })
 
-app.get('/', cacheWithRedis('30 seconds'), (req, res, next) => {
-  const timestamp = Date.now()
-  console.log('Getting request for club list')
-  operationsBase('Clubs')
-    .select({ filterByFormula: 'AND({Dummy} = 0, {Dropped} = 0, {Rejected} = 0)' })
-    .all((err, records) => {
-      if (err) {
-        console.error(err)
-        res
-          .status(500)
-          .send(
-            `Received error code '${err.statusCode}' from Airtable: '${err.message}'`
-          )
-      } else {
-        const result = records.map(filterClubData)
-        console.log(
-          `Responded to club list request in ${Date.now() - timestamp}ms`
-        )
-
-        res.status(200).json(result)
-      }
-    })
+app.get('/:version/:base/:tableName?/:recordID?', async(req, res, next) => {
+  /*
+    version: api version to use. Before version 1.0 this isn't being checked– go ahead and put a 0 there
+    base: Either base ID ("apptEEFG5HTfGQE7h") or base name ("Operations")
+    tableName: Required if no recordID is provided. ex "Clubs"
+    recordID: Required if no tableName is provided. ex "rec02xw3TpmHOj7CA"
+  */
+  try {
+    const results = await airtableLookup(req.params)
+    res.json(results)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json(err)
+  }
 })
 
 const server = app.listen(process.env.PORT || 5000, () =>
