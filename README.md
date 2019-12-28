@@ -1,6 +1,6 @@
 ![](api2.jpg)
 
-**Routes**
+**Examples**
 ```sh
 curl https://api2.hackclub.com/ping
 # returns "pong!"
