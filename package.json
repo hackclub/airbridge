@@ -13,6 +13,10 @@
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackclub/api2.git"
+  },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "airtable-plus": "^1.0.4",
