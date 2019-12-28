@@ -13,6 +13,13 @@ const whitelistInfo = {
       'Club URL',
       'Latitude',
       'Longitude',
+    ],
+    'Badges': [
+      'ID',
+      'Name',
+      'Emoji Tag',
+      'Icon',
+      'People Slack IDs'
     ]
   }
 }
