@@ -3,7 +3,7 @@ if (env === 'development' || env === 'test') {
   require('dotenv').config()
 }
 if (!process.env.AIRTABLE_API_KEY) {
-  throw 'Missing AIRTABLE_API_KEY from environmental variables'
+  throw new Error('Missing AIRTABLE_API_KEY from environmental variables')
 }
 
 import { airtableLookup } from './utils'
@@ -52,7 +52,7 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
     res.json(results)
   } catch (err) {
     console.error(err)
-    res.status(500).json(err.message)
+    next(err.message)
   }
 })
 
