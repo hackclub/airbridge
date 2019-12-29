@@ -14,7 +14,7 @@ export async function airtableLookup(params, auth) {
 
   if (auth) {
     const airinst = new Airtable({apiKey: auth}).base(baseID)(tableName)
-    const rawResults = await airinst.select(select)
+    const rawResults = await airinst.select(select).all()
     return rawResults.map(result => ({
       id: result.id,
       field: result.field
