@@ -8,9 +8,10 @@ export function lookupBaseID(baseID) {
   return lookedUpID || baseID
 }
 
-export async function airtableLookup(params, auth) {
-  let { base, tableName, select = {} } = params
-  let baseID = lookupBaseID(base)
+export async function airtableLookup(params, query = {}, auth) {
+  const { base, tableName } = params
+  const select = query.select
+  const baseID = lookupBaseID(base)
 
   if (auth) {
     const airinst = new Airtable({apiKey: auth}).base(baseID)(tableName)

@@ -42,17 +42,39 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
     tableName: Required if no recordID is provided. ex "Clubs"
     recordID: Required if no tableName is provided. ex "rec02xw3TpmHOj7CA"
   */
+  const startTime = Date.now()
+  const meta = {
+    params: {...req.params, version: 0},
+    query: {...req.query},
+  }
+  if (req.query.authKey) {
+    meta.query.authKey = '[redacted]'
+  }
   try {
     let providedAuth
     if (req.headers.authorization) {
       // example auth header "Bearer key9uu912ij9e"
       providedAuth = req.headers.authorization.replace('Bearer ', '')
     }
-    const results = await airtableLookup(req.params, providedAuth)
-    res.json(results)
+    if (env === 'development' || env === 'test') {
+      providedAuth = req.query.authKey
+    }
+    const result = await airtableLookup(req.params, req.query, providedAuth)
+
+    meta.duration = Date.now() - startTime
+    res.json({result, meta})
   } catch (err) {
     console.error(err.message)
-    res.status(500).send({ error: err.message })
+
+    const statusCode = err.statusCode || 500
+    meta.duration = Date.now() - startTime
+    res.status(statusCode).send({
+      error: {
+        message: err.message,
+        statusCode
+      },
+      meta
+    })
   }
 })
 
