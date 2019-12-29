@@ -26,16 +26,19 @@ const whitelistInfo = {
 
 export function whitelistBaseTable(baseID, tableName) {
   const whitelistedBase = Object.keys(whitelistInfo).find(key => lookupBaseID(key) === lookupBaseID(baseID))
-  console.log(whitelistedBase)
   if (!whitelistedBase) {
-    throw new Error("Base either doesn't exist or isn't publicly accessible")
+    const err = new Error("Base either doesn't exist or isn't publicly accessible")
+    err.statusCode = 404
+    throw err
   } else {
     console.log('Publicly accessing base', baseID)
   }
 
   const whitelistedTable = whitelistInfo[whitelistedBase][tableName]
   if (!whitelistedTable) {
-    throw new Error("Table either doesn't exist or isn't publicly accessible")
+    const err = new Error("Table either doesn't exist or isn't publicly accessible")
+    err.statusCode = 404
+    throw err
   } else {
     console.log('Publicly accessing table', tableName)
   }
@@ -46,7 +49,6 @@ export function whitelistRecords(records, whitelistedFields) {
   if (Array.isArray(records)) {
     return records.map(record => whitelistRecords(record, whitelistedFields))
   } else {
-    console.log(whitelistedFields, records)
     const record = records
     const result = {
       id: record.id,
