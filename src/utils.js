@@ -9,12 +9,21 @@ export function lookupBaseID(baseID) {
 }
 
 export async function airtableLookup(params, auth) {
-  let { base, tableName } = params
+  let { base, tableName, view, filterByFormula, maxRecords, pageSize, sort, view, cellFormat, timeZone, userLocale, fields } = params
   let baseID = lookupBaseID(base)
 
   if (auth) {
     const air = new AirtablePlus({ apiKey: auth, baseID, tableName })
-    const results = await air.read()
+    const results = await air.read({
+      filterByFormula,
+      maxRecords,
+      pageSize,
+      sort,
+      view,
+      cellFormat,
+      timeZone,
+      userLocale,
+    })
     return results
   } else {
     const air = new AirtablePlus({ baseID, tableName, complex: true })
