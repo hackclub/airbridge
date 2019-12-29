@@ -17,7 +17,7 @@ export async function airtableLookup(params, auth) {
     const rawResults = await airinst.select(select).all()
     return rawResults.map(result => ({
       id: result.id,
-      field: result.field
+      fields: result.fields
     }))
   } else {
     const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
