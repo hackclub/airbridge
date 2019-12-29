@@ -59,12 +59,25 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
     if (env === 'development' || env === 'test') {
       providedAuth = req.query.authKey
     }
-    const result = await airtableLookup(req.params, req.query, providedAuth)
+    const options = {
+      base: req.params.base,
+      tableName: req.params.tableName,
+      authKey: providedAuth,
+    }
+    if (req.query.select) {
+      options.select = JSON.parse(req.query.select)
+    }
+    const result = await airtableLookup(options, providedAuth)
 
     meta.duration = Date.now() - startTime
-    res.json({result, meta})
+
+    if (req.query.meta) {
+      res.json({result, meta})
+    } else {
+      res.json(result)
+    }
   } catch (err) {
-    console.error(err.message)
+    console.log(err.message)
 
     const statusCode = err.statusCode || 500
     meta.duration = Date.now() - startTime

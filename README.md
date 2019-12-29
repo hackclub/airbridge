@@ -43,3 +43,33 @@ curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{field:"Peop
 # most users
 curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{field:"People Count",direction:"desc"}],"maxResults":1}
 ```
+
+## Developing & Contributing
+
+```sh
+git clone https://github.com/hackclub/api2
+cd api2/
+pnpm install
+
+# Run locally with nodemon
+pnpm run dev
+# Run tests
+pnpm test
+```
+
+### Development tools
+
+```sh
+# The `meta` url param will return a JSON object with metadata about the request you've just made
+curl http://localhost:5000/v0/Operations/Clubs/?meta=true
+# returns the following:
+{
+    result: [...], # Array of badges from Airtable
+    meta: {
+        duration: 241, # Time in ms to complete request
+        query: {...}, # List of URL query params parsed by the server
+        params: {...}, # List of URL params parsed by the server
+    }
+}
+```
+

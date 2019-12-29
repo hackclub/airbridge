@@ -8,9 +8,8 @@ export function lookupBaseID(baseID) {
   return lookedUpID || baseID
 }
 
-export async function airtableLookup(params, query = {}, auth) {
-  const { base, tableName } = params
-  const select = query.select
+export async function airtableLookup(options, auth) {
+  const { base, tableName, select } = options
   const baseID = lookupBaseID(base)
 
   if (auth) {
