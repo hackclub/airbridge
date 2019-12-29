@@ -51,8 +51,8 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
     const results = await airtableLookup(req.params, providedAuth)
     res.json(results)
   } catch (err) {
-    console.error(err)
-    next(err)
+    console.error(err.message)
+    res.status(500).send({ error: err.message })
   }
 })
 
