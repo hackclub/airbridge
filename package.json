@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "airtable-plus": "^1.0.4",
+    "airtable": "^0.8.1",
     "apicache": "^1.5.2",
     "express": "^4.17.1",
     "redis": "^2.8.0"

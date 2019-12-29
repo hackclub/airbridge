@@ -1,6 +1,6 @@
 dependencies:
   '@babel/runtime': 7.7.7
-  airtable-plus: 1.0.4
+  airtable: 0.8.1
   apicache: 1.5.2
   express: 4.17.1
   redis: 2.8.0
@@ -1072,24 +1072,17 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-gac8OEcQ2Li1dxIEWGZzsp2BitJxwkwcOm0zHAJLcPJaVvm58FRnk6RkuLRpU1EujipU2ZFODv2P9DLMfnV8mw==
-  /airtable-plus/1.0.4:
+  /airtable/0.8.1:
     dependencies:
-      airtable: 0.7.2
-      camelcase-keys: 5.2.0
-      p-map: 2.1.0
-    dev: false
-    resolution:
-      integrity: sha512-jzp4wxgK71QDawVucJ56jTxC3oAXqUO8MUBLSpfXiBaVp0Z8Ung3lxEwcavc8LN3q0cR5Cpn1aZHP+JKSw28/A==
-  /airtable/0.7.2:
-    dependencies:
+      es6-promise: 4.2.8
       lodash: 4.17.15
       request: 2.88.0
       xhr: 2.3.3
     dev: false
     engines:
-      node: '>= 0.10.0'
+      node: '>=8.0.0'
     resolution:
-      integrity: sha512-BwHIJyXmtUJ78EpnNzs+aYmPK9r0xNeFyKkmSn9I6WvG6QYcXlbDe6rhoEwqEdrjPVL6ZCoNwimJN4l6y5TUJg==
+      integrity: sha512-Cxw55ta1olDwDERz++HFJOBX6LONtg+d7+wOcYguqI4PR4P5RHmgjTbY8tPKgLHb8U3FVOyAbpb7NpLRSnLGgg==
   /ajv/6.10.2:
     dependencies:
       fast-deep-equal: 2.0.1
@@ -1423,16 +1416,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
-  /camelcase-keys/5.2.0:
-    dependencies:
-      camelcase: 5.3.1
-      map-obj: 3.1.0
-      quick-lru: 1.1.0
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-mSM/OQKD1HS5Ll2AXxeaHSdqCGC/QQ8IrgTbKYA/rxnC36thBKysfIr9+OVBWuW17jyZF4swHkjtglawgBmVFg==
   /camelcase/4.1.0:
     dev: true
     engines:
@@ -1440,6 +1423,7 @@ packages:
     resolution:
       integrity: sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
   /camelcase/5.3.1:
+    dev: true
     engines:
       node: '>=6'
     resolution:
@@ -1903,6 +1887,10 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==
+  /es6-promise/4.2.8:
+    dev: false
+    resolution:
+      integrity: sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -3459,12 +3447,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-wyq9C9ZSXZsFFkW7TyasXcmKDb8=
-  /map-obj/3.1.0:
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-Xg1iyYz/+iIW6YoMldux47H/e5QZyDSB41Kb0ev+YYHh3FJnyyzY0vTk/WbVeWcCvdXd70cOriUBmhP8alUFBA==
   /map-visit/1.0.0:
     dependencies:
       object-visit: 1.0.1
@@ -3839,12 +3821,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
-  /p-map/2.1.0:
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw==
   /p-reduce/1.0.0:
     dev: true
     engines:
@@ -4048,8 +4024,12 @@ packages:
     resolution:
       integrity: sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
   /psl/1.6.0:
+    dev: true
     resolution:
       integrity: sha512-SYKKmVel98NCOYXpkwUqZqh0ahZeeKfmisiLIcEZdsb+WbLv02g/dI5BUmZnIyOe7RzZtLax81nnb2HbvC2tzA==
+  /psl/1.7.0:
+    resolution:
+      integrity: sha512-5NsSEDv8zY70ScRnOTn7bK7eanl2MvFrOrS/R6x+dBt5g1ghnj9Zv90kO8GwT8gxcu2ANyFprnFYB85IogIJOQ==
   /pstree.remy/1.1.7:
     dev: true
     resolution:
@@ -4086,12 +4066,6 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-Cxm7/SS/y/Z3MHWSxXb8lIFqgqBowP5JMlTUFyJN88y0SGQhVmZnqFK/PeuMX9LzUyWsqqhNxIyg0jlzq946yA==
-  /quick-lru/1.1.0:
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
   /range-parser/1.2.1:
     dev: false
     engines:
@@ -4879,7 +4853,7 @@ packages:
       integrity: sha512-WBx8Uy5TLtOSRtIq+M03/sKDrXCLHxwDcquSP2c43Le03/9serjQBIztjRz6FkJez9D/hleyAXTBGLwwZUw9lA==
   /tough-cookie/2.4.3:
     dependencies:
-      psl: 1.6.0
+      psl: 1.7.0
       punycode: 1.4.1
     engines:
       node: '>=0.8'
@@ -5277,7 +5251,7 @@ specifiers:
   '@babel/plugin-transform-runtime': ^7.7.6
   '@babel/preset-env': ^7.6.3
   '@babel/runtime': ^7.7.7
-  airtable-plus: ^1.0.4
+  airtable: ^0.8.1
   apicache: ^1.5.2
   dotenv: ^8.1.0
   express: ^4.17.1
