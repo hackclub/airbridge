@@ -14,8 +14,11 @@ export async function airtableLookup(params, auth) {
 
   if (auth) {
     const airinst = new Airtable({apiKey: auth}).base(baseID)(tableName)
-    const results = await airinst.select(select)
-    return results
+    const rawResults = await airinst.select(select)
+    return rawResults.map(result => ({
+      id: result.id,
+      field: result.field
+    }))
   } else {
     const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
     const airinst = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(baseID)(tableName)
