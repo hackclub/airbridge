@@ -7,6 +7,7 @@ if (!process.env.AIRTABLE_API_KEY) {
 }
 
 import { airtableLookup } from './utils'
+import { bugsnagErrorHandler, bugsnagRequestHandler } from './bugsnag'
 import express from 'express'
 import redis from 'redis'
 import apicache from 'apicache'
@@ -26,6 +27,7 @@ if (process.env.REDIS_URL) {
 }
 
 const app = express()
+app.use(bugsnagRequestHandler)
 
 app.get('/', (req, res) => {
   res.redirect(302, 'https://github.com/hackclub/api2')
@@ -94,3 +96,5 @@ app.get('/v0/:base/:tableName?/:recordID?', async(req, res, next) => {
 export const server = app.listen(process.env.PORT || 5000, () =>
   console.log(`Up and listening on ${server.address().port}`)
 )
+
+app.use(bugsnagErrorHandler)

@@ -1,5 +1,7 @@
 dependencies:
   '@babel/runtime': 7.7.7
+  '@bugsnag/js': 6.5.0
+  '@bugsnag/plugin-express': 6.5.0_@bugsnag+js@6.5.0
   airtable: 0.8.1
   apicache: 1.5.2
   express: 4.17.1
@@ -800,6 +802,36 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cz5Ji23KCi4T+YIE/BolWosrJuSmoZeN1EFnRtBwF+KKLi8GG/Z2c2hOJJeCXPk4mwk4QFvTmwIodJowXgttRA==
+  /@bugsnag/browser/6.5.0:
+    dev: false
+    resolution:
+      integrity: sha512-BBUK4XlCkzRsAwFbdAOBPSa353EqDmGuVvbnXom0xG1D2IySGyNmYdPBproTRNKp+h0XuCkXeBrjsyC9Wph6+g==
+  /@bugsnag/js/6.5.0:
+    dependencies:
+      '@bugsnag/browser': 6.5.0
+      '@bugsnag/node': 6.5.0
+    dev: false
+    resolution:
+      integrity: sha512-iY0e3BOjDkTV6YssVeAC/TfP27RRdqZoZWJGKBU1mTdfKdNb0aSkR8DsU5UTriwY900ughNVONLQm87ecHyNUQ==
+  /@bugsnag/node/6.5.0:
+    dependencies:
+      byline: 5.0.0
+      error-stack-parser: 2.0.4
+      iserror: 0.0.2
+      pump: 3.0.0
+      stack-generator: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-qW6+MYeXxcUA1nYzfeO637PzwPhKP89udYrIRXhhTLFIZwMyyFRes9Fok4M6RGN6VKP6H4zpQrzMc6/dU08Jxw==
+  /@bugsnag/plugin-express/6.5.0_@bugsnag+js@6.5.0:
+    dependencies:
+      '@bugsnag/js': 6.5.0
+      iserror: 0.0.2
+    dev: false
+    peerDependencies:
+      '@bugsnag/js': '*'
+    resolution:
+      integrity: sha512-O8AC2c4dUoXkvZ+mg4QbOlw/VI9KV9PE1MdiDRdB5JzXQRm6PZQXm9QRsqYnn4+0T5PMfUnddEreiSn+eakIuQ==
   /@cnakazawa/watch/1.0.3:
     dependencies:
       exec-sh: 0.3.4
@@ -1388,6 +1420,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
+  /byline/5.0.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-dBxSFkaOrcRXsDQQEYrXfejB3bE=
   /bytes/3.1.0:
     dev: false
     engines:
@@ -1850,7 +1888,6 @@ packages:
   /end-of-stream/1.4.4:
     dependencies:
       once: 1.4.0
-    dev: true
     resolution:
       integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   /error-ex/1.3.2:
@@ -1859,6 +1896,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==
+  /error-stack-parser/2.0.4:
+    dependencies:
+      stackframe: 1.1.0
+    dev: false
+    resolution:
+      integrity: sha512-fZ0KkoxSjLFmhW5lHbUT3tLwy3nX1qEzMYo8koY1vrsAco53CMT1djnBSeC/wUjTEZRhZl9iRw7PaMaxfJ4wzQ==
   /es-abstract/1.17.0:
     dependencies:
       es-to-primitive: 1.2.1
@@ -2759,6 +2802,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
+  /iserror/0.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-vVNFH+L2aLnyQCwZZnh6qix8C/U=
   /isexe/2.0.0:
     dev: true
     resolution:
@@ -3768,7 +3815,6 @@ packages:
   /once/1.4.0:
     dependencies:
       wrappy: 1.0.2
-    dev: true
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
   /optimist/0.6.1:
@@ -4038,7 +4084,6 @@ packages:
     dependencies:
       end-of-stream: 1.4.4
       once: 1.4.0
-    dev: true
     resolution:
       integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==
   /punycode/1.4.1:
@@ -4611,12 +4656,22 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-HXXqVUq7+pcKeLqqZj6mHFUMvXtOJt1uoUx09pFW6011inTMxqI8BA8PM95myrIyyKwdnzjdFjLiE6KBPVtJIg==
+  /stack-generator/2.0.4:
+    dependencies:
+      stackframe: 1.1.0
+    dev: false
+    resolution:
+      integrity: sha512-ha1gosTNcgxwzo9uKTQ8zZ49aUp5FIUW58YHFxCqaAHtE0XqBg0chGFYA1MfmW//x1KWq3F4G7Ug7bJh4RiRtg==
   /stack-utils/1.0.2:
     dev: true
     engines:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
+  /stackframe/1.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-Vx6W1Yvy+AM1R/ckVwcHQHV147pTPBKWCRLrXMuPrFVfvBUc3os7PR1QLIWCMhPpRg5eX9ojzbQIMLGBwyLjqg==
   /static-extend/0.1.2:
     dependencies:
       define-property: 0.2.5
@@ -5164,7 +5219,6 @@ packages:
     resolution:
       integrity: sha512-QC1/iN/2/RPVJ5jYK8BGttj5z83LmSKmvbvrXPNCLZSEb32KKVDJDl/MOt2N01qU2H/FkzEa9PKto1BqDjtd7Q==
   /wrappy/1.0.2:
-    dev: true
     resolution:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
   /write-file-atomic/2.4.1:
@@ -5251,6 +5305,8 @@ specifiers:
   '@babel/plugin-transform-runtime': ^7.7.6
   '@babel/preset-env': ^7.6.3
   '@babel/runtime': ^7.7.7
+  '@bugsnag/js': ^6.5.0
+  '@bugsnag/plugin-express': ^6.5.0
   airtable: ^0.8.1
   apicache: ^1.5.2
   dotenv: ^8.1.0
