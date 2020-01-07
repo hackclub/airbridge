@@ -22,9 +22,7 @@
     "@bugsnag/js": "^6.5.0",
     "@bugsnag/plugin-express": "^6.5.0",
     "airtable": "^0.8.1",
-    "apicache": "^1.5.2",
-    "express": "^4.17.1",
-    "redis": "^2.8.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",

@@ -3,9 +3,7 @@ dependencies:
   '@bugsnag/js': 6.5.0
   '@bugsnag/plugin-express': 6.5.0_@bugsnag+js@6.5.0
   airtable: 0.8.1
-  apicache: 1.5.2
   express: 4.17.1
-  redis: 2.8.0
 devDependencies:
   '@babel/cli': 7.7.7_@babel+core@7.7.7
   '@babel/core': 7.7.7
@@ -1162,12 +1160,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5teOsQWABXHHBFP9y3skS5P3d/WfWXpv3FUpy+LorMrNYaT9pI4oLMQX7jzQ2KklNpGpWHzdCXTDT2Y3XGlZBw==
-  /apicache/1.5.2:
-    dev: false
-    engines:
-      node: '>=6.2.0'
-    resolution:
-      integrity: sha512-jO8ie/Zqmr3MxLQSVNsHiQo5R1tbbP1TnpI6xOnRJv9wUOSP+YnZkULWmdo3fE7PHBSxIQzgIsEHGa6H5hKH9Q==
   /arr-diff/4.0.0:
     dev: true
     engines:
@@ -1853,10 +1845,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
-  /double-ended-queue/2.1.0-0:
-    dev: false
-    resolution:
-      integrity: sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
   /duplexer3/0.1.4:
     dev: true
     resolution:
@@ -4191,26 +4179,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
-  /redis-commands/1.5.0:
-    dev: false
-    resolution:
-      integrity: sha512-6KxamqpZ468MeQC3bkWmCB1fp56XL64D4Kf0zJSwDZbVLLm7KFkoIcHrgRvQ+sk8dnhySs7+yBg94yIkAK7aJg==
-  /redis-parser/2.6.0:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
-  /redis/2.8.0:
-    dependencies:
-      double-ended-queue: 2.1.0-0
-      redis-commands: 1.5.0
-      redis-parser: 2.6.0
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
   /regenerate-unicode-properties/8.1.0:
     dependencies:
       regenerate: 1.4.0
@@ -5308,10 +5276,8 @@ specifiers:
   '@bugsnag/js': ^6.5.0
   '@bugsnag/plugin-express': ^6.5.0
   airtable: ^0.8.1
-  apicache: ^1.5.2
   dotenv: ^8.1.0
   express: ^4.17.1
   jest: ^24.9.0
   nodemon: ^1.19.3
-  redis: ^2.8.0
   supertest: ^4.0.2
