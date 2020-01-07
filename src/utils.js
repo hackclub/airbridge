@@ -3,7 +3,8 @@ import { whitelistBaseTable, whitelistRecords } from './whitelist'
 
 export function lookupBaseID(baseID) {
   const lookedUpID = {
-    'Operations': 'apptEEFG5HTfGQE7h'
+    'Operations': 'apptEEFG5HTfGQE7h',
+    'Events': 'appSII8fzkQ1U8kvi'
   }[baseID]
   return lookedUpID || baseID
 }
