@@ -1,4 +1,4 @@
-import { lookupBaseID } from './utils'
+import { lookupBaseID } from "./utils"
 
 const whitelistInfo = {
   'Operations': {
@@ -13,35 +13,49 @@ const whitelistInfo = {
       'Club URL',
       'Latitude',
       'Longitude',
+    ],
+    'Badges': [
+      'ID',
+      'Name',
+      'Emoji Tag',
+      'Icon',
+      'People Slack IDs'
     ]
   }
 }
 
-export default async function whitelist(base, recordArray) {
-  if (recordArray.length === 0) { 
-    return []
-  }
-  const baseID = recordArray[0]._table._base.id
-  const baseName = Object.keys(whitelistInfo).find(key => base === key) 
-  if (!baseName) {
-    throw 'Tried to access a base that is not in the whitelist. If you think this info should be public, ask staff to add this base to the whitelist.'
-  }
-  const tableName = recordArray[0]._table.name
-  if (!whitelistInfo[baseName][tableName]) {
-    throw 'Tried to access table that is not in the whitelist. If you think this info should be public, ask staff to add this table to the whitelist.'
+export function whitelistBaseTable(baseID, tableName) {
+  const whitelistedBase = Object.keys(whitelistInfo).find(key => lookupBaseID(key) === lookupBaseID(baseID))
+  if (!whitelistedBase) {
+    const err = new Error("Not found: base either doesn't exist or isn't publicly accessible")
+    err.statusCode = 404
+    throw err
+  } else {
+    console.log('Publicly accessing base', baseID)
   }
 
-  const whitelistFields = whitelistInfo[baseName][tableName]
-  return recordArray.map(record => whitelistRecord(record, whitelistFields))
+  const whitelistedTable = whitelistInfo[whitelistedBase][tableName]
+  if (!whitelistedTable) {
+    const err = new Error("Not found: table either doesn't exist or isn't publicly accessible")
+    err.statusCode = 404
+    throw err
+  } else {
+    console.log('Publicly accessing table', tableName)
+  }
+  return whitelistedTable
 }
 
-function whitelistRecord(record, whitelistFields) {
-  const result = {
-    id: record.id,
-    fields: {}
+export function whitelistRecords(records, whitelistedFields) {
+  if (Array.isArray(records)) {
+    return records.map(record => whitelistRecords(record, whitelistedFields))
+  } else {
+    const record = records
+    const result = {
+      id: record.id,
+      fields: {}
+    }
+
+    whitelistedFields.forEach(field => result.fields[field] = record.fields[field])
+    return result
   }
-  whitelistFields.forEach(field => {
-    result.fields[field] = record.fields[field]
-  })
-  return result
 }

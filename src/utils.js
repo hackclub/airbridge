@@ -1,5 +1,5 @@
-import AirtablePlus from 'airtable-plus'
-import whitelist from './whitelist'
+import Airtable from 'airtable'
+import { whitelistBaseTable, whitelistRecords } from './whitelist'
 
 export function lookupBaseID(baseID) {
   const lookedUpID = {
@@ -9,17 +9,23 @@ export function lookupBaseID(baseID) {
   return lookedUpID || baseID
 }
 
-export async function airtableLookup(params, auth) {
-  let { base, tableName } = params
-  let baseID = lookupBaseID(base)
+export async function airtableLookup(options, auth) {
+  const { base, tableName, select } = options
+  const baseID = lookupBaseID(base)
 
   if (auth) {
-    const air = new AirtablePlus({ apiKey: auth, baseID, tableName })
-    const results = await air.read()
-    return results
+    const airinst = new Airtable({apiKey: auth}).base(baseID)(tableName)
+    const rawResults = await airinst.select(select).all()
+    return rawResults.map(result => ({
+      id: result.id,
+      fields: result.fields
+    }))
   } else {
-    const air = new AirtablePlus({ baseID, tableName, complex: true })
-    const rawResults = await air.read()
-    return await whitelist(base, rawResults)
+    const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
+    const airinst = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(baseID)(tableName)
+
+    const rawResults = await airinst.select({...select, fields: whitelistedFields}).all()
+
+    return whitelistRecords(rawResults, whitelistedFields)
   }
 }

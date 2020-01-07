@@ -1,6 +1,6 @@
 {
   "name": "hackclub-info",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Public-facing API for getting info from Hack Club",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "node build/index.js",
     "build": "babel src -d build",
     "heroku-postbuild": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",
@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "airtable-plus": "^1.0.4",
+    "@bugsnag/js": "^6.5.0",
+    "@bugsnag/plugin-express": "^6.5.0",
+    "airtable": "^0.8.1",
     "apicache": "^1.5.2",
     "express": "^4.17.1",
     "redis": "^2.8.0"
@@ -31,6 +33,14 @@
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.6.3",
     "dotenv": "^8.1.0",
-    "nodemon": "^1.19.3"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.3",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
