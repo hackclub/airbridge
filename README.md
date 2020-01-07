@@ -1,7 +1,5 @@
 ![](api2.jpg)
 
-**Examples**
-
 **Basic calls**
 ```sh
 # Ensure you can connect

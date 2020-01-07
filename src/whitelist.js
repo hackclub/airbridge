@@ -1,6 +1,21 @@
 import { lookupBaseID } from "./utils"
 
 const whitelistInfo = {
+  'hackathons.hackclub.com': {
+    'applications': [
+      'name',
+      'website_url',
+      'start_date',
+      'end_date',
+      'city',
+      'state',
+      'country',
+      'mlh_affiliated',
+      'logo_image',
+      'background_image',
+      'approved',
+    ]
+  },
   'Operations': {
     'Clubs': [
       'Name',
