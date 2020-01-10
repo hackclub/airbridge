@@ -10,6 +10,7 @@ curl https://api2.hackclub.com/ping
 curl https://api2.hackclub.com/v0/Operations/Badges
 # returns JSON array of records from 'Badges' table in 'Operations' base
 
+# Planned for future release:
 # Get specific record from a table
 curl https://api2.hackclub.com/v0/Operations/Badges/rec9j291j3k928
 # returns JSON object from airtable
