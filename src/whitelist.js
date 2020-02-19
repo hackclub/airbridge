@@ -4,16 +4,19 @@ const whitelistInfo = {
   'hackathons.hackclub.com': {
     'applications': [
       'name',
-      'website_url',
-      'start_date',
-      'end_date',
-      'city',
-      'state',
-      'country',
-      'mlh_affiliated',
-      'logo_image',
-      'background_image',
+      'website',
+      'start',
+      'end',
+      'parsed_city',
+      'parsed_state_code',
+      'parsed_country',
+      'parsed_country_code',
+      'hackclub_affiliated'
+      'mlh_associated',
+      'logo',
+      'banner',
       'approved',
+      'id'
     ]
   },
   'Operations': {
