@@ -16,7 +16,8 @@ const whitelistInfo = {
       'logo',
       'banner',
       'approved',
-      'id'
+      'id',
+      'created_at'
     ]
   },
   'Operations': {
