@@ -11,7 +11,7 @@ const whitelistInfo = {
       'parsed_state_code',
       'parsed_country',
       'parsed_country_code',
-      'hackclub_affiliated'
+      'hackclub_affiliated',
       'mlh_associated',
       'logo',
       'banner',
