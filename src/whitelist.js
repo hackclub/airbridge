@@ -17,7 +17,9 @@ const whitelistInfo = {
       'banner',
       'approved',
       'id',
-      'created_at'
+      'created_at',
+      'lat',
+      'lng'
     ]
   },
   'Operations': {
