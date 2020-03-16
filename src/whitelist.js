@@ -1,6 +1,18 @@
 import { lookupBaseID } from "./utils"
 
 const whitelistInfo = {
+  'SDP Priority Activations': {
+    'SDP Priority Activations': [
+      'Submission Time',
+      'Approved',
+      'Rejection Reason',
+      'Source type',
+      'Mail Mission',
+      'Address (city)',
+      'Address (state)',
+      'Address (zip code)'
+    ]
+  },
   'hackathons.hackclub.com': {
     'applications': [
       'name',

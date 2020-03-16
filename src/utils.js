@@ -4,7 +4,8 @@ import { whitelistBaseTable, whitelistRecords } from './whitelist'
 export function lookupBaseID(baseID) {
   const lookedUpID = {
     'Operations': 'apptEEFG5HTfGQE7h',
-    'hackathons.hackclub.com': 'apptapPDAi0eBaaG1'
+    'hackathons.hackclub.com': 'apptapPDAi0eBaaG1',
+    'SDP Priority Activations': 'apple9fiV81JsRytC'
   }[baseID]
   return lookedUpID || baseID
 }
