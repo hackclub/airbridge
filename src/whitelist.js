@@ -59,7 +59,7 @@ const whitelistInfo = {
     Schedule: [
       'Session Name',
       'Leader Name',
-      'Time (Eastern)'
+      'Time (Eastern)',
       'Date (formatted)',
       'Time (formatted)',
       'Calendar Event',
