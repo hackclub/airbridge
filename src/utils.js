@@ -3,9 +3,10 @@ import { whitelistBaseTable, whitelistRecords } from './whitelist'
 
 export function lookupBaseID(baseID) {
   const lookedUpID = {
-    'Operations': 'apptEEFG5HTfGQE7h',
+    Operations: 'apptEEFG5HTfGQE7h',
     'hackathons.hackclub.com': 'apptapPDAi0eBaaG1',
-    'SDP Priority Activations': 'apple9fiV81JsRytC'
+    'SDP Priority Activations': 'apple9fiV81JsRytC',
+    'Command Center Schedule': 'appGvXhgsuXhCTrOr'
   }[baseID]
   return lookedUpID || baseID
 }
@@ -15,7 +16,7 @@ export async function airtableLookup(options, auth) {
   const baseID = lookupBaseID(base)
 
   if (auth) {
-    const airinst = new Airtable({apiKey: auth}).base(baseID)(tableName)
+    const airinst = new Airtable({ apiKey: auth }).base(baseID)(tableName)
     const rawResults = await airinst.select(select).all()
     return rawResults.map(result => ({
       id: result.id,
@@ -23,9 +24,13 @@ export async function airtableLookup(options, auth) {
     }))
   } else {
     const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
-    const airinst = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(baseID)(tableName)
+    const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+      baseID
+    )(tableName)
 
-    const rawResults = await airinst.select({...select, fields: whitelistedFields}).all()
+    const rawResults = await airinst
+      .select({ ...select, fields: whitelistedFields })
+      .all()
 
     return whitelistRecords(rawResults, whitelistedFields)
   }
