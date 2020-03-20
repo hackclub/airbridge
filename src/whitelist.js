@@ -1,4 +1,4 @@
-import { lookupBaseID } from "./utils"
+import { lookupBaseID } from './utils'
 
 const whitelistInfo = {
   'SDP Priority Activations': {
@@ -53,6 +53,15 @@ const whitelistInfo = {
       'Emoji Tag',
       'Icon',
       'People Slack IDs'
+    ]
+  },
+  'Command Center Schedule': {
+    Schedule: [
+      'Session Name',
+      'Leader Name',
+      'Preview Image',
+      'Zap calendar start',
+      'Zap calendar end'
     ]
   }
 }
