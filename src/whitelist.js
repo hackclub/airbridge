@@ -59,9 +59,11 @@ const whitelistInfo = {
     Schedule: [
       'Session Name',
       'Leader Name',
-      'Preview Image',
-      'Zap calendar start',
-      'Zap calendar end'
+      'Time (Eastern)'
+      'Date (formatted)',
+      'Time (formatted)',
+      'Calendar Event',
+      'Preview Image'
     ]
   }
 }
