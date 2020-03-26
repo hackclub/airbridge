@@ -13,6 +13,15 @@ const whitelistInfo = {
       'Address (zip code)'
     ]
   },
+  'CCC Newsfeed': {
+    'Items': [
+      'Title',
+      'Subtitle',
+      'Notes',
+      'Autonumber',
+      'Attachments'
+    ]
+  },
   'hackathons.hackclub.com': {
     'applications': [
       'name',
