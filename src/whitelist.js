@@ -74,6 +74,17 @@ const whitelistInfo = {
       'Calendar Event',
       'Preview Image'
     ]
+  },
+  Sessions: {
+    Events: [
+      'Title',
+      'Description',
+      'Leader',
+      'Start Time',
+      'End Time',
+      'Avatar',
+      'Calendar Link'
+    ]
   }
 }
 
