@@ -8,7 +8,8 @@ export function lookupBaseID(baseID) {
     'hackathons.hackclub.com': 'apptapPDAi0eBaaG1',
     'SDP Priority Activations': 'apple9fiV81JsRytC',
     'Command Center Schedule': 'appGvXhgsuXhCTrOr',
-    'Sessions': 'appezi7TOQFt8vTfa'
+    'Sessions': 'appezi7TOQFt8vTfa',
+    'Draw in the dark': 'applcpliMnombEJb9'
   }[baseID]
   return lookedUpID || baseID
 }
