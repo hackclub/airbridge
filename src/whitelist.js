@@ -88,7 +88,9 @@ const whitelistInfo = {
   },
   'Draw in the dark': {
     Deadline: [
-      'Time'
+      'Time',
+      'Preview',
+      'Art title'
     ]
   }
 }
