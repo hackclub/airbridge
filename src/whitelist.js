@@ -90,7 +90,8 @@ const whitelistInfo = {
     Deadline: [
       'Time',
       'Preview',
-      'Art title'
+      'Art title',
+      'Active'
     ]
   }
 }
