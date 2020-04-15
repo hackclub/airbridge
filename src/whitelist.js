@@ -85,6 +85,11 @@ const whitelistInfo = {
       'Avatar',
       'Calendar Link'
     ]
+  },
+  'Draw in the dark': {
+    Deadline: [
+      'Time'
+    ]
   }
 }
 
