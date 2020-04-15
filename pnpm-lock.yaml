@@ -3,6 +3,7 @@ dependencies:
   '@bugsnag/js': 6.5.0
   '@bugsnag/plugin-express': 6.5.0_@bugsnag+js@6.5.0
   airtable: 0.8.1
+  cors: 2.8.5
   express: 4.17.1
 devDependencies:
   '@babel/cli': 7.7.7_@babel+core@7.7.7
@@ -1663,6 +1664,15 @@ packages:
   /core-util-is/1.0.2:
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cors/2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /create-error-class/3.0.2:
     dependencies:
       capture-stack-trace: 1.0.1
@@ -3736,6 +3746,12 @@ packages:
   /oauth-sign/0.9.0:
     resolution:
       integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
+  /object-assign/4.1.1:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
   /object-copy/0.1.0:
     dependencies:
       copy-descriptor: 0.1.1
@@ -5276,6 +5292,7 @@ specifiers:
   '@bugsnag/js': ^6.5.0
   '@bugsnag/plugin-express': ^6.5.0
   airtable: ^0.8.1
+  cors: ^2.8.5
   dotenv: ^8.1.0
   express: ^4.17.1
   jest: ^24.9.0

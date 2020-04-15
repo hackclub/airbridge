@@ -9,9 +9,11 @@ if (!process.env.AIRTABLE_API_KEY) {
 import { airtableLookup } from './utils'
 import { bugsnagErrorHandler, bugsnagRequestHandler } from './bugsnag'
 import express from 'express'
+import cors from 'cors'
 
 const app = express()
 app.use(bugsnagRequestHandler)
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.redirect(302, 'https://github.com/hackclub/api2')
