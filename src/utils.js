@@ -27,14 +27,22 @@ export async function airtableLookup(options, auth) {
     }))
   } else {
     const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
+
+    let resultFields = []
+    if (Array.isArray(options.fields)) {
+      resultFields = whitelistedFields.filter(f => options.fields.includes(f))
+    } else {
+      resultFields = whitelistedFields
+    }
+
     const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
       baseID
     )(tableName)
 
     const rawResults = await airinst
-      .select({ ...select, fields: whitelistedFields })
+      .select({ ...select, fields: resultFields })
       .all()
 
-    return whitelistRecords(rawResults, whitelistedFields)
+    return whitelistRecords(rawResults, resultFields)
   }
 }
