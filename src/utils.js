@@ -29,7 +29,7 @@ export async function airtableLookup(options, auth) {
     const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
 
     let resultFields = []
-    if (Array.isArray(select.fields)) {
+    if (select && Array.isArray(select.fields)) {
       resultFields = whitelistedFields.filter(f => select.fields.includes(f))
     } else {
       resultFields = whitelistedFields
