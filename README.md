@@ -35,12 +35,15 @@ curl -H "Authorization: Bearer VALID_AIRTABLE_KEY" https://api2.hackclub.com/v0/
 curl https://api2.hackclub.com/v0/Operations/Badges?select={"maxResults":1}
 
 # Get all badges, sorted by the number of people who have earned them
-curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{field:"People Count",direction:"desc"}]}
+curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{"field":"People Count","direction":"desc"}]}
 
 # You can combine arguments too. Here we'll sort badges by the number of people
 # and select the single record at the top of the list to get the badge with the
 # most users
-curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{field:"People Count",direction:"desc"}],"maxResults":1}
+curl https://api2.hackclub.com/v0/Operations/Badges?select={"sort":[{"field":"People Count","direction":"desc"}],"maxResults":1}
+
+# You can select specific fields to return to speed up queries/only see the data you want:
+curl https://api2.hackclub.com/v0/Operations/Badges?select={"fields":["Name"]}
 ```
 
 ## Developing & Contributing
