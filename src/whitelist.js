@@ -37,6 +37,7 @@ const whitelistInfo = {
       'logo',
       'banner',
       'approved',
+      'virtual',
       'id',
       'created_at',
       'lat',
