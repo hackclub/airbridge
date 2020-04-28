@@ -84,6 +84,7 @@ const whitelistInfo = {
       'Start Time',
       'End Time',
       'Avatar',
+      'AMA',
       'Calendar Link'
     ]
   },
