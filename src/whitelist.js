@@ -100,6 +100,7 @@ const whitelistInfo = {
       'AMA Company',
       'AMA Title',
       'AMA Link',
+      'AMA Id',
       'Calendar Link'
     ]
   },
