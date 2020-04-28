@@ -94,7 +94,12 @@ const whitelistInfo = {
       'Start Time',
       'End Time',
       'Avatar',
+      'Emoji',
       'AMA',
+      'AMA Name',
+      'AMA Company',
+      'AMA Title',
+      'AMA Link',
       'Calendar Link'
     ]
   },
