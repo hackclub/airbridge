@@ -1,16 +1,8 @@
 import Airtable from 'airtable'
-import { whitelistBaseTable, whitelistRecords } from './whitelist'
+import { whitelistBaseTable, whitelistRecords, baseInfo } from './whitelist'
 
 export function lookupBaseID(baseID) {
-  const lookedUpID = {
-    Operations: 'apptEEFG5HTfGQE7h',
-    'CCC Newsfeed': 'appQF79M2Gp8cfKR0',
-    'hackathons.hackclub.com': 'apptapPDAi0eBaaG1',
-    'SDP Priority Activations': 'apple9fiV81JsRytC',
-    'Command Center Schedule': 'appGvXhgsuXhCTrOr',
-    'Sessions': 'appezi7TOQFt8vTfa',
-    'Draw in the dark': 'applcpliMnombEJb9'
-  }[baseID]
+  const lookedUpID = baseInfo[baseID]
   return lookedUpID || baseID
 }
 
