@@ -7,7 +7,8 @@ export const baseInfo = {
   'SDP Priority Activations': 'apple9fiV81JsRytC',
   'Command Center Schedule': 'appGvXhgsuXhCTrOr',
   'Sessions': 'appezi7TOQFt8vTfa',
-  'Draw in the dark': 'applcpliMnombEJb9'
+  'Draw in the dark': 'applcpliMnombEJb9',
+  'Bank Promotions': 'appEzv7w2IBMoxxHe',
 }
 
 const whitelistInfo = {
@@ -111,6 +112,11 @@ const whitelistInfo = {
       'Preview',
       'Art title',
       'Active'
+    ]
+  },
+  'Bank Promotions': {
+    'Github Grant': [
+      'Status'
     ]
   }
 }
