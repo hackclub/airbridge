@@ -1,4 +1,14 @@
-![](api2.jpg)
+<p align="center"><img alt="Monolith icon" src="https://i.imgur.com/wE7lncR.png"></a>
+<h1 align="center">API2</h1>
+<p align="center"><i>The bridges tying Hack Club's services together. Illustrated above.</i></p>
+
+## Reasoning
+
+Our [previous API](https://github.com/hackclub/api) was really good at a couple things. It hasn't been touched in years and it's still providing password-less authentication as a service at scale.
+
+Hack Club (HQ & community) needs a service for easily reading & writing information that will last the test of time the same way our original API still handles authentication. API2 will create this by providing a JSON interface to an Airtable backend.
+
+## Use it in your browser
 
 **Basic calls**
 ```sh
