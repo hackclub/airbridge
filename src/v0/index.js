@@ -1,9 +1,9 @@
 import express from "express"
 const router = express.Router()
 const env = process.env.NODE_ENV || "development"
-import { airtableLookup } from './utils'
+import { airtableLookup } from "./utils"
 
-router.get('/:base/:tableName/:recordID', async(req, res, next) => {
+router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   /*
     version: Required. api version to use. Before version 1.0 this isn't being checked– go ahead and put a 0 there
     base: Required. Either base ID ("routertEEFG5HTfGQE7h") or base name ("Operations")
@@ -12,19 +12,19 @@ router.get('/:base/:tableName/:recordID', async(req, res, next) => {
   */
   const startTime = Date.now()
   const meta = {
-    params: {...req.params, version: 0},
-    query: {...req.query},
+    params: { ...req.params, version: 0 },
+    query: { ...req.query },
   }
   if (req.query.authKey) {
-    meta.query.authKey = '[redacted]'
+    meta.query.authKey = "[redacted]"
   }
   try {
     let providedAuth
     if (req.headers.authorization) {
       // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace('Bearer ', '')
+      providedAuth = req.headers.authorization.replace("Bearer ", "")
     }
-    if (env === 'development' || env === 'test') {
+    if (env === "development" || env === "test") {
       providedAuth = req.query.authKey
     }
     const options = {
@@ -41,7 +41,7 @@ router.get('/:base/:tableName/:recordID', async(req, res, next) => {
     meta.duration = Date.now() - startTime
 
     if (req.query.meta) {
-      res.json({result, meta})
+      res.json({ result, meta })
     } else {
       res.json(result)
     }
@@ -53,13 +53,13 @@ router.get('/:base/:tableName/:recordID', async(req, res, next) => {
     res.status(statusCode).send({
       error: {
         message: err.message,
-        statusCode
+        statusCode,
       },
-      meta
+      meta,
     })
   }
 })
-router.get('/:base/:tableName', async(req, res, next) => {
+router.get("/:base/:tableName", async (req, res, next) => {
   /*
     version: Required. api version to use. Before version 1.0 this isn't being checked– go ahead and put a 0 there
     base: Required. Either base ID ("routertEEFG5HTfGQE7h") or base name ("Operations")
@@ -67,19 +67,19 @@ router.get('/:base/:tableName', async(req, res, next) => {
   */
   const startTime = Date.now()
   const meta = {
-    params: {...req.params, version: 0},
-    query: {...req.query},
+    params: { ...req.params, version: 0 },
+    query: { ...req.query },
   }
   if (req.query.authKey) {
-    meta.query.authKey = '[redacted]'
+    meta.query.authKey = "[redacted]"
   }
   try {
     let providedAuth
     if (req.headers.authorization) {
       // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace('Bearer ', '')
+      providedAuth = req.headers.authorization.replace("Bearer ", "")
     }
-    if (env === 'development' || env === 'test') {
+    if (env === "development" || env === "test") {
       providedAuth = req.query.authKey
     }
     const options = {
@@ -95,7 +95,7 @@ router.get('/:base/:tableName', async(req, res, next) => {
     meta.duration = Date.now() - startTime
 
     if (req.query.meta) {
-      res.json({result, meta})
+      res.json({ result, meta })
     } else {
       res.json(result)
     }
@@ -107,9 +107,9 @@ router.get('/:base/:tableName', async(req, res, next) => {
     res.status(statusCode).send({
       error: {
         message: err.message,
-        statusCode
+        statusCode,
       },
-      meta
+      meta,
     })
   }
 })

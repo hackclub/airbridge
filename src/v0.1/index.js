@@ -21,12 +21,16 @@ router.use((req, res, next) => {
 
 function respond(err, req, res, next) {
   res.locals.meta.duration = Date.now() - res.locals.start
-  res.locals.meta.params = { ...res.locals.meta.params, ...req.params, version: 0.1 }
+  res.locals.meta.params = {
+    ...res.locals.meta.params,
+    ...req.params,
+    version: 0.1,
+  }
 
   if (err) {
     const statusCode = err.statusCode || 500
     res.status(statusCode).send({
-      error: {...err, message: err.message, statusCode},
+      error: { ...err, message: err.message, statusCode },
       meta: res.locals.meta,
     })
   } else {
