@@ -5,6 +5,7 @@
     - WHITELISTED_FIELD_1
     - WHITELISTED_FIELD_2
     - WHITELISTED_FIELD_3
+  # Feel free to PR your own changes in following the example above ^
   SDP Priority Activations:
     baseID: apple9fiV81JsRytC
     SDP Priority Activations:
