@@ -8,21 +8,22 @@ Our [previous API](https://github.com/hackclub/api) was really good at a couple 
 
 Hack Club (HQ & community) needs a service for easily reading & writing information that will last the test of time the same way our original API still handles authentication. API2 will create this by providing a JSON interface to an Airtable backend.
 
-## Use it now: [v0.1](./src/v0.1/README.md)
+## Try the latest version here: [v0.1](./src/v0.1/README.md)
 
 Version list:
+- [v0.1](./src/v0.1/README.md)
 - [v0](./src/v0/README.md)
 
 ## Developing & Contributing
 
 ```sh
-git clone https://github.com/hackclub/api2
-cd api2/
+# Set it up locally
+git clone https://github.com/hackclub/api2 && cd api2
 pnpm install
 
 # Run locally with nodemon
-pnpm run dev
+pnpm run dev # then, go to localhost:5000/ping in your browser
+
 # Run tests
 pnpm test
 ```
-
