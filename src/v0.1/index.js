@@ -24,7 +24,6 @@ function respond(err, req, res, next) {
   res.locals.meta.params = { ...res.locals.meta.params, ...req.params, version: 0.1 }
 
   if (err) {
-    console.error(err)
     const statusCode = err.statusCode || 500
     res.status(statusCode).send({
       error: {...err, message: err.message, statusCode},
