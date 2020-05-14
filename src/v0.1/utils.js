@@ -21,7 +21,7 @@ function lookupBaseID(name) {
 }
 
 function lookupBase(id) {
-  return Object.values(whitelist).find(e => e.baseID == id) || {}
+  return Object.values(whitelist).find((e) => e.baseID == id) || {}
 }
 
 function whitelistBaseTable(baseID, tableName) {
@@ -51,7 +51,7 @@ function whitelistBaseTable(baseID, tableName) {
 
 function whitelistedRecords(records, whitelistedFields) {
   if (Array.isArray(records)) {
-    return records.map(r => whitelistedRecords(r, whitelistedFields))
+    return records.map((r) => whitelistedRecords(r, whitelistedFields))
   } else {
     const record = records
     const result = {
