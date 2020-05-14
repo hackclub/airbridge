@@ -4,7 +4,7 @@
   "description": "Public-facing API for getting info from Hack Club",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js",
+    "dev": "PORT=5000 nodemon --exec babel-node src/index.js",
     "start": "node build/index.js",
     "build": "babel src -d build",
     "heroku-postbuild": "npm run build",

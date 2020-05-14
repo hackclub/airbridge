@@ -29,7 +29,7 @@ import routerV0_1 from './v0.1'
 app.use('/v0', routerV0)
 app.use('/v0.1', routerV0_1)
 
-export const server = app.listen(process.env.PORT || 5000, () =>
+export const server = app.listen(process.env.PORT || 0, () =>
   console.log(`Up and listening on ${server.address().port}`)
 )
 
