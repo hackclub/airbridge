@@ -17,7 +17,7 @@ const whitelist = (() => {
 })()
 
 function lookupBaseID(name) {
-  return whitelist[name]?.baseID || base
+  return whitelist[name]?.baseID || name
 }
 
 function lookupBase(id) {
