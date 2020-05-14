@@ -1,0 +1,106 @@
+---
+  YOUR_AIRTABLE_NAME:
+    baseID: YOUR_AIRTABLE_BASE_ID
+    YOUR_BASE:
+    - WHITELISTED_FIELD_1
+    - WHITELISTED_FIELD_2
+    - WHITELISTED_FIELD_3
+  SDP Priority Activations:
+    baseID: apple9fiV81JsRytC
+    SDP Priority Activations:
+    - Submission Time
+    - Approved
+    - Rejection Reason
+    - Source type
+    - Mail Mission
+    - Address (city)
+    - Address (state)
+    - Address (zip code)
+  CCC Newsfeed:
+    baseID: appQF79M2Gp8cfKR0
+    Items:
+    - Title
+    - Subtitle
+    - Notes
+    - Autonumber
+    - Attachments
+  hackathons.hackclub.com:
+    baseID: apptapPDAi0eBaaG1
+    applications:
+    - name
+    - website
+    - start
+    - end
+    - parsed_city
+    - parsed_state_code
+    - parsed_country
+    - parsed_country_code
+    - hackclub_affiliated
+    - mlh_associated
+    - logo
+    - banner
+    - approved
+    - virtual
+    - id
+    - created_at
+    - lat
+    - lng
+  Operations:
+    baseID: apptEEFG5HTfGQE7h
+    Clubs:
+    - Name
+    - Slack Channel ID
+    - Leader Slack IDs
+    - Address City
+    - Address State
+    - Address Postal Code
+    - Address Country
+    - Club URL
+    - Latitude
+    - Longitude
+    Badges:
+    - ID
+    - Name
+    - Emoji Tag
+    - Icon
+    - People Slack IDs
+  Command Center Schedule:
+    baseID: appGvXhgsuXhCTrOr
+    Schedule:
+    - Session Name
+    - Leader Name
+    - Time (Eastern)
+    - Date (formatted)
+    - Time (formatted)
+    - Calendar Event
+    - Preview Image
+  Sessions:
+    baseID: appezi7TOQFt8vTfa
+    Events:
+    - Title
+    - Description
+    - Leader
+    - Start Time
+    - End Time
+    - Avatar
+    - Emoji
+    - AMA
+    - AMA Name
+    - AMA Company
+    - AMA Title
+    - AMA Link
+    - AMA Id
+    - AMA Avatar
+    - Calendar Link
+  Draw in the dark:
+    baseID: applcpliMnombEJb9
+    Deadline:
+    - Time
+    - Preview
+    - Art title
+    - Active
+  Bank Promotions:
+    baseID: appEzv7w2IBMoxxHe
+    Github Grant:
+    - Status
+  
