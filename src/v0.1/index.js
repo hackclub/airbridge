@@ -59,11 +59,21 @@ router.post("/:base/:tableName", async (req, res, next) => {
     fields: req.body,
   }
   try {
-    const record = await airtableCreate(options, res.locals.authKey)
-    console.log(record)
-    res.locals.response = record
+    class NotImplementedError extends Error {
+      constructor(message) {
+        super(message)
+        this.name = "NotImplementedError"
+        this.statusCode = 501
+      }
+    }
+    throw new NotImplementedError("Posting is not yet implemented")
 
-    respond(null, req, res, next)
+    // const record = await airtableCreate(options, res.locals.authKey)
+
+    // console.log(record)
+    // res.locals.response = record
+
+    // respond(null, req, res, next)
   } catch (err) {
     respond(err, req, res, next)
   }
