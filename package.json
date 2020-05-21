@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "PORT=5000 nodemon --exec babel-node src/index.js",
     "start": "node build/index.js",
-    "build": "babel src -d build",
+    "build": "babel src -d build --copy-files",
     "heroku-postbuild": "npm run build",
     "fmt": "npx prettier \"{tests/**,src/**,}/*.js\" --write",
     "test": "jest"
