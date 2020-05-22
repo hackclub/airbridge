@@ -110,4 +110,13 @@
     - Status
     Sendy:
     - Status
-  
+  Ships:
+    baseID: appnzwlmqTft69NhW
+    Ships:
+    - Timestamp
+    - User Name
+    - User Avatar
+    - User Website
+    - Message
+    - Image URL
+    - Project URL
