@@ -120,3 +120,8 @@
     - Message
     - Image URL
     - Project URL
+  Pre-register:
+    baseID: appEdSUXVveyjxVp5
+    Applications:
+    - Created at
+    - What do you want to learn?
