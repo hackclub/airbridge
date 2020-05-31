@@ -17,6 +17,7 @@
     - Address (city)
     - Address (state)
     - Address (zip code)
+    - Notes
   CCC Newsfeed:
     baseID: appQF79M2Gp8cfKR0
     Items:
