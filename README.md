@@ -1,5 +1,5 @@
 <h1 align="center">API2</h1>
-<p align="center"><i>The bridges tying Hack Club's services together. The illustration below will progress as new versions are released.</i></p>
+<p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
 <p align="center"><img alt="Raft icon" src="https://i.imgur.com/VLgOTmO.png"></a>
 
 ## Reasoning
