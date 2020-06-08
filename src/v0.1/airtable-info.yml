@@ -133,3 +133,11 @@
     Tutorial Island:
     - Name
     - Flow
+  Airbots:
+    baseID: appK7oJwNYnwly4wL
+    ledger:
+    - From
+    - To
+    - Amount
+    - Timestamp
+    - Success
