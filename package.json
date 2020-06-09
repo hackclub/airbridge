@@ -1,13 +1,9 @@
 {
-  "name": "hackclub-info",
+  "name": "@hackclub/api2",
   "version": "0.2.0",
   "description": "Public-facing API for getting info from Hack Club",
   "main": "index.js",
   "scripts": {
-    "dev": "PORT=5000 nodemon --exec babel-node src/index.js",
-    "start": "node build/index.js",
-    "build": "babel src -d build --copy-files",
-    "heroku-postbuild": "npm run build",
     "fmt": "npx prettier \"{tests/**,src/**,}/*.js\" --write",
     "test": "jest"
   },
@@ -19,9 +15,6 @@
     "url": "https://github.com/hackclub/api2.git"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.7",
-    "@bugsnag/js": "^6.5.0",
-    "@bugsnag/plugin-express": "^6.5.0",
     "airtable": "^0.8.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -30,14 +23,6 @@
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/node": "^7.6.3",
-    "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.6.3",
-    "dotenv": "^8.1.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "prettier": "^2.0.5",
