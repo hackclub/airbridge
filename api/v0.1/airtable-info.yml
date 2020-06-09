@@ -86,6 +86,7 @@
     - End Time
     - Avatar
     - Emoji
+    - YouTube URL
     - AMA
     - AMA Name
     - AMA Company
@@ -127,3 +128,16 @@
     - Created at
     - What do you want to learn?
     - Approved for display
+  Tutorial Island:
+    baseID: appYGt7P3MtotTotg
+    Tutorial Island:
+    - Name
+    - Flow
+  Airbots:
+    baseID: appK7oJwNYnwly4wL
+    ledger:
+    - From
+    - To
+    - Amount
+    - Timestamp
+    - Success
