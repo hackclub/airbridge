@@ -66,6 +66,18 @@
     - Emoji Tag
     - Icon
     - People Slack IDs
+    Ships:
+    - Name
+    - Description
+    - Link
+    - Files
+    - Author Names
+    Awards:
+    - Nominees
+    - Winner
+    - Submission Deadline
+    - Judge Full Name
+    - GP Value
   Command Center Schedule:
     baseID: appGvXhgsuXhCTrOr
     Schedule:
