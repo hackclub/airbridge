@@ -141,3 +141,16 @@
     - Amount
     - Timestamp
     - Success
+  Summer of Making Streaks:
+    baseID: appRxhF9qVMLbxAXR
+    Slack Accounts:
+    - ID
+    - Username
+    - Notes
+    - Attachments
+    - Updates
+    Updates:
+    - Slack Account
+    - Post Time
+    - Text
+    - Attachments
