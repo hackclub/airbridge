@@ -1,4 +1,9 @@
 <h1 align="center">API2</h1>
+<p align="center">
+  <a href="https://circleci.com/gh/hackclub/api2">
+    <img alt="CircleCI" src="https://img.shields.io/circleci/project/github/hackclub/api2.svg">
+  </a>
+</p>
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
 <p align="center"><img alt="Raft icon" src="https://i.imgur.com/VLgOTmO.png"></a>
 
