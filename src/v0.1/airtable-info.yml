@@ -18,14 +18,6 @@
     - Address (state)
     - Address (zip code)
     - Notes
-  CCC Newsfeed:
-    baseID: appQF79M2Gp8cfKR0
-    Items:
-    - Title
-    - Subtitle
-    - Notes
-    - Autonumber
-    - Attachments
   hackathons.hackclub.com:
     baseID: apptapPDAi0eBaaG1
     applications:
