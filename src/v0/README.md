@@ -15,11 +15,11 @@ curl https://api2.hackclub.com/v0/Operations/Badges
 ```sh
 # Getting a protected route w/o using an auth token
 curl https://api2.hackclub.com/v0/Operations/Addresses # or some other sensative data
-# "ERROR: Tried to access table that is not in the whitelist."
+# "ERROR: Tried to access table that is not in the allowlist."
 
-# Lend your own Airtable API keys to get past the whitelist
+# Lend your own Airtable API keys to get past the allowlist
 curl -H "Authorization: Bearer VALID_AIRTABLE_KEY" https://api2.hackclub.com/v0/Operations/Addresses
-# returns JSON array of non-whitelisted records from airtable
+# returns JSON array of non-allowlisted records from airtable
 ```
 
 **Filtering, searching**

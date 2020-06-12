@@ -4,17 +4,17 @@ const path = require("path")
 const request = require("supertest")
 const app = require("../../src/index").server
 
-const whitelistPath = "../../src/v0.1/airtable-info.yml"
+const allowlistPath = "../../src/v0.1/airtable-info.yml"
 
-describe("load whitelist info", () => {
+describe("load allowlist info", () => {
   it("is in a file", () => {
-    const file = fs.readFileSync(path.resolve(__dirname, whitelistPath), "utf8")
+    const file = fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
     expect(file).toBeDefined()
   })
 
   it("is a parsable yaml file", () => {
     const data = yaml.safeLoad(
-      fs.readFileSync(path.resolve(__dirname, whitelistPath), "utf8")
+      fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
     )
 
     expect(data["YOUR_AIRTABLE_NAME"]).toBeDefined()
@@ -24,10 +24,10 @@ describe("load whitelist info", () => {
   })
 })
 
-describe("GET whitelisted routes", () => {
+describe("GET allowlisted routes", () => {
   const routes = []
   const tables = yaml.safeLoad(
-    fs.readFileSync(path.resolve(__dirname, whitelistPath), "utf8")
+    fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
   )
   Object.keys(tables).forEach(tableN => {
     const bases = tables[tableN]

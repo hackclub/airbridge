@@ -1,5 +1,5 @@
 import Airtable from "airtable"
-import { whitelistBaseTable, whitelistRecords, baseInfo } from "./whitelist"
+import { allowlistBaseTable, allowlistRecords, baseInfo } from "./allowlist"
 
 export function lookupBaseID(baseID) {
   const lookedUpID = baseInfo[baseID]
@@ -18,13 +18,13 @@ export async function airtableLookup(options, auth) {
       fields: result.fields,
     }))
   } else {
-    const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
+    const allowlistedFields = allowlistBaseTable(baseID, tableName, auth)
 
     let resultFields = []
     if (select && Array.isArray(select.fields)) {
-      resultFields = whitelistedFields.filter((f) => select.fields.includes(f))
+      resultFields = allowlistedFields.filter((f) => select.fields.includes(f))
     } else {
-      resultFields = whitelistedFields
+      resultFields = allowlistedFields
     }
 
     const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
@@ -35,6 +35,6 @@ export async function airtableLookup(options, auth) {
       .select({ ...select, fields: resultFields })
       .all()
 
-    return whitelistRecords(rawResults, resultFields)
+    return allowlistRecords(rawResults, resultFields)
   }
 }

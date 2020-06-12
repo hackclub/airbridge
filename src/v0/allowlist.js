@@ -11,7 +11,7 @@ export const baseInfo = {
   "Bank Promotions": "appEzv7w2IBMoxxHe",
 }
 
-const whitelistInfo = {
+const allowlistInfo = {
   "SDP Priority Activations": {
     "SDP Priority Activations": [
       "Submission Time",
@@ -102,11 +102,11 @@ const whitelistInfo = {
   },
 }
 
-export function whitelistBaseTable(baseID, tableName) {
-  const whitelistedBase = Object.keys(whitelistInfo).find(
+export function allowlistBaseTable(baseID, tableName) {
+  const allowlistedBase = Object.keys(allowlistInfo).find(
     (key) => lookupBaseID(key) === lookupBaseID(baseID)
   )
-  if (!whitelistedBase) {
+  if (!allowlistedBase) {
     const err = new Error(
       "Not found: base either doesn't exist or isn't publicly accessible"
     )
@@ -116,8 +116,8 @@ export function whitelistBaseTable(baseID, tableName) {
     console.log("Publicly accessing base", baseID)
   }
 
-  const whitelistedTable = whitelistInfo[whitelistedBase][tableName]
-  if (!whitelistedTable) {
+  const allowlistedTable = allowlistInfo[allowlistedBase][tableName]
+  if (!allowlistedTable) {
     const err = new Error(
       "Not found: table either doesn't exist or isn't publicly accessible"
     )
@@ -126,12 +126,12 @@ export function whitelistBaseTable(baseID, tableName) {
   } else {
     console.log("Publicly accessing table", tableName)
   }
-  return whitelistedTable
+  return allowlistedTable
 }
 
-export function whitelistRecords(records, whitelistedFields) {
+export function allowlistRecords(records, allowlistedFields) {
   if (Array.isArray(records)) {
-    return records.map((record) => whitelistRecords(record, whitelistedFields))
+    return records.map((record) => allowlistRecords(record, allowlistedFields))
   } else {
     const record = records
     const result = {
@@ -139,7 +139,7 @@ export function whitelistRecords(records, whitelistedFields) {
       fields: {},
     }
 
-    whitelistedFields.forEach(
+    allowlistedFields.forEach(
       (field) => (result.fields[field] = record.fields[field])
     )
     return result

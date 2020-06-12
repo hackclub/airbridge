@@ -5,7 +5,7 @@ import yaml from "js-yaml"
 import path from "path"
 import fs from "fs"
 
-const whitelist = (() => {
+const allowlist = (() => {
   try {
     const doc = yaml.safeLoad(
       fs.readFileSync(path.resolve(__dirname, "./airtable-info.yml"), "utf8")
@@ -17,16 +17,16 @@ const whitelist = (() => {
 })()
 
 function lookupBaseID(name) {
-  return whitelist[name]?.baseID || name
+  return allowlist[name]?.baseID || name
 }
 
 function lookupBase(id) {
-  return Object.values(whitelist).find((e) => e.baseID == id) || {}
+  return Object.values(allowlist).find((e) => e.baseID == id) || {}
 }
 
-function whitelistBaseTable(baseID, tableName) {
-  const baseInWhitelist = lookupBase(baseID)
-  if (!baseInWhitelist) {
+function allowlistBaseTable(baseID, tableName) {
+  const baseInAllowlist = lookupBase(baseID)
+  if (!baseInAllowlist) {
     const err = new Error(
       "Not found: base either doesn't exist or isn't publicly accessible"
     )
@@ -36,8 +36,8 @@ function whitelistBaseTable(baseID, tableName) {
     console.log("Publicly accessing base", baseID)
   }
 
-  const tableInWhitelist = baseInWhitelist[tableName]
-  if (!tableInWhitelist) {
+  const tableInAllowlist = baseInAllowlist[tableName]
+  if (!tableInAllowlist) {
     const err = new Error(
       "Not found: table either doesn't exist or isn't publicly accessible"
     )
@@ -46,12 +46,12 @@ function whitelistBaseTable(baseID, tableName) {
   } else {
     console.log("Publicly accessing table", tableName)
   }
-  return tableInWhitelist
+  return tableInAllowlist
 }
 
-function whitelistedRecords(records, whitelistedFields) {
+function allowlistedRecords(records, allowlistedFields) {
   if (Array.isArray(records)) {
-    return records.map((r) => whitelistedRecords(r, whitelistedFields))
+    return records.map((r) => allowlistedRecords(r, allowlistedFields))
   } else {
     const record = records
     const result = {
@@ -59,7 +59,7 @@ function whitelistedRecords(records, whitelistedFields) {
       fields: {},
     }
 
-    whitelistedFields.forEach(
+    allowlistedFields.forEach(
       (field) => (result.fields[field] = record.fields[field])
     )
     return result
@@ -78,13 +78,13 @@ export async function airtableLookup(options, auth) {
       fields: result.fields,
     }))
   } else {
-    const whitelistedFields = whitelistBaseTable(baseID, tableName, auth)
+    const allowlistedFields = allowlistBaseTable(baseID, tableName, auth)
 
     let resultFields = []
     if (select && Array.isArray(select.fields)) {
-      resultFields = whitelistedFields.filter((f) => select.fields.includes(f))
+      resultFields = allowlistedFields.filter((f) => select.fields.includes(f))
     } else {
-      resultFields = whitelistedFields
+      resultFields = allowlistedFields
     }
 
     const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
@@ -95,7 +95,7 @@ export async function airtableLookup(options, auth) {
       .select({ ...select, fields: resultFields })
       .all()
 
-    return whitelistedRecords(rawResults, resultFields)
+    return allowlistedRecords(rawResults, resultFields)
   }
 }
 
