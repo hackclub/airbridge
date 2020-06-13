@@ -150,11 +150,12 @@
     Slack Accounts:
     - ID
     - Username
+    - Avatar
     - Updates
     - Streak Count
     - Display Streak
     - CSS URL
-    - Custom Domainn
+    - Custom Domain
     - Website
     - GitHub
     Updates:
