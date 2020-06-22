@@ -163,6 +163,7 @@
     - ID
     - Slack Account
     - Post Time
+    - Message Timestamp
     - Text
     - Attachments
     - Mux Playback IDs
