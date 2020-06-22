@@ -9,6 +9,7 @@ export const baseInfo = {
   Sessions: "appezi7TOQFt8vTfa",
   "Draw in the dark": "applcpliMnombEJb9",
   "Bank Promotions": "appEzv7w2IBMoxxHe",
+  "hack.af": "app34oF1jf9o0AQHp",
 }
 
 const allowlistInfo = {
