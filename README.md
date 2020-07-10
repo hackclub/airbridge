@@ -1,6 +1,6 @@
 <h1 align="center">API2</h1>
 <p align="center">
-  <a href="https://circleci.com/gh/hackclub/api2">
+  <a href="https://github.com/hackclub/api2/actions?query=workflow%3Abuild">
     <img alt="build" src="https://github.com/Matt-Gleich/api2/workflows/build/badge.svg">
   </a>
 </p>
