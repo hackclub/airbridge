@@ -6,6 +6,10 @@
     - ALLOWLISTED_FIELD_2
     - ALLOWLISTED_FIELD_3
   # Feel free to PR your own changes in following the example above ^
+  CDN:
+    baseID: appnjnz8RYdlkJfIu
+    Links:
+    - Permalink
   SDP Priority Activations:
     baseID: apple9fiV81JsRytC
     SDP Priority Activations:
