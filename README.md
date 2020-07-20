@@ -2,6 +2,7 @@
 <p align="center">
   <a href="https://github.com/hackclub/airbridge/actions">
     <img alt="test" src="https://github.com/hackclub/airbridge/workflows/test/badge.svg">
+    <img alt="format" src="https://github.com/hackclub/airbridge/workflows/format/badge.svg">
   </a>
 </p>
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
