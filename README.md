@@ -1,7 +1,7 @@
 <h1 align="center">API2</h1>
 <p align="center">
   <a href="https://github.com/hackclub/airbridge/actions">
-    <img alt="build" src="https://github.com/Matt-Gleich/airbridge/workflows/build/badge.svg">
+    <img alt="test" src="https://github.com/hackclub/airbridge/workflows/test/badge.svg">
   </a>
 </p>
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
