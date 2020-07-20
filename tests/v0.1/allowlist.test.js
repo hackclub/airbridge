@@ -25,6 +25,8 @@ describe("load allowlist info", () => {
 })
 
 describe("GET allowlisted routes", () => {
+  jest.setTimeout(30000)
+
   const routes = []
   const tables = yaml.safeLoad(
     fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
@@ -47,9 +49,10 @@ describe("GET allowlisted routes", () => {
     const endpoint = `${endpointBase}?meta=true&select=${JSON.stringify(
       options
     )}`
-    it(`loads ${endpointBase} with successful status code`, async () => {
+    it(`loads ${endpointBase} with successful status code`, async (done) => {
       const res = await request(app).get(endpoint)
       expect(res.statusCode).toEqual(200)
+      done()
     })
   })
 })
