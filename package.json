@@ -9,7 +9,7 @@
     "build": "babel src -d build --copy-files",
     "heroku-postbuild": "npm run build",
     "fmt": "npx prettier \"{tests/**,src/**,}/*.js\" --write",
-    "test": "jest --detectOpenHandles"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",
