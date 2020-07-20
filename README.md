@@ -1,7 +1,7 @@
 <h1 align="center">API2</h1>
 <p align="center">
-  <a href="https://github.com/hackclub/api2/actions?query=workflow%3Atest">
-    <img alt="test" src="https://github.com/hackclub/api2/workflows/test/badge.svg">
+  <a href="https://circleci.com/gh/hackclub/api2">
+    <img alt="CircleCI" src="https://img.shields.io/circleci/project/github/hackclub/api2.svg">
   </a>
 </p>
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
@@ -16,7 +16,6 @@ Hack Club (HQ & community) needs a service for easily reading & writing informat
 ## Try the latest version here: [v0.1](./src/v0.1/README.md)
 
 Version list:
-
 - [v0.1](./src/v0.1/README.md)
 - [v0](./src/v0/README.md)
 
