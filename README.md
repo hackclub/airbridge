@@ -1,4 +1,4 @@
-<h1 align="center">API2</h1>
+<h1 align="center">Airbridge</h1>
 <p align="center">
   <a href="https://github.com/hackclub/airbridge/actions">
     <img alt="test" src="https://github.com/hackclub/airbridge/workflows/test/badge.svg">
@@ -12,7 +12,7 @@
 
 Our [previous API](https://github.com/hackclub/api/blob/master/README.md) was really good at a couple things. It hasn't been touched in years and it's still providing password-less authentication as a service at scale.
 
-Hack Club (HQ & community) needs a service for easily reading & writing information that will last the test of time the same way our original API still handles authentication. API2 will create this by providing a JSON interface to an Airtable backend.
+Hack Club (HQ & community) needs a service for easily reading & writing information that will last the test of time the same way our original API still handles authentication. Airbridge will create this by providing a JSON interface to an Airtable backend.
 
 ## Try the latest version here: [v0.1](./src/v0.1/README.md)
 
@@ -25,7 +25,7 @@ Version list:
 
 ```sh
 # Set it up locally
-git clone https://github.com/hackclub/api2 && cd api2
+git clone https://github.com/hackclub/airbridge && cd airbridge
 pnpm install
 
 # Run locally with nodemon
