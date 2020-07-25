@@ -3,12 +3,12 @@ dependencies:
   '@bugsnag/js': 6.5.0
   '@bugsnag/plugin-express': 6.5.0_@bugsnag+js@6.5.0
   airtable: 0.8.1
-  apicache: 1.5.3
   cors: 2.8.5
   express: 4.17.1
   friendly-words: 1.1.10
   isomorphic-unfetch: 3.0.0
   js-yaml: 3.13.1
+  node-cache: 5.1.2
 devDependencies:
   '@babel/cli': 7.7.7_@babel+core@7.7.7
   '@babel/core': 7.7.7
@@ -1380,12 +1380,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5teOsQWABXHHBFP9y3skS5P3d/WfWXpv3FUpy+LorMrNYaT9pI4oLMQX7jzQ2KklNpGpWHzdCXTDT2Y3XGlZBw==
-  /apicache/1.5.3:
-    dev: false
-    engines:
-      node: '>=6.2.0 <13'
-    resolution:
-      integrity: sha512-n1h39Bt7tMiJMV0u0tFlhigig8Uo/wJmKoj6WE/OwvZ+WbFchn7jnXleotZOzZTUBtr0Tg9iJshHnJDAGQbAEQ==
   /argparse/1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -1777,6 +1771,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-PYeGSEmmHM6zvoef2w8TPzlrnNpXIjTipYK780YswmIP9vjxmd6Y2a3CB2Ks6/AU8NHjZugXvo8w3oWM2qnwXA==
+  /clone/2.1.2:
+    dev: false
+    engines:
+      node: '>=0.8'
+    resolution:
+      integrity: sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
   /co/4.6.0:
     dev: true
     engines:
@@ -3939,6 +3939,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+  /node-cache/5.1.2:
+    dependencies:
+      clone: 2.1.2
+    dev: false
+    engines:
+      node: '>= 8.0.0'
+    resolution:
+      integrity: sha512-t1QzWwnk4sjLWaQAS8CHgOJ+RAfmHpxFWmc36IWTiWHQfs0w5JDMBS1b1ZxQteo0vVVuWJvIUKHDkkeK7vIGCg==
   /node-environment-flags/1.0.6:
     dependencies:
       object.getownpropertydescriptors: 2.1.0
@@ -5659,7 +5667,6 @@ specifiers:
   '@bugsnag/js': ^6.5.0
   '@bugsnag/plugin-express': ^6.5.0
   airtable: ^0.8.1
-  apicache: ^1.5.3
   cors: ^2.8.5
   dotenv: ^8.1.0
   express: ^4.17.1
@@ -5667,6 +5674,7 @@ specifiers:
   isomorphic-unfetch: ^3.0.0
   jest: ^24.9.0
   js-yaml: ^3.13.1
+  node-cache: ^5.1.2
   nodemon: ^1.19.3
   prettier: ^2.0.5
   supertest: ^4.0.2
