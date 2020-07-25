@@ -1,6 +1,8 @@
 import { airtableCreate, airtableLookup } from "./utils.js"
+import apicache from "apicache"
 import express from "express"
 const router = express.Router()
+const cache = apicache.middleware
 
 router.use((req, res, next) => {
   res.locals.start = Date.now()
@@ -9,6 +11,10 @@ router.use((req, res, next) => {
   res.locals.meta = {
     params: { ...req.params },
     query: { ...req.query },
+    cache: { 
+      index: apicache.getIndex(),
+      performance: apicache.getPerformance()
+    }
   }
 
   if (req.query.authKey) {
@@ -79,7 +85,10 @@ router.post("/:base/:tableName", async (req, res, next) => {
   }
 })
 
-router.get("/:base/:tableName", async (req, res, next) => {
+const cacheConditions = (req, res) => (
+  res.statusCode === 200 && req.query.cache
+)
+router.get("/:base/:tableName", cache('10 seconds', cacheConditions), async (req, res, next) => {
   const options = {
     base: req.params.base,
     tableName: req.params.tableName,
@@ -100,5 +109,15 @@ router.get("/:base/:tableName", async (req, res, next) => {
     respond(err, req, res, next)
   }
 })
+
+// // add route to display cache performance (courtesy of @killdash9)
+// router.get('/meta/cache/performance', (req, res) => {
+//   res.json(apicache.getPerformance())
+// })
+
+// // add route to display cache index
+// router.get('/meta/cache/index', (req, res) => {
+//   res.json(apicache.getIndex())
+// })
 
 export default router

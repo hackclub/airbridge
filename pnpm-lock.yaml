@@ -3,6 +3,7 @@ dependencies:
   '@bugsnag/js': 6.5.0
   '@bugsnag/plugin-express': 6.5.0_@bugsnag+js@6.5.0
   airtable: 0.8.1
+  apicache: 1.5.3
   cors: 2.8.5
   express: 4.17.1
   friendly-words: 1.1.10
@@ -1379,6 +1380,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5teOsQWABXHHBFP9y3skS5P3d/WfWXpv3FUpy+LorMrNYaT9pI4oLMQX7jzQ2KklNpGpWHzdCXTDT2Y3XGlZBw==
+  /apicache/1.5.3:
+    dev: false
+    engines:
+      node: '>=6.2.0 <13'
+    resolution:
+      integrity: sha512-n1h39Bt7tMiJMV0u0tFlhigig8Uo/wJmKoj6WE/OwvZ+WbFchn7jnXleotZOzZTUBtr0Tg9iJshHnJDAGQbAEQ==
   /argparse/1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -5652,6 +5659,7 @@ specifiers:
   '@bugsnag/js': ^6.5.0
   '@bugsnag/plugin-express': ^6.5.0
   airtable: ^0.8.1
+  apicache: ^1.5.3
   cors: ^2.8.5
   dotenv: ^8.1.0
   express: ^4.17.1
