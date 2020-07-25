@@ -10,7 +10,7 @@ export const baseInfo = {
   "Draw in the dark": "applcpliMnombEJb9",
   "Bank Promotions": "appEzv7w2IBMoxxHe",
   "hack.af": "app34oF1jf9o0AQHp",
-  "CDN": "appnjnz8RYdlkJfIu",
+  CDN: "appnjnz8RYdlkJfIu",
 }
 
 const allowlistInfo = {
