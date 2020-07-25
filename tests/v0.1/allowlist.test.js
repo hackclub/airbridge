@@ -31,19 +31,16 @@ describe("GET allowlisted routes", () => {
   const tables = yaml.safeLoad(
     fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
   )
-  Object.keys(tables).forEach(tableN => {
+  Object.keys(tables).forEach((tableN) => {
     const bases = tables[tableN]
-    Object.keys(bases).forEach(baseN => {
-      if (
-        tableN != "YOUR_AIRTABLE_NAME" &&
-        baseN != "baseID"
-      ) {
+    Object.keys(bases).forEach((baseN) => {
+      if (tableN != "YOUR_AIRTABLE_NAME" && baseN != "baseID") {
         routes.push({ base: baseN, table: tableN })
       }
     })
   })
 
-  routes.forEach(route => {
+  routes.forEach((route) => {
     const endpointBase = `/v0.1/${route.table}/${route.base}`
     const options = { maxRecords: 1 }
     const endpoint = `${endpointBase}?meta=true&select=${JSON.stringify(
