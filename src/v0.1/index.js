@@ -1,8 +1,8 @@
 import { airtableCreate, airtableLookup } from "./utils.js"
-import apicache from "apicache"
+import NodeCache from "node-cache"
 import express from "express"
 const router = express.Router()
-const cache = apicache.middleware
+const cache = new NodeCache()
 
 router.use((req, res, next) => {
   res.locals.start = Date.now()
@@ -11,10 +11,10 @@ router.use((req, res, next) => {
   res.locals.meta = {
     params: { ...req.params },
     query: { ...req.query },
-    cache: { 
-      index: apicache.getIndex(),
-      performance: apicache.getPerformance()
-    }
+    cache: {
+      key: cacheKey(req),
+      ...cache.getStats(),
+    },
   }
 
   if (req.query.authKey) {
@@ -24,6 +24,11 @@ router.use((req, res, next) => {
 
   next()
 })
+
+function cacheKey(req) {
+  const { meta, cache, ...filteredQuery } = req.query
+  return req.baseUrl + req._parsedUrl.pathname + JSON.stringify(filteredQuery)
+}
 
 function respond(err, req, res, next) {
   res.locals.meta.duration = Date.now() - res.locals.start
@@ -53,6 +58,12 @@ function respond(err, req, res, next) {
     } else {
       res.json(res.locals.response)
     }
+  }
+
+  if (!res.locals.meta.cache.pulledFrom && res.statusCode == 200) {
+    const key = cacheKey(req)
+    console.log("Saving result to my cache with key", key)
+    cache.set(key, res.locals.response)
   }
 
   next()
@@ -85,10 +96,7 @@ router.post("/:base/:tableName", async (req, res, next) => {
   }
 })
 
-const cacheConditions = (req, res) => (
-  res.statusCode === 200 && req.query.cache
-)
-router.get("/:base/:tableName", cache('10 seconds', cacheConditions), async (req, res, next) => {
+router.get("/:base/:tableName", async (req, res, next) => {
   const options = {
     base: req.params.base,
     tableName: req.params.tableName,
@@ -100,24 +108,23 @@ router.get("/:base/:tableName", cache('10 seconds', cacheConditions), async (req
       respond(err, req, res, next)
     }
   }
+  if (req.query.cache) {
+    console.log("Cache flag enabled", cacheKey(req))
+    const cacheResult = cache.get(cacheKey(req))
+    if (cacheResult) {
+      console.log("Found results in cache!")
+      res.locals.meta.cache.pulledFrom = true
+      res.locals.response = cacheResult
+      respond(null, req, res, next)
+    }
+  }
   try {
-    const result = await airtableLookup(options, res.locals.authKey)
-    res.locals.response = result
-
+    const airResult = await airtableLookup(options, res.locals.authKey)
+    res.locals.response = airResult
     respond(null, req, res, next)
   } catch (err) {
     respond(err, req, res, next)
   }
 })
-
-// // add route to display cache performance (courtesy of @killdash9)
-// router.get('/meta/cache/performance', (req, res) => {
-//   res.json(apicache.getPerformance())
-// })
-
-// // add route to display cache index
-// router.get('/meta/cache/index', (req, res) => {
-//   res.json(apicache.getIndex())
-// })
 
 export default router
