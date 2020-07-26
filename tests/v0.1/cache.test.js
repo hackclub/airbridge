@@ -18,6 +18,8 @@ describe("GET request with cache enabled", () => {
     const routeNoCache = "/v0.1/Operations/Badges?meta=true"
     const resNoCache = await request(app).get(routeNoCache)
     const res = await request(app).get(route)
-    expect(resNoCache.body.meta.duration).toBeGreaterThan(res.body.meta.duration)
+    expect(resNoCache.body.meta.duration).toBeGreaterThan(
+      res.body.meta.duration
+    )
   })
 })
