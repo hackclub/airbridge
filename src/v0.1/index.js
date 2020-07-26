@@ -116,14 +116,22 @@ router.get("/:base/:tableName", async (req, res, next) => {
       res.locals.meta.cache.pulledFrom = true
       res.locals.response = cacheResult
       respond(null, req, res, next)
+    } else {
+      console.log("Nothing found in cache!")
+      try {
+        res.locals.response = await airtableLookup(options, res.locals.authKey)
+        respond(null, req, res, next)
+      } catch (err) {
+        respond(err, req, res, next)
+      }
     }
-  }
-  try {
-    const airResult = await airtableLookup(options, res.locals.authKey)
-    res.locals.response = airResult
-    respond(null, req, res, next)
-  } catch (err) {
-    respond(err, req, res, next)
+  } else {
+    try {
+      res.locals.response = await airtableLookup(options, res.locals.authKey)
+      respond(null, req, res, next)
+    } catch (err) {
+      respond(err, req, res, next)
+    }
   }
 })
 
