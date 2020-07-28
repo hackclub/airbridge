@@ -6,6 +6,11 @@
     - ALLOWLISTED_FIELD_2
     - ALLOWLISTED_FIELD_3
   # Feel free to PR your own changes in following the example above ^
+  z:
+    baseID: appsbb0wd5N9AbSP0
+    Meetings:
+    - Status
+    - Unique Users Joined
   CDN:
     baseID: appnjnz8RYdlkJfIu
     Links:
