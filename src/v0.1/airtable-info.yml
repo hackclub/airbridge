@@ -49,6 +49,7 @@
     - Name
     - Slack Channel ID
     - Leader Slack IDs
+    - Leader Names
     - Address City
     - Address State
     - Address Postal Code
