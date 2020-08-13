@@ -181,3 +181,8 @@
     - Mux Playback IDs
     - Filtered Emoji Reactions
     - Slack URL
+  SOM Hardware Party:
+    baseID: appxfNQJLNfCdcyUN
+    Players:
+    - Name
+    - Score
