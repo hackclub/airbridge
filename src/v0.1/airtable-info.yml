@@ -81,6 +81,9 @@
     - Submission Deadline
     - Judge Full Name
     - GP Value
+    Mail Missions:
+    - Status
+    - Mail Team Thread Timestamp
   Command Center Schedule:
     baseID: appGvXhgsuXhCTrOr
     Schedule:
