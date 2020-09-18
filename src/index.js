@@ -15,6 +15,7 @@ import cors from "cors"
 const app = express()
 app.use(bugsnagRequestHandler)
 app.use(cors())
+app.use(express.json())
 
 app.get("/", (req, res) => {
   res.redirect(302, "https://github.com/hackclub/api2")
