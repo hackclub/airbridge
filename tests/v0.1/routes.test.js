@@ -38,3 +38,19 @@ describe("GET /v0.1/Operations/Badges", () => {
     expect(Array.isArray(res.body)).toEqual(true)
   })
 })
+
+describe("POST /v0.1/Operations/Badges (without auth)", () => {
+  it("responds with Unauthorized", async () => {
+    const res = await request(app).post("/v0.1/Operations/Badges")
+    expect(res.statusCode).toEqual(401)
+  })
+})
+
+describe("POST /v0.1/Operations/Badges (invalid auth)", () => {
+  it("responds with Unauthorized", async () => {
+    const res = await request(app).post(
+      "/v0.1/Operations/Badges?authKey=123456"
+    )
+    expect(res.statusCode).toEqual(401)
+  })
+})
