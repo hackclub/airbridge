@@ -25,7 +25,7 @@ function lookupBase(id) {
 }
 
 function lookupTable(baseData, name) {
-  if (baseData.hasOwnProperty(name) && name != 'baseID') {
+  if (baseData.hasOwnProperty(name) && name != "baseID") {
     return baseData[name]
   } else {
     return null
