@@ -21,7 +21,15 @@ function lookupBaseID(name) {
 }
 
 function lookupBase(id) {
-  return Object.values(allowlist).find((e) => e.baseID == id) || {}
+  return Object.values(allowlist).find((e) => e.baseID == id)
+}
+
+function lookupTable(baseData, name) {
+  if (baseData.hasOwnProperty(name) && name != 'baseID') {
+    return baseData[name]
+  } else {
+    return null
+  }
 }
 
 function allowlistBaseTable(baseID, tableName) {
@@ -36,7 +44,7 @@ function allowlistBaseTable(baseID, tableName) {
     console.log("Publicly accessing base", baseID)
   }
 
-  const tableInAllowlist = baseInAllowlist[tableName]
+  const tableInAllowlist = lookupTable(baseInAllowlist, tableName)
   if (!tableInAllowlist) {
     const err = new Error(
       "Not found: table either doesn't exist or isn't publicly accessible"
