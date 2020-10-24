@@ -191,6 +191,9 @@
     - Mux Playback IDs
     - Filtered Emoji Reactions
     - Slack URL
+    Emoji CSS:
+    - Emoji
+    - CSS URL
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
