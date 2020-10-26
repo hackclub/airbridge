@@ -1,4 +1,4 @@
-import { airtableCreate, airtableLookup } from "./utils.js"
+import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
 const router = express.Router()
@@ -77,6 +77,20 @@ router.post("/:base/:tableName", async (req, res, next) => {
   }
   try {
     res.locals.response = await airtableCreate(options, req.query.authKey)
+    respond(null, req, res, next)
+  } catch (err) {
+    respond(err, req, res, next)
+  }
+})
+
+router.patch("/:base/:tableName", async (req, res, next) => {
+  const options = {
+    base: req.params.base,
+    tableName: req.params.tableName,
+    record: req.body,
+  }
+  try {
+    res.locals.response = await airtableUpdate(options, req.query.authKey)
     respond(null, req, res, next)
   } catch (err) {
     respond(err, req, res, next)

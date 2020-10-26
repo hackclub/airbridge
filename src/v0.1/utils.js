@@ -107,6 +107,34 @@ export async function airtableLookup(options, auth) {
   }
 }
 
+export async function airtableUpdate(options, auth) {
+  const { base, tableName, record } = options
+  const baseID = lookupBaseID(base)
+  if (auth) {
+    if (!record.id) {
+      const err = new Error("Unable to complete request: invalid patch format")
+      err.statusCode = 422
+      throw err
+    }
+    return new Promise((resolve, reject) => {
+      const airinst = new Airtable({ apiKey: auth }).base(baseID)(tableName)
+      airinst.update(record.id, record.fields, (err, updatedRecords) => {
+        if (err) {
+          console.error(err)
+          reject(err)
+        }
+        resolve(updatedRecords)
+      })
+    })
+  } else {
+    const err = new Error(
+      "Unable to complete request: patching requires authentication"
+    )
+    err.statusCode = 401
+    throw err
+  }
+}
+
 export async function airtableCreate(options, auth) {
   const { base, tableName, fields } = options
   const baseID = lookupBaseID(base)
