@@ -121,7 +121,6 @@ export async function airtableUpdate(options, auth) {
         resolve(records)
       })
     })
-
   } else {
     const err = new Error(
       "Unable to complete request: patching requires authentication"
