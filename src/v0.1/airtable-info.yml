@@ -194,6 +194,11 @@
     Emoji CSS:
     - Emoji
     - CSS URL
+  SOM Sticker Requests:
+    baseID:
+    Sticker Requests:
+    - Country Dropdown
+    - Created At
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
