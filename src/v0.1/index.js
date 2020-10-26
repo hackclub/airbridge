@@ -83,6 +83,20 @@ router.post("/:base/:tableName", async (req, res, next) => {
   }
 })
 
+router.patch("/:base/:tableName", async (req, res, next) => {
+  const options = {
+    base: req.params.base,
+    tableName: req.params.tableName,
+    records: req.body,
+  }
+  try {
+    res.locals.response = await airtableUpdate(options, req.query.authKey)
+    respond(null, req, res, next)
+  } catch (err) {
+    respond(err, req, res, next)
+  }
+})
+
 router.get("/:base/:tableName", async (req, res, next) => {
   const options = {
     base: req.params.base,

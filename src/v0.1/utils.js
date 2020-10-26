@@ -107,6 +107,30 @@ export async function airtableLookup(options, auth) {
   }
 }
 
+export async function airtableUpdate(options, auth) {
+  const { base, tableName, records } = options
+  const baseID = lookupBaseID(base)
+  if (auth) {
+    return new Promise((resolve, reject) => {
+      const airinst = new Airtable({ apiKey: auth }).base(baseID)(tableName)
+      airinst.update(records, (err, records) => {
+        if (err) {
+          console.error(err)
+          reject(err)
+        }
+        resolve(records)
+      })
+    })
+
+  } else {
+    const err = new Error(
+      "Unable to complete request: patching requires authentication"
+    )
+    error.statusCode = 401
+    throw err
+  }
+}
+
 export async function airtableCreate(options, auth) {
   const { base, tableName, fields } = options
   const baseID = lookupBaseID(base)
