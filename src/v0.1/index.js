@@ -1,4 +1,4 @@
-import { airtableCreate, airtableLookup } from "./utils.js"
+import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
 const router = express.Router()
