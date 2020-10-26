@@ -54,3 +54,19 @@ describe("POST /v0.1/Operations/Badges (invalid auth)", () => {
     expect(res.statusCode).toEqual(401)
   })
 })
+
+describe("PATCH /v0.1/Operations/Badges (without auth)", () => {
+  it("responds with Unauthorized", async () => {
+    const res = await request(app).patch("/v0.1/Operations/Badges")
+    expect(res.statusCode).toEqual(401)
+  })
+})
+
+describe("PATCH /v0.1/Operations/Badges (invalid auth)", () => {
+  it("responds with Unauthorized", async () => {
+    const res = await request(app).patch(
+      "/v0.1/Operations/Badges?authKey=123456"
+    )
+    expect(res.statusCode).toEqual(401)
+  })
+})
