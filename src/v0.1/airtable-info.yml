@@ -199,6 +199,10 @@
     Sticker Requests:
     - Country Dropdown
     - Created At
+    Artwork:
+    - Sticker Requests Count
+    - Name
+    - URL
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
