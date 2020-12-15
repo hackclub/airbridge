@@ -30,8 +30,8 @@
     Sources:
     - Max Requests
     - Slug
-    - Request count
     - Name
+    - Approval count
   hackathons.hackclub.com:
     baseID: apptapPDAi0eBaaG1
     applications:
