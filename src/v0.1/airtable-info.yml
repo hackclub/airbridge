@@ -27,6 +27,11 @@
     - Address (state)
     - Address (zip code)
     - Notes
+    Sources:
+    - Max Requests
+    - Slug
+    - Request count
+    - Name
   hackathons.hackclub.com:
     baseID: apptapPDAi0eBaaG1
     applications:
@@ -209,10 +214,3 @@
     Players:
     - Name
     - Score
-  SDP:
-    baseID: apple9fiV81JsRytC
-    Sources:
-    - Max Requests
-    - Slug
-    - Request count
-    - Name
