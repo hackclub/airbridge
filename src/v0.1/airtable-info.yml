@@ -209,3 +209,10 @@
     Players:
     - Name
     - Score
+  SDP:
+    baseID: 
+    Sources:
+    - Max Requests
+    - Slug
+    - Request count
+    - Name
