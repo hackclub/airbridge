@@ -16,16 +16,13 @@ router.use(async (req, res, next) => {
 })
 
 router.get("/:base/:tableName", async (req, res, next) => {
-  console.log(res.locals.permissions)
-  if (!res.locals.permissions[req.params.base]) {
-    console.log('base not allowed')
-    res.status(400).send('base not allowed')
-    next()
+  if (!Object.keys(res.locals.permissions).includes(req.params.base)) {
+    res.status(404)
+    throw new Error("Base not found or permissions invalid")
   }
-  if (!res.locals.permissions[req.params.base][req.params.tableName]) {
-    console.log('table not allowed')
-    res.status(400).send('table not allowed')
-    next()
+  if (!Object.keys(res.locals.permissions[req.params.base]).includes(req.params.tableName)) {
+    res.status(404)
+    throw new Error("Table not found or permissions invalid")
   }
   // we have permission to use the table, pull the info & leave
   const ab = res.locals.permissions[req.params.base].baseID
@@ -35,20 +32,21 @@ router.get("/:base/:tableName", async (req, res, next) => {
 
   const permissions = res.locals.permissions[req.params.base][req.params.tableName]
   let results
-  if (permissions.readAllFields) {
+  if (permissions?.readAllFields) {
     results = rawResults.map(result => ({id: result.id, fields: result.fields}))
-  } else if (permissions.fields) {
-    results = rawResults.map(result => {
-      const filteredResult = {id: result.id}
+  } else if (permissions?.fields) {
+    results = rawResults.map(rawResult => {
+      const filteredResult = {id: rawResult.id, fields: {}}
       permissions.fields.forEach(field => {
-        filteredResult.field[field] = result[field]
+        filteredResult.fields[field] = rawResult.fields[field]
       })
+      return filteredResult
     })
   } else {
-    results = rawResults.map(result => ({id: result.id}))
+    results = rawResults.map(result => ({id: result.id, fields: []}))
   }
   
-  res.json({results})
+  res.json(results)
   
   next()
 })
