@@ -10,6 +10,11 @@ router.use(async (req, res, next) => {
   // preprocess all requests
   res.locals.response = {}
   res.locals.authKey = req.query.authKey || PUBLIC_AUTH_KEY
+  res.locals.meta = {
+    version: 0.2,
+    params: { ...req.params },
+    query: { ...req.query },
+  }
   res.locals.permissions = await getPermissions(res.locals.authKey)
 
   if (!res.locals.permissions) {
