@@ -26,9 +26,16 @@ describe("test auth file", () => {
 })
 
 describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
-  it("returns not found", async () => {
+  it("returns 404 not found", async () => {
     const res = await request(app).get("/v0.2/Airbridge/Tests")
     expect(res.statusCode).toEqual(404)
+  })
+})
+
+describe("invalid token GET v0.2/Airbridge/Tests", () => {
+  it("returns 401 unauthorized error", async () => {
+    const res = await request(app).get("/v0.2/Airbridge/Tests?authKey=INVALID_AUTH_KEY")
+    expect(res.statusCode).toEqual(401)
   })
 })
 
