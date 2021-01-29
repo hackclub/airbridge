@@ -30,14 +30,16 @@ you should try this:
 
 <details>
 <summary>Browser example</summary>
-```sh
+
+```js
 fetch('https://api2.hackclub.com/v0.2/Operations/Clubs?select={"maxRecords":1,"fields":["Name","Latitude"]}').then(res => console.log(res))
 ```
 </details>
 <details>
 <summary>Terminal example</summary>
+
 ```sh
-curl https://api2.hackclub.com/v0.2/Operations/Clubs?select={"maxRecords":1,"fields":["Name","Latitude"]}
+curl 'https://api2.hackclub.com/v0.2/Operations/Clubs?select={"maxRecords":1,"fields":["Name","Latitude"]}'
 ```
 </details>
 
