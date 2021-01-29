@@ -22,7 +22,7 @@ curl https://api2.hackclub.com/v0.1/Operations/Clubs?select={"maxRecords":1,"fie
 
 ## The allowlist
 
-You can use v0.1 without authentication. Your requests will be filtered through the allowlist found in [this file](./airtable-info.yml). If there are additional Airtable bases or fields you'd like access to, feel free to submit a PR to add them.
+You can use v0.1 without authentication. Public data is in [this file](./airtable-info.yml). If there are additional Airtable bases or fields you'd like access to, feel free to submit a PR to add them.
 
 If you want to authenticate & get past the allowlist, you'll need an API token from Hack Club staff. To use the token, you must pass it through the params. For example:
 
