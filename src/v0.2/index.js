@@ -12,6 +12,12 @@ router.use(async (req, res, next) => {
   res.locals.authKey = req.query.authKey || PUBLIC_AUTH_KEY
   res.locals.permissions = await getPermissions(res.locals.authKey)
 
+  if (!res.locals.permissions) {
+    const error = new Error("Invalid authKey provided")
+    error.statusCode = 401
+    return next(error)
+  }
+
   next()
 })
 
