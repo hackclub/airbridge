@@ -18,6 +18,7 @@ Hack Club (HQ & community) needs a service for easily reading & writing informat
 
 Version list:
 
+- [v0.2 (in development)](./src/v0.2/README.md)
 - [v0.1](./src/v0.1/README.md)
 - [v0](./src/v0/README.md)
 
@@ -33,4 +34,7 @@ pnpm run dev # then, go to localhost:5000/ping in your browser
 
 # Run tests
 pnpm test
+
+# Run specific tests
+pnpm test tests/v0/routes.test.js # (your choice of testfile here)
 ```
