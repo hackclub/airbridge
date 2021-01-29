@@ -17,12 +17,14 @@ router.use(async (req, res, next) => {
 
 router.get("/:base/:tableName", async (req, res, next) => {
   if (!Object.keys(res.locals.permissions).includes(req.params.base)) {
-    res.status(404)
-    throw new Error("Base not found or permissions invalid")
+    const error = new Error("Base not found or permissions insufficient")
+    error.statusCode = 404
+    return next(error)
   }
   if (!Object.keys(res.locals.permissions[req.params.base]).includes(req.params.tableName)) {
-    res.status(404)
-    throw new Error("Table not found or permissions invalid")
+    const error = new Error("Table not found or permissions insufficient")
+    error.statusCode = 404
+    return next(error)
   }
   // we have permission to use the table, pull the info & leave
   const ab = res.locals.permissions[req.params.base].baseID
@@ -62,6 +64,10 @@ router.patch("/:base/:tableName", async (req, res, next) => {
 router.get('/test', async (req, res, next) => {
   res.json({ping: 'pong'})
   next()
+})
+
+router.use((error, req, res, next) => {
+  res.status(error.statusCode || 500).json({ error: error.toString() })
 })
 
 export default router
