@@ -4,6 +4,8 @@
 
 # What's new?
 
+**tl;dr this is update with scoped access and special Airbridge API tokens**
+
 V0.2 brings in the concept of [auth files](./auth). You can check out a [starter template](./auth/template.yml) if you want to write your own.
 
 Authenticated vs unauthenticated requests are simplified now. If you don't authenticate your request, you'll automatically be authenticated to the [public auth file](./auth/public.yml). If you need access to fields or tables that shouldn't be publicly viewable, you can make your own auth file. You'll then be given an `Airbridge API Key` by a staff member (please ping us so we get back to you quickly!) you can use to access the private data listed in your auth file.
