@@ -13,17 +13,26 @@ const cases = fs.readdirSync(path.resolve(__dirname, authDirectory))
 
 describe("auth lists load & are valid yml", () => {
   test.each(cases)("%s loads", (fileName) => {
-    const file = fs.readFileSync(path.resolve(__dirname, authDirectory, fileName), "utf-8")
+    const file = fs.readFileSync(
+      path.resolve(__dirname, authDirectory, fileName),
+      "utf-8"
+    )
     expect(file).toBeDefined()
   })
 
   test.each(cases)("%s is valid YAML", (fileName) => {
-    const file = fs.readFileSync(path.resolve(__dirname, authDirectory, fileName), "utf-8")
+    const file = fs.readFileSync(
+      path.resolve(__dirname, authDirectory, fileName),
+      "utf-8"
+    )
     expect(() => yaml.safeLoad(file)).not.toThrow()
   })
 
   test.each(cases)("%s is valid YAML", (fileName) => {
-    const file = fs.readFileSync(path.resolve(__dirname, authDirectory, fileName), "utf-8")
+    const file = fs.readFileSync(
+      path.resolve(__dirname, authDirectory, fileName),
+      "utf-8"
+    )
     expect(() => yaml.safeLoad(file)).not.toThrow()
   })
 })

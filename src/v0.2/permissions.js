@@ -1,21 +1,29 @@
 import fetch from "isomorphic-unfetch"
-import fs from 'fs'
-import path from 'path'
-import yaml from 'js-yaml'
+import fs from "fs"
+import path from "path"
+import yaml from "js-yaml"
 
 export async function getPermissions(authId) {
   const opts = {
     maxRecords: 1,
-    filterByFormula: `Authtoken='${authId}'`
+    filterByFormula: `Authtoken='${authId}'`,
   }
 
-  const records = await (await fetch('https://airbridge.hackclub.com/v0.1/Airbridge/Authtokens?select='+JSON.stringify(opts))).json()
+  const records = await (
+    await fetch(
+      "https://airbridge.hackclub.com/v0.1/Airbridge/Authtokens?select=" +
+        JSON.stringify(opts)
+    )
+  ).json()
   const record = records[0]
   if (!record) {
     return null
   }
-  const filename = record.fields['List File Name']
-  const file = fs.readFileSync(path.resolve(__dirname, `./auth/${filename}`), "utf8")
+  const filename = record.fields["List File Name"]
+  const file = fs.readFileSync(
+    path.resolve(__dirname, `./auth/${filename}`),
+    "utf8"
+  )
   const doc = yaml.safeLoad(file)
   return doc
 }

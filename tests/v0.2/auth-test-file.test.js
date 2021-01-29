@@ -6,11 +6,14 @@ const app = require("../../src/index").server
 
 const authDirectory = "../../src/v0.2/auth/"
 const testFile = "test.yml"
-const TEST_AUTHKEY = 'recx3vr3ziWHPc3K0161186195268u9j3l4z9e'
+const TEST_AUTHKEY = "recx3vr3ziWHPc3K0161186195268u9j3l4z9e"
 
 describe("test auth file", () => {
   it("is in a file", () => {
-    const file = fs.readFileSync(path.resolve(__dirname, authDirectory, testFile), "utf8")
+    const file = fs.readFileSync(
+      path.resolve(__dirname, authDirectory, testFile),
+      "utf8"
+    )
     expect(file).toBeDefined()
   })
 
@@ -34,42 +37,56 @@ describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
 
 describe("invalid token GET v0.2/Airbridge/Tests", () => {
   it("returns 401 unauthorized error", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Tests?authKey=INVALID_AUTH_KEY")
+    const res = await request(app).get(
+      "/v0.2/Airbridge/Tests?authKey=INVALID_AUTH_KEY"
+    )
     expect(res.statusCode).toEqual(401)
   })
 })
 
 describe("GET v0.2/Airbridge/Test - All Fields", () => {
   it("provides access to all fields", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Test - All Fields?authKey="+TEST_AUTHKEY)
+    const res = await request(app).get(
+      "/v0.2/Airbridge/Test - All Fields?authKey=" + TEST_AUTHKEY
+    )
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)
-    expect(res.body[0].fields['Name']).toBeDefined()
-    expect(res.body[0].fields['Notes']).toBeDefined()
-    expect(res.body[0].fields['Attachments']).toBeDefined()
+    expect(res.body[0].fields["Name"]).toBeDefined()
+    expect(res.body[0].fields["Notes"]).toBeDefined()
+    expect(res.body[0].fields["Attachments"]).toBeDefined()
   })
 })
 
 describe("GET v0.2/Airbridge/Test - Record ID Only", () => {
   it("provides access to some fields", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Test - Record ID Only?authKey="+TEST_AUTHKEY)
+    const res = await request(app).get(
+      "/v0.2/Airbridge/Test - Record ID Only?authKey=" + TEST_AUTHKEY
+    )
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)
     expect(res.body[0].id).toBeDefined()
-    expect(res.body[0].fields['This field should not be visible']).not.toBeDefined()
+    expect(
+      res.body[0].fields["This field should not be visible"]
+    ).not.toBeDefined()
   })
 })
 
 describe("GET v0.2/Airbridge/Test - Some Fields", () => {
   it("provides access to RECORD IDs", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Test - Some Fields?authKey="+TEST_AUTHKEY)
+    const res = await request(app).get(
+      "/v0.2/Airbridge/Test - Some Fields?authKey=" + TEST_AUTHKEY
+    )
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)
     expect(res.body[0].id).toBeDefined()
-    expect(res.body[0].fields['You should have access to this field']).toBeDefined()
-    expect(res.body[0].fields['You should not have access to this field']).not.toBeDefined()
+    expect(
+      res.body[0].fields["You should have access to this field"]
+    ).toBeDefined()
+    expect(
+      res.body[0].fields["You should not have access to this field"]
+    ).not.toBeDefined()
   })
 })
