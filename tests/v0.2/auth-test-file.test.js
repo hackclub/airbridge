@@ -25,12 +25,12 @@ describe("test auth file", () => {
   })
 })
 
-// describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
-//   it("returns not found", async () => {
-//     const res = await request(app).get("/v0.2/Airbridge/Tests")
-//     expect(res.statusCode).toEqual(404)
-//   })
-// })
+describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
+  it("returns not found", async () => {
+    const res = await request(app).get("/v0.2/Airbridge/Tests")
+    expect(res.statusCode).toEqual(404)
+  })
+})
 
 describe("GET v0.2/Airbridge/Test - All Fields", () => {
   it("provides access to all fields", async () => {
