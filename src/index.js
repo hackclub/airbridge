@@ -7,7 +7,6 @@ if (!process.env.AIRTABLE_API_KEY) {
   throw new Error("Missing AIRTABLE_API_KEY from environmental variables")
 }
 
-import { airtableLookup, airtableCreate } from "./v0.1/utils"
 import { bugsnagErrorHandler, bugsnagRequestHandler } from "./bugsnag"
 import express from "express"
 import cors from "cors"
@@ -27,8 +26,10 @@ app.get("/ping", (req, res) => {
 
 import routerV0 from "./v0"
 import routerV0_1 from "./v0.1"
+import routerV0_2 from "./v0.2"
 app.use("/v0", routerV0)
 app.use("/v0.1", routerV0_1)
+app.use("/v0.2", routerV0_2)
 
 export const server = app.listen(process.env.PORT || 0, () =>
   console.log(`Up and listening on ${server.address().port}`)

@@ -1,0 +1,8 @@
+# This template is for
+---
+  YOUR_AIRTABLE_NAME:
+    baseID: YOUR_AIRTABLE_BASE_ID
+    YOUR_BASE:
+    - ALLOWLISTED_FIELD_1
+    - ALLOWLISTED_FIELD_2
+    - ALLOWLISTED_FIELD_3

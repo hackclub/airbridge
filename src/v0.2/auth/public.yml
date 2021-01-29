@@ -1,0 +1,16 @@
+---
+  YOUR_AIRTABLE_NAME:
+    baseID: YOUR_AIRTABLE_BASE_ID
+    YOUR_BASE:
+    - ALLOWLISTED_FIELD_1
+    - ALLOWLISTED_FIELD_2
+    - ALLOWLISTED_FIELD_3
+  Operations:
+    baseID: apptEEFG5HTfGQE7h
+    Badges:
+      fields:
+      - ID
+      - Name
+      - Emoji Tag
+      - Icon
+      - People Slack IDs
