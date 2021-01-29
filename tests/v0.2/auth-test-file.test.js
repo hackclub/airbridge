@@ -6,6 +6,7 @@ const app = require("../../src/index").server
 
 const authDirectory = "../../src/v0.2/auth/"
 const testFile = "test.yml"
+const TEST_AUTHKEY = 'recx3vr3ziWHPc3K0161186195268u9j3l4z9e'
 
 describe("test auth file", () => {
   it("is in a file", () => {
@@ -24,16 +25,16 @@ describe("test auth file", () => {
   })
 })
 
-describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
-  it("returns not found", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Tests")
-    expect(res.statusCode).toEqual(404)
-  })
-})
+// describe("unauthenticated GET v0.2/Airbridge/Tests", () => {
+//   it("returns not found", async () => {
+//     const res = await request(app).get("/v0.2/Airbridge/Tests")
+//     expect(res.statusCode).toEqual(404)
+//   })
+// })
 
-describe("GET v0.2/Airbridge/Tests - All Fields", () => {
+describe("GET v0.2/Airbridge/Test - All Fields", () => {
   it("provides access to all fields", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Tests - All Fields")
+    const res = await request(app).get("/v0.2/Airbridge/Test - All Fields?authKey="+TEST_AUTHKEY)
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)
@@ -43,9 +44,9 @@ describe("GET v0.2/Airbridge/Tests - All Fields", () => {
   })
 })
 
-describe("GET v0.2/Airbridge/Tests - Record ID Only", () => {
+describe("GET v0.2/Airbridge/Test - Record ID Only", () => {
   it("provides access to some fields", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Tests - Record ID Only")
+    const res = await request(app).get("/v0.2/Airbridge/Test - Record ID Only?authKey="+TEST_AUTHKEY)
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)
@@ -54,9 +55,9 @@ describe("GET v0.2/Airbridge/Tests - Record ID Only", () => {
   })
 })
 
-describe("GET v0.2/Airbridge/Tests - Some Fields", () => {
+describe("GET v0.2/Airbridge/Test - Some Fields", () => {
   it("provides access to RECORD IDs", async () => {
-    const res = await request(app).get("/v0.2/Airbridge/Tests - Some Fields")
+    const res = await request(app).get("/v0.2/Airbridge/Test - Some Fields?authKey="+TEST_AUTHKEY)
     expect(res.statusCode).toEqual(200)
     expect(res.body).toBeDefined()
     expect(Array.isArray(res.body)).toEqual(true)

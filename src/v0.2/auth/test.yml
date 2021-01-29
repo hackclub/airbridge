@@ -9,4 +9,5 @@
       fields:
       - You should have access to this field
       # - "You should not have access to this field"
-    Test - Record ID Only
+    Test - Record ID Only:
+      # If a table has no permissions data, record ID is implicity allowed
