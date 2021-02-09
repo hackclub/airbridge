@@ -1,0 +1,9 @@
+---
+  Slash-z-msw-dev:
+    baseID: appuEsdMf6hHXibSh
+    Hosts:
+      fields:
+      - Name Displayed to Users
+      - API Key
+      - API Secret
+      - Zoom ID
