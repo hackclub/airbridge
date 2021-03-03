@@ -10,6 +10,15 @@
     baseID: appP3uDe6tFt7cA5r
     Authtokens:
     - List File Name
+  js-z:
+    baseID: appuEsdMf6hHXibSh
+    Hosts:
+    - Enabled
+    - Name Displayed to Users
+    Meetings:
+    - Status
+    - Started At
+    - Ended At
   golang-z:
     baseID: appsbb0wd5N9AbSP0
     Meetings:
