@@ -11,6 +11,7 @@ router.use((req, res, next) => {
   res.locals.meta = {
     params: { ...req.params },
     query: { ...req.query },
+    body: { ...res.body },
     cache: {
       key: cacheKey(req),
       ...cache.getStats(),
