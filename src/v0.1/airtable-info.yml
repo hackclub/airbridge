@@ -234,6 +234,8 @@
     Senders:
     - Country Dropdown
     - Created At
+    SendBack:
+    - Sending ID
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
