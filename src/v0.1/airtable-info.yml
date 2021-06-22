@@ -229,6 +229,11 @@
     - Sticker Requests Count
     - Name
     - URL
+  Exchange:
+    baseID: appoBQQwL8ABXjasg
+    Senders:
+    - Country Dropdown
+    - Created At
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
