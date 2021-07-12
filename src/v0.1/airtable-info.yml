@@ -235,7 +235,7 @@
     - Country Dropdown
     - Created At
     SendBack:
-    - Sending ID
+    - Record ID
   SOM Hardware Party:
     baseID: appxfNQJLNfCdcyUN
     Players:
