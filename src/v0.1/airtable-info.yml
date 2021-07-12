@@ -241,3 +241,8 @@
     Players:
     - Name
     - Score
+  Zephyr:
+    baseID: appYNERZpoDo0XMUW
+    Applications:
+    - Username
+    - Default Profile Picture
