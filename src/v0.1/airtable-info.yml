@@ -246,3 +246,7 @@
     Applications:
     - Username
     - Default Profile Picture
+  Joins:
+    baseID: appaqcJtn33vb59Au
+    Join Requests:
+    - Created At
