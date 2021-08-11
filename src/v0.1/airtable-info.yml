@@ -82,6 +82,7 @@
     - Latitude
     - Longitude
     - Dummy
+    - Acceptance Time
     Badges:
     - ID
     - Name
