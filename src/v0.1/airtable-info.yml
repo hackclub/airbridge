@@ -102,6 +102,7 @@
     Mail Missions:
     - Status
     - Mail Team Thread Timestamp
+    - Receiver Country
   Command Center Schedule:
     baseID: appGvXhgsuXhCTrOr
     Schedule:
