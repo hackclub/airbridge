@@ -89,12 +89,6 @@
     - Emoji Tag
     - Icon
     - People Slack IDs
-    Ships:
-    - Name
-    - Description
-    - Link
-    - Files
-    - Author Names
     Awards:
     - Nominees
     - Winner
@@ -155,6 +149,8 @@
     Wire Transfers:
     - Status
     PVSA Order:
+    - Status
+    PayPal Transfers:
     - Status
   Ships:
     baseID: appnzwlmqTft69NhW
