@@ -23,9 +23,9 @@
     "@babel/runtime": "^7.7.7",
     "@bugsnag/js": "^6.5.0",
     "@bugsnag/plugin-express": "^6.5.0",
-    "airtable": "0.10.0",
+    "airtable": "^0.10.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "4.17.1",
     "friendly-words": "^1.1.10",
     "isomorphic-unfetch": "^3.0.0",
     "js-yaml": "^3.13.1",
@@ -40,10 +40,10 @@
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.6.3",
     "dotenv": "^8.1.0",
-    "jest": "^24.9.0",
+    "jest": "24.9.0",
     "nodemon": "^1.19.3",
     "prettier": "^2.0.5",
-    "supertest": "^4.0.2"
+    "supertest": "4.0.2"
   },
   "jest": {
     "testEnvironment": "node",
