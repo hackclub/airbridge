@@ -10,6 +10,12 @@
     baseID: appP3uDe6tFt7cA5r
     Authtokens:
     - List File Name
+  Club Applications:
+    baseID: appSUAc40CDu6bDAp
+    Clubs Dashboard:
+    - Venue
+    - Latitude
+    - Longitude
   js-z:
     baseID: appuEsdMf6hHXibSh
     Hosts:
