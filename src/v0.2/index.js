@@ -15,6 +15,7 @@ router.use(async (req, res, next) => {
     version: 0.2,
     params: { ...req.params },
     query: { ...req.query },
+    body: req.body,
   }
   res.locals.permissions = await getPermissions(res.locals.authKey)
 
@@ -196,12 +197,6 @@ function respond(err, req, res, next) {
     } else {
       res.json(res.locals.response)
     }
-  }
-
-  if (!res.locals.meta.cache.pulledFrom && res.statusCode == 200) {
-    const key = cacheKey(req)
-    console.log("Saving result to my cache with key", key)
-    cache.set(key, res.locals.response)
   }
 
   next()
