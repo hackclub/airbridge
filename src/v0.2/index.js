@@ -10,6 +10,7 @@ router.use(async (req, res, next) => {
   // preprocess all requests
   res.locals.response = {}
   res.locals.authKey = req.query.authKey || PUBLIC_AUTH_KEY
+  res.locals.showMeta = req.query.meta
   res.locals.meta = {
     version: 0.2,
     params: { ...req.params },
@@ -146,11 +147,12 @@ router.post("/:base/:tableName", async (req, res, next) => {
     return result
   })
   if (Array.isArray(req.body)) {
-    res.json(results)
+    res.locals.response = results
   } else {
-    res.json(results[0])
+    res.locals.response = results[0]
   }
-  next()
+
+  respond(null, req, res, next)
 })
 
 router.patch("/:base/:tableName", async (req, res, next) => {
@@ -165,5 +167,44 @@ router.get("/test", async (req, res, next) => {
 router.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json({ error: error.toString() })
 })
+
+function respond(err, req, res, next) {
+  res.locals.meta.duration = Date.now() - res.locals.start
+  res.locals.meta.params = {
+    ...res.locals.meta.params,
+    ...req.params,
+    version: 0.2,
+  }
+
+  if (err) {
+    const statusCode = err.statusCode || 500
+    res.status(statusCode).send({
+      error: { ...err, message: err.message, statusCode },
+      meta: res.locals.meta,
+    })
+  } else {
+    if (res.locals.showMeta) {
+      if (Array.isArray(res.locals.response)) {
+        res.locals.meta.resultCount = res.locals.response.length
+      } else {
+        res.locals.meta.resultCount = 1
+      }
+      res.json({
+        response: res.locals.response,
+        meta: res.locals.meta,
+      })
+    } else {
+      res.json(res.locals.response)
+    }
+  }
+
+  if (!res.locals.meta.cache.pulledFrom && res.statusCode == 200) {
+    const key = cacheKey(req)
+    console.log("Saving result to my cache with key", key)
+    cache.set(key, res.locals.response)
+  }
+
+  next()
+}
 
 export default router
