@@ -17,6 +17,12 @@ router.use(async (req, res, next) => {
     query: { ...req.query },
     body: req.body,
   }
+
+  if (req.query.authKey) {
+    res.locals.authKey = req.query.authKey
+    res.locals.meta.query.authKey = "[redacted]"
+  }
+
   res.locals.permissions = await getPermissions(res.locals.authKey)
 
   if (!res.locals.permissions) {
