@@ -5,6 +5,7 @@
       post:
       - Content
       - Name
+      - Request to share publicly?
       get:
       - Content
       - Link
