@@ -4,6 +4,7 @@
     Muse Projects:
       post:
       - Content
+      - Name
       get:
       - Content
       - Link
