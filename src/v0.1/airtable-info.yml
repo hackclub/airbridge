@@ -74,6 +74,7 @@
     - parsed_state_code
     - parsed_country
     - parsed_country_code
+    - apac
     - hackclub_affiliated
     - mlh_associated
     - logo
