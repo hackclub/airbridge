@@ -36,7 +36,9 @@ router.use(async (req, res, next) => {
 })
 
 router.get("/:base/:tableName", async (req, res, next) => {
-  const basePermission = Object.keys(res.locals.permissions).includes(req.params.base)
+  const basePermission = Object.keys(res.locals.permissions).includes(
+    req.params.base
+  )
   if (!basePermission) {
     const error = new Error("Base not found or permissions insufficient")
     errorMonitor.statusCode = 404
@@ -51,10 +53,10 @@ router.get("/:base/:tableName", async (req, res, next) => {
     error.statusCode = 404
     return next(error)
   }
-  const permittedFields = res.locals.permissions[req.params.base][req.params.tableName].get
+  const permittedFields =
+    res.locals.permissions[req.params.base][req.params.tableName].get
   const unpermittedFields = Object.keys(req.body).filter(
-    (field) =>
-      !permittedFields.includes(field)
+    (field) => !permittedFields.includes(field)
   )
   const fieldPermission = unpermittedFields.length === 0
   if (!fieldPermission) {
@@ -85,9 +87,9 @@ router.get("/:base/:tableName", async (req, res, next) => {
 
   const permissions =
     res.locals.permissions[req.params.base][req.params.tableName]?.get || []
-  const results = rawResults.map(rawResult => {
+  const results = rawResults.map((rawResult) => {
     const filteredResult = { id: rawResult.id, fields: {} }
-    permissions.forEach(field => {
+    permissions.forEach((field) => {
       filteredResult.fields[field] = rawResult.fields[field]
     })
     return filteredResult
