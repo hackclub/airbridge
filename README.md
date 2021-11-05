@@ -27,14 +27,14 @@ Version list:
 ```sh
 # Set it up locally
 git clone https://github.com/hackclub/airbridge && cd airbridge
-pnpm install
+yarn
 
 # Run locally with nodemon
-pnpm run dev # then, go to localhost:5000/ping in your browser
+yarn dev # then, go to localhost:5000/ping in your browser
 
 # Run tests
-pnpm test
+yarn test
 
 # Run specific tests
-pnpm test tests/v0/routes.test.js # (your choice of testfile here)
+yarn test tests/v0/routes.test.js # (your choice of testfile here)
 ```
