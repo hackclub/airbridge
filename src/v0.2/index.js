@@ -8,6 +8,7 @@ const env = process.env.NODE_ENV || "development"
 
 router.use(async (req, res, next) => {
   // preprocess all requests
+  res.locals.start = Date.now()
   res.locals.response = {}
   res.locals.authKey = req.query.authKey || PUBLIC_AUTH_KEY
   res.locals.showMeta = req.query.meta
@@ -35,58 +36,64 @@ router.use(async (req, res, next) => {
 })
 
 router.get("/:base/:tableName", async (req, res, next) => {
-  return res
-    .status(501)
-    .send("v0.2 GET not implemented yet! Did you mean to use v0.1?")
-
-  if (!Object.keys(res.locals.permissions).includes(req.params.base)) {
+  const basePermission = Object.keys(res.locals.permissions).includes(req.params.base)
+  if (!basePermission) {
     const error = new Error("Base not found or permissions insufficient")
-    error.statusCode = 404
+    errorMonitor.statusCode = 404
     return next(error)
   }
-  if (
-    !Object.keys(res.locals.permissions[req.params.base]).includes(
-      req.params.tableName
-    )
-  ) {
+
+  const tablePermission = Object.keys(
+    res.locals.permissions[req.params.base]
+  ).includes(req.params.tableName)
+  if (!tablePermission) {
     const error = new Error("Table not found or permissions insufficient")
     error.statusCode = 404
     return next(error)
   }
-  // we have permission to use the table, pull the info & leave
+  const permittedFields = res.locals.permissions[req.params.base][req.params.tableName].get
+  const unpermittedFields = Object.keys(req.body).filter(
+    (field) =>
+      !permittedFields.includes(field)
+  )
+  const fieldPermission = unpermittedFields.length === 0
+  if (!fieldPermission) {
+    const error = new Error(
+      `Field(s) ${unpermittedFields
+        .map((f) => `'${f}'`)
+        .join(", ")} doesn't exist or permissions insufficient`
+    )
+    error.statusCode = 422
+    return next(error)
+  }
+
+  // we have permission to use the table, pull the info
   const ab = res.locals.permissions[req.params.base].baseID
   const at = req.params.tableName
   const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
     ab
   )(at)
+  const select = {}
+  if (req.query.select) {
+    select = JSON.parse(req.query.select)
+  }
   const rawResults = await airinst
-    .select()
+    .select(select)
     .all()
     .catch((err) => console.log(err))
 
   const permissions =
-    res.locals.permissions[req.params.base][req.params.tableName]
-  let results
-  if (permissions?.readAllFields) {
-    results = rawResults.map((result) => ({
-      id: result.id,
-      fields: result.fields,
-    }))
-  } else if (permissions?.fields) {
-    results = rawResults.map((rawResult) => {
-      const filteredResult = { id: rawResult.id, fields: {} }
-      permissions.fields.forEach((field) => {
-        filteredResult.fields[field] = rawResult.fields[field]
-      })
-      return filteredResult
+    res.locals.permissions[req.params.base][req.params.tableName]?.get || []
+  const results = rawResults.map(rawResult => {
+    const filteredResult = { id: rawResult.id, fields: {} }
+    permissions.forEach(field => {
+      filteredResult.fields[field] = rawResult.fields[field]
     })
-  } else {
-    results = rawResults.map((result) => ({ id: result.id, fields: [] }))
-  }
+    return filteredResult
+  })
 
-  res.json(results)
-
-  next()
+  res.locals.response = results
+  respond(null, req, res, next)
 })
 
 router.post("/:base/:tableName", async (req, res, next) => {
@@ -147,7 +154,6 @@ router.post("/:base/:tableName", async (req, res, next) => {
     const allowedFields = Array.from([
       ...new Set([...readPermissions, ...writePermissions]),
     ])
-    console.log({ allowedFields })
     allowedFields.forEach((field) => {
       result.fields[field] = rec.fields[field]
     })
