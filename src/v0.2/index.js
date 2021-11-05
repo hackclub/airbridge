@@ -75,13 +75,12 @@ router.get("/:base/:tableName", async (req, res, next) => {
   const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
     ab
   )(at)
-  // const select = {}
-  // if (req.query.select) {
-  //   select = JSON.parse(req.query.select)
-  // }
+  let select = {}
+  if (req.query.select) {
+    select = JSON.parse(req.query.select)
+  }
   const rawResults = await airinst
-    // .select(select)
-    .select()
+    .select(select)
     .all()
     .catch((err) => console.log(err))
 
