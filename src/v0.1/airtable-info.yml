@@ -81,6 +81,7 @@
     - banner
     - approved
     - virtual
+    - hybrid
     - id
     - created_at
     - lat
