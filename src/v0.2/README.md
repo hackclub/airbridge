@@ -12,6 +12,8 @@ Authenticated vs unauthenticated requests are simplified now. If you don't authe
 
 Is there a field you want access to & are fine with other people seeing it? Add it to the [public auth file](./auth/public.yml) so you can pull the data from Airbridge without having to use any API keys.
 
+There's also a new route for looking up specific records: `https://airbrige.hackclub.com/v0.2/BASE/TABLE/RECORD_ID`.
+
 Oh, last but not least, new name! `api2` -> `airbridge`. Your old services will still work; old requests to api2.hackclub.com will be redirected to airbridge.hackclub.com.
 
 # Usage
