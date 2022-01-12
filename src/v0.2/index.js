@@ -35,6 +35,71 @@ router.use(async (req, res, next) => {
   next()
 })
 
+router.get("/:base/:tableName/:recordID", async (req, res, next) => {
+  const basePermission = Object.keys(res.locals.permissions).includes(
+    req.params.base
+  )
+  if (!basePermission) {
+    const error = new Error("Base not found or permissions insufficient")
+    errorMonitor.statusCode = 404
+    return next(error)
+  }
+
+  const tablePermission = Object.keys(
+    res.locals.permissions[req.params.base]
+  ).includes(req.params.tableName)
+  if (!tablePermission) {
+    const error = new Error("Table not found or permissions insufficient")
+    error.statusCode = 404
+    return next(error)
+  }
+  const permittedFields =
+    res.locals.permissions[req.params.base][req.params.tableName].get
+  const unpermittedFields = Object.keys(req.body).filter(
+    (field) => !permittedFields.includes(field)
+  )
+  const fieldPermission = unpermittedFields.length === 0
+  if (!fieldPermission) {
+    const error = new Error(
+      `Field(s) ${unpermittedFields
+        .map((f) => `'${f}'`)
+        .join(", ")} doesn't exist or permissions insufficient`
+    )
+    error.statusCode = 422
+    return next(error)
+  }
+
+  // we have permission to use the table, pull the info
+  const ab = res.locals.permissions[req.params.base].baseID
+  const at = req.params.tableName
+  const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+    ab
+  )(at)
+  let select = {}
+  if (req.query.select) {
+    select = JSON.parse(req.query.select)
+  }
+  select.filterByFormula = `RECORD_ID()='${req.params.recordID}'`
+  select.maxRecords = 1
+  const rawResults = await airinst
+    .select(select)
+    .all()
+    .catch((err) => console.log(err))
+
+  const permissions =
+    res.locals.permissions[req.params.base][req.params.tableName]?.get || []
+  const results = rawResults.map((rawResult) => {
+    const filteredResult = { id: rawResult.id, fields: {} }
+    permissions.forEach((field) => {
+      filteredResult.fields[field] = rawResult.fields[field]
+    })
+    return filteredResult
+  })
+
+  res.locals.response = results[0]
+  respond(null, req, res, next)
+})
+
 router.get("/:base/:tableName", async (req, res, next) => {
   const basePermission = Object.keys(res.locals.permissions).includes(
     req.params.base
