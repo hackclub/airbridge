@@ -41,7 +41,7 @@ router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   )
   if (!basePermission) {
     const error = new Error("Base not found or permissions insufficient")
-    errorMonitor.statusCode = 404
+    error.statusCode = 404
     return next(error)
   }
 
@@ -106,7 +106,7 @@ router.get("/:base/:tableName", async (req, res, next) => {
   )
   if (!basePermission) {
     const error = new Error("Base not found or permissions insufficient")
-    errorMonitor.statusCode = 404
+    error.statusCode = 404
     return next(error)
   }
 
