@@ -180,6 +180,8 @@
     - Status
     Domains:
     - Status
+    1Password:
+    - Status
   Ships:
     baseID: appnzwlmqTft69NhW
     Ships:
