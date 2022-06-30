@@ -186,6 +186,8 @@
     - Status
     Wallets:
     - Status
+    Event Insurance:
+    - Status
   Ships:
     baseID: appnzwlmqTft69NhW
     Ships:
