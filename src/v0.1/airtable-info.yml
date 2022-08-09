@@ -192,6 +192,10 @@
     - Status
     Event Insurance:
     - Status
+  Bank Applications Database:
+    baseID: apppALh5FEOKkhjLR
+    Events:
+    - Status
   Ships:
     baseID: appnzwlmqTft69NhW
     Ships:
