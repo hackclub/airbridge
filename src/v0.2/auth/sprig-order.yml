@@ -1,0 +1,8 @@
+---
+  Sprig Waitlist:
+    baseID: appN9cSnDgORAM2bp
+    Authentication:
+      post:
+      - GitHub Username
+      - Oauth State
+      - GitHub Token
