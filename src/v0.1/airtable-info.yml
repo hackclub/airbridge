@@ -295,3 +295,8 @@
     baseID: apppALh5FEOKkhjLR
     Events:
     - Pending
+  AssemblePreShow:
+    baseID: appLYgFaVOeTHzvzE
+    Images:
+    - Prompt
+    - DALL-E
