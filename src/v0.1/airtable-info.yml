@@ -300,3 +300,7 @@
     Images:
     - Prompt
     - DALL-E
+  Sprig Waitlist:
+    baseID: appN9cSnDgORAM2bp
+    Requests:
+    - Status
