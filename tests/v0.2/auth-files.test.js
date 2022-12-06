@@ -11,7 +11,7 @@ const authDirectory = path.resolve(__dirname, "../../src/v0.2/auth/")
 
 const cases = fs.readdirSync(path.resolve(__dirname, authDirectory))
 
-describe("auth lists load & are valid yml", () => {
+describe("auth lists load & are valid yml (basic)", () => {
   test.each(cases)("%s loads", (fileName) => {
     const file = fs.readFileSync(
       path.resolve(__dirname, authDirectory, fileName),

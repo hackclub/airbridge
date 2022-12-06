@@ -2,11 +2,16 @@ const yaml = require("js-yaml")
 const fs = require("fs")
 const path = require("path")
 const request = require("supertest")
-const app = require("../../src/index").server
+let app
+
+beforeAll(() => {
+  app = require("../../src/index").server
+  return app
+})
 
 const allowlistPath = "../../src/v0.1/airtable-info.yml"
 
-describe("load allowlist info", () => {
+describe("load allowlist info (basic)", () => {
   it("is in a file", () => {
     const file = fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
     expect(file).toBeDefined()
@@ -24,7 +29,7 @@ describe("load allowlist info", () => {
   })
 })
 
-describe("GET allowlisted routes", () => {
+describe("GET allowlisted routes (production)", () => {
   jest.setTimeout(30000)
 
   const routes = []
@@ -53,3 +58,5 @@ describe("GET allowlisted routes", () => {
     })
   })
 })
+
+afterAll(() => app.close())

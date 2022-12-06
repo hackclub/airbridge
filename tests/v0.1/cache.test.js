@@ -1,7 +1,12 @@
 const request = require("supertest")
-const app = require("../../src/index").server
+let app
 
-describe("GET request with cache enabled", () => {
+beforeAll(() => {
+  app = require("../../src/index").server
+  return app
+})
+
+describe("GET request with cache enabled (production)", () => {
   const route = "/v0.1/Operations/Badges?cache=true&meta=true"
 
   it("increments the cache hit", async () => {
@@ -23,3 +28,5 @@ describe("GET request with cache enabled", () => {
     )
   })
 })
+
+afterAll(() => app.close())
