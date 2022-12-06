@@ -39,4 +39,4 @@ describe('GET /v9999/Operations/Badges (invalid version number) (basic)', () => 
   })
 })
 
-afterAll(() => app.close())
+afterAll(() => app?.close())
