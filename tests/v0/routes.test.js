@@ -1,7 +1,12 @@
 const request = require("supertest")
-const app = require("../../src/index").server
+let app
 
-describe("GET /v0/Cake/Badges (invalid base)", () => {
+beforeAll(() => {
+  app = require("../../src/index").server
+  return app
+})
+
+describe("GET /v0/Cake/Badges (invalid base) (production)", () => {
   it("responds with Not Found", async () => {
     const res = await request(app).get("/v0/Cake/Badges")
     expect(res.statusCode).toEqual(404)
@@ -14,7 +19,7 @@ describe("GET /v0/Cake/Badges (invalid base)", () => {
   })
 })
 
-describe("GET /v0/Operations/Cake (invalid table)", () => {
+describe("GET /v0/Operations/Cake (invalid table) (production)", () => {
   it("responds with Not Found", async () => {
     const res = await request(app).get("/v0/Operations/Cake")
     expect(res.statusCode).toEqual(404)
@@ -27,7 +32,7 @@ describe("GET /v0/Operations/Cake (invalid table)", () => {
   })
 })
 
-describe("GET /v0/Operations/Badges", () => {
+describe("GET /v0/Operations/Badges (production)", () => {
   it("responds with successful status code", async () => {
     const res = await request(app).get("/v0/Operations/Badges")
     expect(res.statusCode).toEqual(200)
@@ -38,3 +43,5 @@ describe("GET /v0/Operations/Badges", () => {
     expect(Array.isArray(res.body)).toEqual(true)
   })
 })
+
+afterAll(() => app.close())

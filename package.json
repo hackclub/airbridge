@@ -10,7 +10,9 @@
     "heroku-postbuild": "npm run build",
     "fmt": "prettier \"{tests/**,src/**,}/*.js\" --write",
     "fmtCheck": "prettier \"{tests/**,src/**,}/*.js\" --check",
-    "test": "jest --forceExit"
+    "test": "jest",
+    "production-test": "jest -t='production'",
+    "basic-test": "jest -t='basic'"
   },
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",

@@ -3,14 +3,25 @@ name: test
 on: [push, pull_request]
 
 jobs:
-  test:
+  basic-test:
+    runs-on: ubuntu-latest
+    steps
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: npm run build --if-present
+      - run: npm run basic-test
+        env:
+          CI: true
+
+  production-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm install
       - run: npm run build --if-present
-      - run: npm run test
+      - run: npm run production-test
         env:
           CI: true
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}

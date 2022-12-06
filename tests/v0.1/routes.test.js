@@ -1,7 +1,12 @@
 const request = require("supertest")
-const app = require("../../src/index").server
+let app
 
-describe("GET /v0.1/Cake/Badges (invalid base)", () => {
+beforeAll(() => {
+  app = require("../../src/index").server
+  return app
+})
+
+describe("GET /v0.1/Cake/Badges (invalid base) (production)", () => {
   it("responds with Not Found", async () => {
     const res = await request(app).get("/v0.1/Cake/Badges")
     expect(res.statusCode).toEqual(404)
@@ -14,7 +19,7 @@ describe("GET /v0.1/Cake/Badges (invalid base)", () => {
   })
 })
 
-describe("GET /v0.1/Operations/Cake (invalid table)", () => {
+describe("GET /v0.1/Operations/Cake (invalid table) (production)", () => {
   it("responds with Not Found", async () => {
     const res = await request(app).get("/v0.1/Operations/Cake")
     expect(res.statusCode).toEqual(404)
@@ -27,7 +32,7 @@ describe("GET /v0.1/Operations/Cake (invalid table)", () => {
   })
 })
 
-describe("GET /v0.1/Operations/Badges", () => {
+describe("GET /v0.1/Operations/Badges (production)", () => {
   it("responds with successful status code", async () => {
     const res = await request(app).get("/v0.1/Operations/Badges")
     expect(res.statusCode).toEqual(200)
@@ -39,14 +44,14 @@ describe("GET /v0.1/Operations/Badges", () => {
   })
 })
 
-describe("POST /v0.1/Operations/Badges (without auth)", () => {
+describe("POST /v0.1/Operations/Badges (without auth) (production)", () => {
   it("responds with Unauthorized", async () => {
     const res = await request(app).post("/v0.1/Operations/Badges")
     expect(res.statusCode).toEqual(401)
   })
 })
 
-describe("POST /v0.1/Operations/Badges (invalid auth)", () => {
+describe("POST /v0.1/Operations/Badges (invalid auth) (production)", () => {
   it("responds with Unauthorized", async () => {
     const res = await request(app).post(
       "/v0.1/Operations/Badges?authKey=123456"
@@ -55,14 +60,14 @@ describe("POST /v0.1/Operations/Badges (invalid auth)", () => {
   })
 })
 
-describe("PATCH /v0.1/Operations/Badges (without auth)", () => {
+describe("PATCH /v0.1/Operations/Badges (without auth) (production)", () => {
   it("responds with Unauthorized", async () => {
     const res = await request(app).patch("/v0.1/Operations/Badges")
     expect(res.statusCode).toEqual(401)
   })
 })
 
-describe("PATCH /v0.1/Operations/Badges (without body)", () => {
+describe("PATCH /v0.1/Operations/Badges (without body) (production)", () => {
   it("responds with Unprocessable", async () => {
     const res = await request(app).patch(
       "/v0.1/Operations/Badges?authKey=123456"
@@ -70,3 +75,5 @@ describe("PATCH /v0.1/Operations/Badges (without body)", () => {
     expect(res.statusCode).toEqual(422)
   })
 })
+
+afterAll(() => app.close())
