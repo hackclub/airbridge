@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   basic-test:
     runs-on: ubuntu-latest
-    steps
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm install
