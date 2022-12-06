@@ -14,6 +14,7 @@ jobs:
       - run: yarn run basic-test
         env:
           CI: true
+          AIRTABLE_API_KEY: FAKE_KEY
 
   production-test:
     runs-on: ubuntu-latest
