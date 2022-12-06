@@ -12,7 +12,7 @@
     "fmtCheck": "prettier \"{tests/**,src/**,}/*.js\" --check",
     "test": "jest",
     "production-test": "jest -t='production'",
-    "basic-test": "jest -t='basic'"
+    "basic-test": "jest -t='basic' --detectOpenHandles"
   },
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",
