@@ -32,6 +32,7 @@
     - Venue
     - Latitude
     - Longitude
+    - Status
   js-z:
     baseID: appuEsdMf6hHXibSh
     Hosts:
