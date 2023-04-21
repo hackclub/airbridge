@@ -1,6 +1,6 @@
 <h1 align="center">V0.2</h1>
 <p align="center"><i>The bridges tying Hack Club's services together. Illustrated below.</i></p>
-<p align="center"><img alt="Raft icon" src="https://i.imgur.com/VLgOTmO.png"></a>
+<p align="center"><img alt="Raft icon" src="https://cloud-pevdu117q-hack-club-bot.vercel.app/0VLgOTmO.png"></a>
 
 # What's new?
 
