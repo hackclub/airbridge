@@ -23,6 +23,7 @@ Version list:
 - [v0](./src/v0/README.md)
 
 ## Developing & Contributing
+> The Airtable PAT (Personal Access Token) is under logins+dinobox@hackclub.com airtable account.
 
 ```sh
 # Set it up locally
