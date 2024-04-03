@@ -315,6 +315,10 @@
     baseID: app1o9tRo6XulLnsr
     rsvp:
     - Status
+  The Bin:
+    baseID: appKjALSnOoA0EmPk
+    RSVPs:
+    - Status
   Hackers Wanted:
     baseID: appdPydXlWO2ZAhhV
     hackers:
