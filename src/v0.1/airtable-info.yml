@@ -271,3 +271,9 @@
     baseID: appdPydXlWO2ZAhhV
     hackers:
     - username
+  YSWS Analytics:
+    baseID: app3A5kJwYqxMLOgh
+    YSWS Authors:
+      - Name
+      - Total Grants This Month
+      - Hours This Month
