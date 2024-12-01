@@ -75,7 +75,7 @@ function allowlistedRecords(records, allowlistedFields) {
 }
 
 export async function airtableLookup(options, auth) {
-  const { base, tableName, select } = options
+  const { base, tableName, recordId, select } = options
   const baseID = lookupBaseID(base)
 
   if (auth) {
@@ -98,6 +98,11 @@ export async function airtableLookup(options, auth) {
     const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
       baseID
     )(tableName)
+
+    if (recordId) {
+      const rawResult = await airinst.find(recordId)
+      return allowlistedRecords(rawResult, resultFields)
+    }
 
     const rawResults = await airinst
       .select({ ...select, fields: resultFields })

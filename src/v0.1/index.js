@@ -103,6 +103,9 @@ router.get("/:base/:tableName", async (req, res, next) => {
     base: req.params.base,
     tableName: req.params.tableName,
   }
+  if (req.query.recordId) {
+    options.recordId = req.query.recordId
+  }
   if (req.query.select) {
     try {
       options.select = JSON.parse(req.query.select)
