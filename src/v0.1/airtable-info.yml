@@ -38,27 +38,6 @@
     Meetings:
     - Status
     - Unique Users Joined
-  CDN:
-    baseID: appnjnz8RYdlkJfIu
-    Links:
-    - Permalink
-  SDP Priority Activations:
-    baseID: apple9fiV81JsRytC
-    SDP Priority Activations:
-    - Submission Time
-    - Approved
-    - Rejection Reason
-    - Source type
-    - Mail Mission
-    - Address (city)
-    - Address (state)
-    - Address (zip code)
-    - Notes
-    Sources:
-    - Max Requests
-    - Slug
-    - Name
-    - Approval count
   hackathons.hackclub.com:
     baseID: apptapPDAi0eBaaG1
     applications:
@@ -160,10 +139,6 @@
     - Preview
     - Art title
     - Active
-  OnBoard:
-    baseID: app4Bs8Tjwvk5qcD4
-    Verifications:
-    - Status
   Bank Promotions:
     baseID: appEzv7w2IBMoxxHe
     Github Grant:
@@ -214,14 +189,6 @@
     - Name
     - Flow
     - Pronouns
-  Airbots:
-    baseID: appK7oJwNYnwly4wL
-    ledger:
-    - From
-    - To
-    - Amount
-    - Timestamp
-    - Success
   SOM Sticker Requests:
     baseID: appnP4GV8lmAuOXpf
     Sticker Requests:
@@ -275,7 +242,3 @@
     baseID: appKjALSnOoA0EmPk
     RSVPs:
     - Status
-  Hackers Wanted:
-    baseID: appdPydXlWO2ZAhhV
-    hackers:
-    - username
