@@ -131,10 +131,12 @@
     - Title
     - Description
     - Leader
+    - Leader Slack ID
     - Start Time
     - End Time
     - Avatar
     - Emoji
+    - Event Link
     - YouTube URL
     - AMA
     - AMA Name
@@ -146,6 +148,10 @@
     - Calendar Link
     - Tags
     - Approved
+    - Interested Users
+    Users:
+    - Slack ID
+    - Interesting Events
   Draw in the dark:
     baseID: applcpliMnombEJb9
     Deadline:
