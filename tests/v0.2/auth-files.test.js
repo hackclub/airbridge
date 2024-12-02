@@ -25,7 +25,7 @@ describe("auth lists load & are valid yml (basic)", () => {
       path.resolve(__dirname, authDirectory, fileName),
       "utf-8"
     )
-    expect(() => yaml.safeLoad(file)).not.toThrow()
+    expect(() => yaml.load(file)).not.toThrow()
   })
 
   test.each(cases)("%s is valid YAML", (fileName) => {
@@ -33,6 +33,6 @@ describe("auth lists load & are valid yml (basic)", () => {
       path.resolve(__dirname, authDirectory, fileName),
       "utf-8"
     )
-    expect(() => yaml.safeLoad(file)).not.toThrow()
+    expect(() => yaml.load(file)).not.toThrow()
   })
 })
