@@ -6,9 +6,9 @@
     - ALLOWLISTED_FIELD_2
     - ALLOWLISTED_FIELD_3
   # Feel free to PR your own changes in following the example above ^
-  YSWS Programs:
+  Unified WSWS Projects DB:
     baseID: app3A5kJwYqxMLOgh
-    YOUR_BASE:
+    YSWS Programs:
     - Name
     - Unweighted-Total
   Assemble:
