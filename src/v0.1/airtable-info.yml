@@ -247,3 +247,14 @@
     baseID: appKjALSnOoA0EmPk
     RSVPs:
     - Status
+  Black Box:
+    baseID: app8aRVQaxBDJTTph
+    YSWS Project Submission:
+    - Code URL
+    - Automation - Submit to Unified YSWS
+    - Matrix Color
+    - Slack Username
+    - Project Identifier
+    - Verb
+    - Preview A
+    - Preview B
