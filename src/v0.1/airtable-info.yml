@@ -247,6 +247,10 @@
     baseID: appKjALSnOoA0EmPk
     RSVPs:
     - Status
+  SlashZSamPoder:
+    baseID: appILZk0gunMZ1J1i
+    Submissions:
+    - Emoji
   Black Box:
     baseID: app8aRVQaxBDJTTph
     YSWS Project Submission:
