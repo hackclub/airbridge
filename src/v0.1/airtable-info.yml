@@ -267,3 +267,8 @@
     users:
     - slack_uid
     - hand
+    moments:
+    - slack_uid
+    - project
+    - status
+    - duration_seconds
