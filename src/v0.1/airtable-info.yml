@@ -262,3 +262,8 @@
     - Verb
     - Preview A
     - Preview B
+  Tarot:
+    baseID: appOkhzTn4Z3FI9gv
+    users:
+    - slack_uid
+    - hand
