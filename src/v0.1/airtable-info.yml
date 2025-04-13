@@ -272,3 +272,11 @@
     - project
     - status
     - duration_seconds
+    speedrun_recordings:
+    - creator_slack_id
+    - start_date
+    - end_date
+    - status
+    - project
+    - duration_seconds
+    - slack_thread_url
