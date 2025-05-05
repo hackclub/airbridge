@@ -280,3 +280,11 @@
     - project
     - duration_seconds
     - slack_thread_url
+  MC Modding:
+    baseID: appROpbCKgNm7r5ln
+    Submissions:
+    - Status
+    - Code link
+    - Play link
+    - Demo video
+    - Description
