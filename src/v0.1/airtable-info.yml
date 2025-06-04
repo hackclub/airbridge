@@ -11,6 +11,20 @@
     YSWS Programs:
     - Name
     - Unweighted–Total
+    - Short-Desc
+    - Long-Desc
+    - Primary-Color
+    - Secondry-Color
+    - Tertiary-Color
+    - Primary-Logo
+    - Secondary-Logo
+    - Background-Image
+    - Website-Link
+    - Slack-Channel
+    - Slack-Link
+    - Active
+
+
   Assemble:
     baseID: appO6uRegNaw9bfPQ
     Prompts:
