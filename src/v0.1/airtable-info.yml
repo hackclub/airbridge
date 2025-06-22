@@ -320,3 +320,11 @@
     Event Codes:
     - Status
     - Event Code
+  Hackmate:
+    baseID: app6BIffLXE1haIP4
+    Hackmate Project Submission:
+    - Project Name
+    - Code URL
+    - Playable URL
+    - Description
+    - Slack ID
