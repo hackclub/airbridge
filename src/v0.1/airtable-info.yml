@@ -329,3 +329,12 @@
     - Description
     - Slack ID
     - Screenshot
+  Pathfinder:
+    baseID: apprZUdaG81bCEBq2
+    YSWS Project Submission:
+    - Code URL
+    - First Name
+    - Screenshot
+    - Description
+    - City
+    - Country
