@@ -1,6 +1,7 @@
 import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
+import { logRequest } from "../shared/logging.js"
 const router = express.Router()
 const cache = new NodeCache()
 
@@ -98,7 +99,8 @@ router.patch("/:base/:tableName", async (req, res, next) => {
   }
 })
 
-router.get("/:base/:tableName", async (req, res, next) => {
+router.get("/:base/:tableName", logRequest, async (req, res, next) => {
+
   const options = {
     base: req.params.base,
     tableName: req.params.tableName,
