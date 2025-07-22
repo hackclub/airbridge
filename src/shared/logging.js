@@ -20,10 +20,10 @@ export async function logRequest(req, res, next) {
   if (filterByFormula) {
     try {
       const logData = {
-        base: req.params.base || '',
-        version: req.baseUrl.replace('/', '') || '', // e.g., "v0.1", "v0.2"
-        full_request: `${req.protocol}://${req.get('host')}${req.originalUrl}`,
-        filterbyformula: filterByFormula
+        base: req.params.base || "",
+        version: req.baseUrl.replace("/", "") || "", // e.g., "v0.1", "v0.2"
+        full_request: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+        filterbyformula: filterByFormula,
       }
 
       // Only proceed if we have a valid Airtable API key
@@ -33,29 +33,36 @@ export async function logRequest(req, res, next) {
       }
 
       // Proper upsert using Airtable REST API
-      const response = await fetch('https://api.airtable.com/v0/appP3uDe6tFt7cA5r/Temp%20-%20logged%20requests', {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          performUpsert: {
-            fieldsToMergeOn: ['base', 'version', 'filterbyformula']
+      const response = await fetch(
+        "https://api.airtable.com/v0/appP3uDe6tFt7cA5r/Temp%20-%20logged%20requests",
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+            "Content-Type": "application/json",
           },
-          records: [{
-            fields: {
-              base: logData.base,
-              version: logData.version,
-              full_request: logData.full_request,
-              filterbyformula: logData.filterbyformula
-            }
-          }]
-        })
-      })
+          body: JSON.stringify({
+            performUpsert: {
+              fieldsToMergeOn: ["base", "version", "filterbyformula"],
+            },
+            records: [
+              {
+                fields: {
+                  base: logData.base,
+                  version: logData.version,
+                  full_request: logData.full_request,
+                  filterbyformula: logData.filterbyformula,
+                },
+              },
+            ],
+          }),
+        }
+      )
 
       if (!response.ok) {
-        throw new Error(`Airtable API error: ${response.status} ${response.statusText}`)
+        throw new Error(
+          `Airtable API error: ${response.status} ${response.statusText}`
+        )
       }
 
       console.log("Upserted filterByFormula request:", logData)
