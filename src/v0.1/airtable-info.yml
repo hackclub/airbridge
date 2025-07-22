@@ -48,7 +48,7 @@
   Club Applications:
     baseID: appSUAc40CDu6bDAp
     Clubs Dashboard:
-    - Venue
+    - Club Name
     - Latitude
     - Longitude
     - Status
@@ -82,21 +82,6 @@
     - lng
   Operations:
     baseID: apptEEFG5HTfGQE7h
-    Clubs:
-    - Name
-    - Slack Channel ID
-    - Leader Slack IDs
-    - Leader Names
-    - Address City
-    - Address State
-    - Address Postal Code
-    - Address Country
-    - Meeting sizes
-    - Club URL
-    - Latitude
-    - Longitude
-    - Dummy
-    - Acceptance Time
     Badges:
     - ID
     - Name
