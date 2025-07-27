@@ -3,6 +3,7 @@ const PUBLIC_AUTH_KEY = "recsxFPWtS57ipww81611873047g41m8dw1t8p" // publicly ava
 import Airtable from "airtable"
 import express from "express"
 import { getPermissions } from "./permissions"
+import { logRequest } from "../shared/logging.js"
 const router = express.Router()
 const env = process.env.NODE_ENV || "development"
 
@@ -100,7 +101,7 @@ router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   respond(null, req, res, next)
 })
 
-router.get("/:base/:tableName", async (req, res, next) => {
+router.get("/:base/:tableName", logRequest, async (req, res, next) => {
   const basePermission = Object.keys(res.locals.permissions).includes(
     req.params.base
   )

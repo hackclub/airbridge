@@ -11,6 +11,20 @@
     YSWS Programs:
     - Name
     - Unweighted–Total
+    # - Short-Desc
+    # - Long-Desc
+    # - Primary-Color
+    # - Secondry-Color
+    # - Tertiary-Color
+    # - Primary-Logo
+    # - Secondary-Logo
+    # - Background-Image
+    # - Website-Link
+    # - Slack-Channel
+    # - Slack-Link
+    # - Active
+
+
   Assemble:
     baseID: appO6uRegNaw9bfPQ
     Prompts:
@@ -34,7 +48,7 @@
   Club Applications:
     baseID: appSUAc40CDu6bDAp
     Clubs Dashboard:
-    - Venue
+    - Club Name
     - Latitude
     - Longitude
     - Status
@@ -68,21 +82,6 @@
     - lng
   Operations:
     baseID: apptEEFG5HTfGQE7h
-    Clubs:
-    - Name
-    - Slack Channel ID
-    - Leader Slack IDs
-    - Leader Names
-    - Address City
-    - Address State
-    - Address Postal Code
-    - Address Country
-    - Meeting sizes
-    - Club URL
-    - Latitude
-    - Longitude
-    - Dummy
-    - Acceptance Time
     Badges:
     - ID
     - Name
@@ -303,6 +302,30 @@
     - Code URL
     - Playable URL
     - Screenshot
+    Event Codes:
+    - Status
+    - Event Code
+  Hackmate:
+    baseID: app6BIffLXE1haIP4
+    Hackmate Project Submission:
+    - Project Name
+    - Code URL
+    - Playable URL
+    - Description
+    - Slack ID
+    - Screenshot
+  Pathfinder:
+    baseID: apprZUdaG81bCEBq2
+    YSWS Project Submission:
+    - Project Name
+    - Code URL
+    - GitHub Username
+    - Screenshot
+    - Schematic Screenshot
+    - PCB Back Screenshot
+    - Description
+    - Country
+    - Message to Meghana
   Endpointer:
     baseID: appVS4mdCeVPDdixu
     Endpointer Project Submission:
