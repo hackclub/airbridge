@@ -9,7 +9,7 @@ let server
 beforeAll(async () => {
   // Start server for testing on a random port
   server = app.listen(0)
-  await new Promise(resolve => server.on('listening', resolve))
+  await new Promise((resolve) => server.on("listening", resolve))
 })
 
 afterAll(async () => {
@@ -22,7 +22,10 @@ const allowlistPath = "../../src/v0.1/airtable-info.yml"
 
 describe("load allowlist info (basic)", () => {
   test("is in a file", () => {
-    const file = fs.readFileSync(path.resolve(import.meta.dir, allowlistPath), "utf8")
+    const file = fs.readFileSync(
+      path.resolve(import.meta.dir, allowlistPath),
+      "utf8"
+    )
     expect(file).toBeDefined()
   })
 

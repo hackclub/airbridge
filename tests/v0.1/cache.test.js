@@ -6,7 +6,7 @@ let server
 beforeAll(async () => {
   // Start server for testing on a random port
   server = app.listen(0)
-  await new Promise(resolve => server.on('listening', resolve))
+  await new Promise((resolve) => server.on("listening", resolve))
 })
 
 afterAll(async () => {
@@ -39,9 +39,7 @@ describe("GET request with cache enabled (production)", () => {
     const bodyNoCache = await resNoCache.json()
     const res = await fetch(`http://localhost:${port}${route}`)
     const body = await res.json()
-    expect(bodyNoCache.meta.duration).toBeGreaterThan(
-      body.meta.duration
-    )
+    expect(bodyNoCache.meta.duration).toBeGreaterThan(body.meta.duration)
   })
 })
 

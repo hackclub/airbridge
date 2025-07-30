@@ -6,7 +6,7 @@ let server
 beforeAll(async () => {
   // Start server for testing on a random port
   server = app.listen(0)
-  await new Promise(resolve => server.on('listening', resolve))
+  await new Promise((resolve) => server.on("listening", resolve))
 })
 
 afterAll(async () => {
