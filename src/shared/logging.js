@@ -1,5 +1,3 @@
-import fetch from "node-fetch"
-
 // Shared logging middleware to track requests that use filterByFormula
 export async function logRequest(req, res, next) {
   let filterByFormula = null

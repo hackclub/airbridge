@@ -1,79 +1,111 @@
-const request = require("supertest")
-let app
+import { test, describe, beforeAll, afterAll, expect } from "bun:test"
+import { app } from "../../src/index.js"
 
-beforeAll(() => {
-  app = require("../../src/index").server
-  return app
+let server
+
+beforeAll(async () => {
+  // Start server for testing on a random port
+  server = app.listen(0)
+  await new Promise((resolve) => server.on("listening", resolve))
+})
+
+afterAll(async () => {
+  if (server) {
+    server.close()
+  }
 })
 
 describe("GET /v0.1/Cake/Badges (invalid base) (production)", () => {
-  it("responds with Not Found", async () => {
-    const res = await request(app).get("/v0.1/Cake/Badges")
-    expect(res.statusCode).toEqual(404)
+  test("responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Cake/Badges`)
+    expect(res.status).toEqual(404)
   })
-  it("responds with json error", async () => {
-    const res = await request(app).get("/v0.1/Cake/Badges")
-    expect(res.body).toBeDefined()
-    expect(res.body.error).toBeDefined()
-    expect(res.body.error.message).toMatch("Not found")
+  test("responds with json error", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Cake/Badges`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(body.error).toBeDefined()
+    expect(body.error.message).toMatch("Not found")
   })
 })
 
 describe("GET /v0.1/Operations/Cake (invalid table) (production)", () => {
-  it("responds with Not Found", async () => {
-    const res = await request(app).get("/v0.1/Operations/Cake")
-    expect(res.statusCode).toEqual(404)
+  test("responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Cake`)
+    expect(res.status).toEqual(404)
   })
-  it("responds with json error", async () => {
-    const res = await request(app).get("/v0.1/Operations/Cake")
-    expect(res.body).toBeDefined()
-    expect(res.body.error).toBeDefined()
-    expect(res.body.error.message).toMatch("Not found")
+  test("responds with json error", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Cake`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(body.error).toBeDefined()
+    expect(body.error.message).toMatch("Not found")
   })
 })
 
 describe("GET /v0.1/Operations/Badges (production)", () => {
-  it("responds with successful status code", async () => {
-    const res = await request(app).get("/v0.1/Operations/Badges")
-    expect(res.statusCode).toEqual(200)
+  test("responds with successful status code", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Badges`)
+    expect(res.status).toEqual(200)
   })
-  it("responds with an array of airtable records", async () => {
-    const res = await request(app).get("/v0.1/Operations/Badges")
-    expect(res.body).toBeDefined()
-    expect(Array.isArray(res.body)).toEqual(true)
+  test("responds with an array of airtable records", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Badges`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(Array.isArray(body)).toEqual(true)
   })
 })
 
 describe("POST /v0.1/Operations/Badges (without auth) (production)", () => {
-  it("responds with Unauthorized", async () => {
-    const res = await request(app).post("/v0.1/Operations/Badges")
-    expect(res.statusCode).toEqual(401)
+  test("responds with Unauthorized", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Badges`, {
+      method: "POST",
+    })
+    expect(res.status).toEqual(401)
   })
 })
 
 describe("POST /v0.1/Operations/Badges (invalid auth) (production)", () => {
-  it("responds with Unauthorized", async () => {
-    const res = await request(app).post(
-      "/v0.1/Operations/Badges?authKey=123456"
+  test("responds with Unauthorized", async () => {
+    const port = server.address().port
+    const res = await fetch(
+      `http://localhost:${port}/v0.1/Operations/Badges?authKey=123456`,
+      {
+        method: "POST",
+      }
     )
-    expect(res.statusCode).toEqual(401)
+    expect(res.status).toEqual(401)
   })
 })
 
 describe("PATCH /v0.1/Operations/Badges (without auth) (production)", () => {
-  it("responds with Unauthorized", async () => {
-    const res = await request(app).patch("/v0.1/Operations/Badges")
-    expect(res.statusCode).toEqual(401)
+  test("responds with Unauthorized", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0.1/Operations/Badges`, {
+      method: "PATCH",
+    })
+    expect(res.status).toEqual(401)
   })
 })
 
 describe("PATCH /v0.1/Operations/Badges (without body) (production)", () => {
-  it("responds with Unprocessable", async () => {
-    const res = await request(app).patch(
-      "/v0.1/Operations/Badges?authKey=123456"
+  test("responds with Unprocessable", async () => {
+    const port = server.address().port
+    const res = await fetch(
+      `http://localhost:${port}/v0.1/Operations/Badges?authKey=123456`,
+      {
+        method: "PATCH",
+      }
     )
-    expect(res.statusCode).toEqual(422)
+    expect(res.status).toEqual(422)
   })
 })
 
-afterAll(() => app.close())
+// Server is managed in test runner

@@ -29,14 +29,14 @@ Version list:
 ```sh
 # Set it up locally
 git clone https://github.com/hackclub/airbridge && cd airbridge
-yarn
+bun install
 
-# Run locally with nodemon
-yarn dev # then, go to localhost:5000/ping in your browser
+# Run locally with hot reload
+bun dev # then, go to localhost:5000/ping in your browser
 
 # Run tests
-yarn test
+bun test
 
 # Run specific tests
-yarn test tests/v0/routes.test.js # (your choice of testfile here)
+bun test tests/v0/routes.test.js # (your choice of testfile here)
 ```
