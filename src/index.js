@@ -1,8 +1,3 @@
-const env = process.env.NODE_ENV || "development"
-if (env === "development" || env === "test") {
-  console.log("Not in production, configuring with .env")
-  require("dotenv").config()
-}
 if (!process.env.AIRTABLE_API_KEY) {
   throw new Error("Missing AIRTABLE_API_KEY from environmental variables")
 }
