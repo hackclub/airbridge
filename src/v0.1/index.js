@@ -1,6 +1,7 @@
 import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
+import { logRequest } from "../shared/logging.js"
 const router = express.Router()
 const cache = new NodeCache()
 
@@ -19,6 +20,11 @@ router.use((req, res, next) => {
   }
 
   if (req.query.authKey) {
+    if (!/^[a-zA-Z0-9]+$/.test(req.query.authKey)) {
+      const error = new Error("Invalid authKey format")
+      error.statusCode = 401
+      return next(error)
+    }
     res.locals.authKey = req.query.authKey
     res.locals.meta.query.authKey = "[redacted]"
   }
@@ -98,7 +104,7 @@ router.patch("/:base/:tableName", async (req, res, next) => {
   }
 })
 
-router.get("/:base/:tableName", async (req, res, next) => {
+router.get("/:base/:tableName", logRequest, async (req, res, next) => {
   const options = {
     base: req.params.base,
     tableName: req.params.tableName,

@@ -3,6 +3,7 @@ const PUBLIC_AUTH_KEY = "recsxFPWtS57ipww81611873047g41m8dw1t8p" // publicly ava
 import Airtable from "airtable"
 import express from "express"
 import { getPermissions } from "./permissions"
+import { logRequest } from "../shared/logging.js"
 const router = express.Router()
 const env = process.env.NODE_ENV || "development"
 
@@ -20,6 +21,11 @@ router.use(async (req, res, next) => {
   }
 
   if (req.query.authKey) {
+    if (!/^[a-zA-Z0-9]+$/.test(req.query.authKey)) {
+      const error = new Error("Invalid authKey format")
+      error.statusCode = 401
+      return next(error)
+    }
     res.locals.authKey = req.query.authKey
     res.locals.meta.query.authKey = "[redacted]"
   }
@@ -100,7 +106,7 @@ router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   respond(null, req, res, next)
 })
 
-router.get("/:base/:tableName", async (req, res, next) => {
+router.get("/:base/:tableName", logRequest, async (req, res, next) => {
   const basePermission = Object.keys(res.locals.permissions).includes(
     req.params.base
   )

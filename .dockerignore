@@ -1,0 +1,8 @@
+node_modules
+yarn-debug.log*
+yarn-error.log*
+.git
+.gitignore
+.env
+*.md
+.DS_Store 

@@ -1,4 +1,4 @@
-import fetch from "isomorphic-unfetch"
+import fetch from "node-fetch"
 import fs from "fs"
 import path from "path"
 import yaml from "js-yaml"
@@ -24,6 +24,6 @@ export async function getPermissions(authId) {
     path.resolve(__dirname, `./auth/${filename}`),
     "utf8"
   )
-  const doc = yaml.safeLoad(file)
+  const doc = yaml.load(file)
   return doc
 }

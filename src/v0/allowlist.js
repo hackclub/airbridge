@@ -52,18 +52,6 @@ const allowlistInfo = {
     ],
   },
   Operations: {
-    Clubs: [
-      "Name",
-      "Slack Channel ID",
-      "Leader Slack IDs",
-      "Address City",
-      "Address State",
-      "Address Postal Code",
-      "Address Country",
-      "Club URL",
-      "Latitude",
-      "Longitude",
-    ],
     Badges: ["ID", "Name", "Emoji Tag", "Icon", "People Slack IDs"],
   },
   "Command Center Schedule": {

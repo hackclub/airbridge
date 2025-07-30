@@ -1,12 +1,13 @@
 <h1 align="center">Airbridge</h1>
-<p align="center">
-  <a href="https://github.com/hackclub/airbridge/actions">
-    <img alt="test" src="https://github.com/hackclub/airbridge/workflows/test/badge.svg">
-    <img alt="format" src="https://github.com/hackclub/airbridge/workflows/format/badge.svg">
-  </a>
-</p>
+
+
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
 <p align="center"><img alt="Raft icon" src="https://cloud-gxlnkdt57.vercel.app/0untitled.png"></a>
+
+
+[![test](https://github.com/hackclub/airbridge/actions/workflows/test.yml/badge.svg)](https://github.com/hackclub/airbridge/actions/workflows/test.yml)
+
+[![format](https://github.com/hackclub/airbridge/actions/workflows/format.yml/badge.svg)](https://github.com/hackclub/airbridge/actions/workflows/format.yml)
 
 ## Reasoning
 
@@ -23,6 +24,7 @@ Version list:
 - [v0](./src/v0/README.md)
 
 ## Developing & Contributing
+> The Airtable PAT (Personal Access Token) is under logins+dinobox@hackclub.com airtable account.
 
 ```sh
 # Set it up locally

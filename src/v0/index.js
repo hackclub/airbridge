@@ -5,9 +5,9 @@ import { airtableLookup } from "./utils"
 
 router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   /*
-    version: Required. api version to use. Before version 1.0 this isn't being checked– go ahead and put a 0 there
+    version: Required. api version to use. Before version 0.1 this isn't being checked– go ahead and put a 0 there
     base: Required. Either base ID ("routertEEFG5HTfGQE7h") or base name ("Operations")
-    tableName: Required. WARNING: this table doesn't get read
+    tableName: Required. WARNING: this field doesn't get read due to a bug in Airtable they've committed to not patching
     RecordID: Required. ex "Clubs"
   */
   const startTime = Date.now()
@@ -21,8 +21,13 @@ router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   try {
     let providedAuth
     if (req.headers.authorization) {
-      // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace("Bearer ", "")
+      const token = req.headers.authorization.replace("Bearer ", "")
+      if (!/^[a-zA-Z0-9]+$/.test(token)) {
+        const error = new Error("Invalid authorization token format")
+        error.statusCode = 401
+        throw error
+      }
+      providedAuth = token
     }
     if (env === "development" || env === "test") {
       providedAuth = req.query.authKey
@@ -76,8 +81,13 @@ router.get("/:base/:tableName", async (req, res, next) => {
   try {
     let providedAuth
     if (req.headers.authorization) {
-      // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace("Bearer ", "")
+      const token = req.headers.authorization.replace("Bearer ", "")
+      if (!/^[a-zA-Z0-9]+$/.test(token)) {
+        const error = new Error("Invalid authorization token format")
+        error.statusCode = 401
+        throw error
+      }
+      providedAuth = token
     }
     if (env === "development" || env === "test") {
       providedAuth = req.query.authKey

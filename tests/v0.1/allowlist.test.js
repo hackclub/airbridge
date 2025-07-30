@@ -18,7 +18,7 @@ describe("load allowlist info (basic)", () => {
   })
 
   it("is a parsable yaml file", () => {
-    const data = yaml.safeLoad(
+    const data = yaml.load(
       fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
     )
 
@@ -33,7 +33,7 @@ describe("GET allowlisted routes (production)", () => {
   jest.setTimeout(30000)
 
   const routes = []
-  const tables = yaml.safeLoad(
+  const tables = yaml.load(
     fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
   )
   Object.keys(tables).forEach((tableN) => {

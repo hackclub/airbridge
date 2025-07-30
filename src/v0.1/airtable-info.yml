@@ -6,6 +6,25 @@
     - ALLOWLISTED_FIELD_2
     - ALLOWLISTED_FIELD_3
   # Feel free to PR your own changes in following the example above ^
+  Unified YSWS Projects DB:
+    baseID: app3A5kJwYqxMLOgh
+    YSWS Programs:
+    - Name
+    - Unweighted–Total
+    # - Short-Desc
+    # - Long-Desc
+    # - Primary-Color
+    # - Secondry-Color
+    # - Tertiary-Color
+    # - Primary-Logo
+    # - Secondary-Logo
+    # - Background-Image
+    # - Website-Link
+    # - Slack-Channel
+    # - Slack-Link
+    # - Active
+
+
   Assemble:
     baseID: appO6uRegNaw9bfPQ
     Prompts:
@@ -29,45 +48,15 @@
   Club Applications:
     baseID: appSUAc40CDu6bDAp
     Clubs Dashboard:
-    - Venue
+    - Club Name
     - Latitude
     - Longitude
     - Status
-  js-z:
-    baseID: appuEsdMf6hHXibSh
-    Hosts:
-    - Enabled
-    - Name Displayed to Users
-    Meetings:
-    - Status
-    - Started At
-    - Ended At
   golang-z:
     baseID: appsbb0wd5N9AbSP0
     Meetings:
     - Status
     - Unique Users Joined
-  CDN:
-    baseID: appnjnz8RYdlkJfIu
-    Links:
-    - Permalink
-  SDP Priority Activations:
-    baseID: apple9fiV81JsRytC
-    SDP Priority Activations:
-    - Submission Time
-    - Approved
-    - Rejection Reason
-    - Source type
-    - Mail Mission
-    - Address (city)
-    - Address (state)
-    - Address (zip code)
-    - Notes
-    Sources:
-    - Max Requests
-    - Slug
-    - Name
-    - Approval count
   hackathons.hackclub.com:
     baseID: apptapPDAi0eBaaG1
     applications:
@@ -93,21 +82,6 @@
     - lng
   Operations:
     baseID: apptEEFG5HTfGQE7h
-    Clubs:
-    - Name
-    - Slack Channel ID
-    - Leader Slack IDs
-    - Leader Names
-    - Address City
-    - Address State
-    - Address Postal Code
-    - Address Country
-    - Meeting sizes
-    - Club URL
-    - Latitude
-    - Longitude
-    - Dummy
-    - Acceptance Time
     Badges:
     - ID
     - Name
@@ -140,10 +114,12 @@
     - Title
     - Description
     - Leader
+    - Leader Slack ID
     - Start Time
     - End Time
     - Avatar
     - Emoji
+    - Event Link
     - YouTube URL
     - AMA
     - AMA Name
@@ -154,6 +130,12 @@
     - AMA Avatar
     - Calendar Link
     - Tags
+    - Approved
+    - Canceled
+    - Interested Users
+    Users:
+    - Slack ID
+    - Interesting Events
   Draw in the dark:
     baseID: applcpliMnombEJb9
     Deadline:
@@ -173,8 +155,6 @@
   Bank Promotions:
     baseID: appEzv7w2IBMoxxHe
     Github Grant:
-    - Status
-    FIRST Grant:
     - Status
     StickerMule:
     - Status
@@ -216,61 +196,12 @@
     - Message
     - Image URL
     - Project URL
-  Pre-register:
-    baseID: appEdSUXVveyjxVp5
-    Applications:
-    - Created at
-    - What do you want to learn?
-    - Approved for display
   Tutorial Island:
     baseID: appYGt7P3MtotTotg
     Tutorial Island:
     - Name
     - Flow
     - Pronouns
-  Airbots:
-    baseID: appK7oJwNYnwly4wL
-    ledger:
-    - From
-    - To
-    - Amount
-    - Timestamp
-    - Success
-  Summer of Making Streaks:
-    baseID: appRxhF9qVMLbxAXR
-    Slack Accounts:
-    - ID
-    - Username
-    - Avatar
-    - Updates
-    - Streak Count
-    - Display Streak
-    - Max Streaks
-    - Full Slack Member?
-    - Webring
-    - CSS URL
-    - Audio URL
-    - Custom Domain
-    - Website
-    - GitHub
-    - Streaks Toggled Off
-    - Updates Count
-    Updates:
-    - ID
-    - Slack Account
-    - Post Time
-    - Message Timestamp
-    - Text
-    - Attachments
-    - Mux Playback IDs
-    - Filtered Emoji Reactions
-    - Slack URL
-    Emoji CSS:
-    - Emoji
-    - CSS URL
-    Emoji Type:
-    - Name
-    - Emoji Source
   SOM Sticker Requests:
     baseID: appnP4GV8lmAuOXpf
     Sticker Requests:
@@ -320,7 +251,102 @@
     baseID: app1o9tRo6XulLnsr
     rsvp:
     - Status
-  Hackers Wanted:
-    baseID: appdPydXlWO2ZAhhV
-    hackers:
-    - username
+  The Bin:
+    baseID: appKjALSnOoA0EmPk
+    RSVPs:
+    - Status
+  SlashZSamPoder:
+    baseID: appILZk0gunMZ1J1i
+    Submissions:
+    - Emoji
+  Black Box:
+    baseID: app8aRVQaxBDJTTph
+    YSWS Project Submission:
+    - Code URL
+    - Automation - Submit to Unified YSWS
+    - Matrix Color
+    - Slack Username
+    - Project Identifier
+    - Verb
+    - Preview A
+    - Preview B
+    - Blue?
+  Tarot:
+    baseID: appOkhzTn4Z3FI9gv
+    users:
+    - slack_uid
+    - hand
+    moments:
+    - slack_uid
+    - project
+    - status
+    - duration_seconds
+    speedrun_recordings:
+    - creator_slack_id
+    - start_date
+    - end_date
+    - status
+    - project
+    - duration_seconds
+    - slack_thread_url
+  MC Modding:
+    baseID: appROpbCKgNm7r5ln
+    Submissions:
+    - Status
+    - Code link
+    - Play link
+    - Demo video
+    - Description
+  Hacklet:
+    baseID: appzZAYxJ1xm0wYdG
+    Hacklet Project Submission:
+    - Project Name
+    - Code URL
+    - Bookmarklet Code
+    - Description
+  Boba Drops:
+    baseID: app05mIKwNPO2l1vT
+    Websites:
+    - Status
+    - Code URL
+    - Playable URL
+    - Screenshot
+    Event Codes:
+    - Status
+    - Event Code
+  Reactive:
+    baseID: appoYdO617Zji5AJX
+    Submissions:
+    - Reactive Review
+    - Project Name
+    - Screenshot
+    - Playable URL
+    - Code URL
+  Hackmate:
+    baseID: app6BIffLXE1haIP4
+    Hackmate Project Submission:
+    - Project Name
+    - Code URL
+    - Playable URL
+    - Description
+    - Slack ID
+    - Screenshot
+  Pathfinder:
+    baseID: apprZUdaG81bCEBq2
+    YSWS Project Submission:
+    - Project Name
+    - Code URL
+    - GitHub Username
+    - Screenshot
+    - Schematic Screenshot
+    - PCB Back Screenshot
+    - Description
+    - Country
+    - Message to Meghana
+  Endpointer:
+    baseID: appVS4mdCeVPDdixu
+    Endpointer Project Submission:
+    - Project Name
+    - Description
+    - Code URL
+    - Playable URL

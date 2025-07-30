@@ -18,7 +18,7 @@ describe("test auth file", () => {
   })
 
   it("is a parsable yaml file", () => {
-    const data = yaml.safeLoad(
+    const data = yaml.load(
       fs.readFileSync(path.resolve(__dirname, authDirectory, testFile), "utf8")
     )
 

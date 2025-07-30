@@ -1,13 +1,13 @@
 import Airtable from "airtable"
 import friendlyWords from "friendly-words"
-import fetch from "isomorphic-unfetch"
+import fetch from "node-fetch"
 import yaml from "js-yaml"
 import path from "path"
 import fs from "fs"
 
 const allowlist = (() => {
   try {
-    const doc = yaml.safeLoad(
+    const doc = yaml.load(
       fs.readFileSync(path.resolve(__dirname, "./airtable-info.yml"), "utf8")
     )
     return doc
