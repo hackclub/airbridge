@@ -21,8 +21,13 @@ router.get("/:base/:tableName/:recordID", async (req, res, next) => {
   try {
     let providedAuth
     if (req.headers.authorization) {
-      // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace("Bearer ", "")
+      const token = req.headers.authorization.replace("Bearer ", "")
+      if (!/^[a-zA-Z0-9]+$/.test(token)) {
+        const error = new Error("Invalid authorization token format")
+        error.statusCode = 401
+        throw error
+      }
+      providedAuth = token
     }
     if (env === "development" || env === "test") {
       providedAuth = req.query.authKey
@@ -76,8 +81,13 @@ router.get("/:base/:tableName", async (req, res, next) => {
   try {
     let providedAuth
     if (req.headers.authorization) {
-      // example auth header "Bearer key9uu912ij9e"
-      providedAuth = req.headers.authorization.replace("Bearer ", "")
+      const token = req.headers.authorization.replace("Bearer ", "")
+      if (!/^[a-zA-Z0-9]+$/.test(token)) {
+        const error = new Error("Invalid authorization token format")
+        error.statusCode = 401
+        throw error
+      }
+      providedAuth = token
     }
     if (env === "development" || env === "test") {
       providedAuth = req.query.authKey

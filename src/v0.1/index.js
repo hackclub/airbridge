@@ -20,6 +20,11 @@ router.use((req, res, next) => {
   }
 
   if (req.query.authKey) {
+    if (!/^[a-zA-Z0-9]+$/.test(req.query.authKey)) {
+      const error = new Error("Invalid authKey format")
+      error.statusCode = 401
+      return next(error)
+    }
     res.locals.authKey = req.query.authKey
     res.locals.meta.query.authKey = "[redacted]"
   }
