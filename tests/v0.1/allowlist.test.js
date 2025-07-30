@@ -1,25 +1,34 @@
-const yaml = require("js-yaml")
-const fs = require("fs")
-const path = require("path")
-const request = require("supertest")
-let app
+import { test, describe, beforeAll, afterAll, expect } from "bun:test"
+import yaml from "js-yaml"
+import fs from "fs"
+import path from "path"
+import { app } from "../../src/index.js"
 
-beforeAll(() => {
-  app = require("../../src/index").server
-  return app
+let server
+
+beforeAll(async () => {
+  // Start server for testing on a random port
+  server = app.listen(0)
+  await new Promise(resolve => server.on('listening', resolve))
+})
+
+afterAll(async () => {
+  if (server) {
+    server.close()
+  }
 })
 
 const allowlistPath = "../../src/v0.1/airtable-info.yml"
 
 describe("load allowlist info (basic)", () => {
-  it("is in a file", () => {
-    const file = fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
+  test("is in a file", () => {
+    const file = fs.readFileSync(path.resolve(import.meta.dir, allowlistPath), "utf8")
     expect(file).toBeDefined()
   })
 
-  it("is a parsable yaml file", () => {
+  test("is a parsable yaml file", () => {
     const data = yaml.load(
-      fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
+      fs.readFileSync(path.resolve(import.meta.dir, allowlistPath), "utf8")
     )
 
     expect(data["YOUR_AIRTABLE_NAME"]).toBeDefined()
@@ -30,11 +39,9 @@ describe("load allowlist info (basic)", () => {
 })
 
 describe("GET allowlisted routes (production)", () => {
-  jest.setTimeout(30000)
-
   const routes = []
   const tables = yaml.load(
-    fs.readFileSync(path.resolve(__dirname, allowlistPath), "utf8")
+    fs.readFileSync(path.resolve(import.meta.dir, allowlistPath), "utf8")
   )
   Object.keys(tables).forEach((tableN) => {
     const bases = tables[tableN]
@@ -51,12 +58,12 @@ describe("GET allowlisted routes (production)", () => {
     const endpoint = `${endpointBase}?meta=true&select=${JSON.stringify(
       options
     )}`
-    it(`loads ${endpointBase} with successful status code`, async (done) => {
-      const res = await request(app).get(endpoint)
-      expect(res.statusCode).toEqual(200)
-      done()
-    })
+    test(`loads ${endpointBase} with successful status code`, async () => {
+      const port = server.address().port
+      const res = await fetch(`http://localhost:${port}${endpoint}`)
+      expect(res.status).toEqual(200)
+    }, 30000) // 30 second timeout for these production tests
   })
 })
 
-afterAll(() => app.close())
+// Server is managed in test runner

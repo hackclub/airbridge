@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn run basic-test
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run basic-test
         env:
           CI: true
           AIRTABLE_API_KEY: FAKE_KEY
@@ -20,12 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          cache: 'yarn'
-          node-version: 'latest'
-      - run: yarn install --frozen-lockfile
-      - run: yarn run production-test
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run production-test
         env:
           CI: true
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}

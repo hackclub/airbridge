@@ -31,8 +31,17 @@ app.use("/v0", routerV0)
 app.use("/v0.1", routerV0_1)
 app.use("/v0.2", routerV0_2)
 
-export const server = app.listen(process.env.PORT || 0, () =>
-  console.log(`Up and listening on ${server.address().port}`)
-)
-
 app.use(bugsnagErrorHandler)
+
+// Export the app for testing
+export { app }
+
+// Only start the server if this file is run directly (not imported)
+let server
+if (import.meta.main) {
+  server = app.listen(process.env.PORT || 0, () =>
+    console.log(`Up and listening on ${server.address().port}`)
+  )
+}
+
+export { server }

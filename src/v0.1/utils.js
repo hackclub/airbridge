@@ -1,6 +1,5 @@
 import Airtable from "airtable"
 import friendlyWords from "friendly-words"
-import fetch from "node-fetch"
 import yaml from "js-yaml"
 import path from "path"
 import fs from "fs"

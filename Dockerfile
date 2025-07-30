@@ -1,27 +1,26 @@
-# Use Node.js LTS (Long Term Support) as base image
-FROM node:18-slim
+# Use Bun as base image
+FROM oven/bun:1-slim
 
 # Install curl for coolify healthchecks
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
-
 # Create app directory
 WORKDIR /app
 
-# Copy package.json and yarn.lock
-COPY package.json yarn.lock ./
+# Copy package.json and bun.lockb
+COPY package.json bun.lockb* ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN bun install --frozen-lockfile
 
 # Copy source code
 COPY . .
 
 # Build the application
-RUN yarn build
+RUN bun run build
 
 # Expose the port (you'll need to set this in your environment)
 EXPOSE 5000
 
 # Start the application
-CMD ["yarn", "start"] 
+CMD ["bun", "start"] 

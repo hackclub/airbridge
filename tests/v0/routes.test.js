@@ -1,47 +1,65 @@
-const request = require("supertest")
-let app
+import { test, describe, beforeAll, afterAll, expect } from "bun:test"
+import { app } from "../../src/index.js"
 
-beforeAll(() => {
-  app = require("../../src/index").server
-  return app
+let server
+
+beforeAll(async () => {
+  // Start server for testing on a random port
+  server = app.listen(0)
+  await new Promise(resolve => server.on('listening', resolve))
+})
+
+afterAll(async () => {
+  if (server) {
+    server.close()
+  }
 })
 
 describe("GET /v0/Cake/Badges (invalid base) (production)", () => {
-  it("responds with Not Found", async () => {
-    const res = await request(app).get("/v0/Cake/Badges")
-    expect(res.statusCode).toEqual(404)
+  test("responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Cake/Badges`)
+    expect(res.status).toEqual(404)
   })
-  it("responds with json error", async () => {
-    const res = await request(app).get("/v0/Cake/Badges")
-    expect(res.body).toBeDefined()
-    expect(res.body.error).toBeDefined()
-    expect(res.body.error.message).toMatch("Not found")
+  test("responds with json error", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Cake/Badges`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(body.error).toBeDefined()
+    expect(body.error.message).toMatch("Not found")
   })
 })
 
 describe("GET /v0/Operations/Cake (invalid table) (production)", () => {
-  it("responds with Not Found", async () => {
-    const res = await request(app).get("/v0/Operations/Cake")
-    expect(res.statusCode).toEqual(404)
+  test("responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Operations/Cake`)
+    expect(res.status).toEqual(404)
   })
-  it("responds with json error", async () => {
-    const res = await request(app).get("/v0/Operations/Cake")
-    expect(res.body).toBeDefined()
-    expect(res.body.error).toBeDefined()
-    expect(res.body.error.message).toMatch("Not found")
+  test("responds with json error", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Operations/Cake`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(body.error).toBeDefined()
+    expect(body.error.message).toMatch("Not found")
   })
 })
 
 describe("GET /v0/Operations/Badges (production)", () => {
-  it("responds with successful status code", async () => {
-    const res = await request(app).get("/v0/Operations/Badges")
-    expect(res.statusCode).toEqual(200)
+  test("responds with successful status code", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Operations/Badges`)
+    expect(res.status).toEqual(200)
   })
-  it("responds with an array of airtable records", async () => {
-    const res = await request(app).get("/v0/Operations/Badges")
-    expect(res.body).toBeDefined()
-    expect(Array.isArray(res.body)).toEqual(true)
+  test("responds with an array of airtable records", async () => {
+    const port = server.address().port
+    const res = await fetch(`http://localhost:${port}/v0/Operations/Badges`)
+    const body = await res.json()
+    expect(body).toBeDefined()
+    expect(Array.isArray(body)).toEqual(true)
   })
 })
 
-afterAll(() => app.close())
+// Server is managed in test runner
