@@ -305,6 +305,14 @@
     Event Codes:
     - Status
     - Event Code
+  Reactive:
+    baseID: appoYdO617Zji5AJX
+    Submissions:
+    - Reactive Review
+    - Project Name
+    - Screenshot
+    - Playable URL
+    - Code URL
   Hackmate:
     baseID: app6BIffLXE1haIP4
     Hackmate Project Submission:
