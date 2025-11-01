@@ -5,14 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "PORT=5000 bun --watch src/index.js",
-    "start": "bun build/index.js",
-    "build": "bun build src/index.js --outdir build --target node",
-    "heroku-postbuild": "bun run build",
+    "start": "bun src/index.js",
     "fmt": "prettier \"{tests/**,src/**,}/*.js\" --write",
     "fmtCheck": "prettier \"{tests/**,src/**,}/*.js\" --check",
-    "test": "bun test",
-    "production-test": "bun test --test-name-pattern production",
-    "basic-test": "bun test --test-name-pattern basic"
+    "test": "NODE_ENV=test bun test",
+    "production-test": "NODE_ENV=test bun test --test-name-pattern production",
+    "basic-test": "NODE_ENV=test bun test --test-name-pattern basic"
   },
   "keywords": [],
   "author": "Max Wofford <max@maxwofford.com>",

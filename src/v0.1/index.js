@@ -2,6 +2,7 @@ import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
 import { logRequest } from "../shared/logging.js"
+import { rateLimitMiddleware } from "../shared/rateLimiter.js"
 const router = express.Router()
 const cache = new NodeCache()
 
@@ -76,56 +77,79 @@ function respond(err, req, res, next) {
   next()
 }
 
-router.post("/:base/:tableName", async (req, res, next) => {
-  const options = {
-    base: req.params.base,
-    tableName: req.params.tableName,
-    fields: req.body,
-  }
-  try {
-    res.locals.response = await airtableCreate(options, req.query.authKey)
-    respond(null, req, res, next)
-  } catch (err) {
-    respond(err, req, res, next)
-  }
-})
-
-router.patch("/:base/:tableName", async (req, res, next) => {
-  const options = {
-    base: req.params.base,
-    tableName: req.params.tableName,
-    record: req.body,
-  }
-  try {
-    res.locals.response = await airtableUpdate(options, req.query.authKey)
-    respond(null, req, res, next)
-  } catch (err) {
-    respond(err, req, res, next)
-  }
-})
-
-router.get("/:base/:tableName", logRequest, async (req, res, next) => {
-  const options = {
-    base: req.params.base,
-    tableName: req.params.tableName,
-  }
-  if (req.query.select) {
+router.post(
+  "/:base/:tableName",
+  rateLimitMiddleware,
+  async (req, res, next) => {
+    const options = {
+      base: req.params.base,
+      tableName: req.params.tableName,
+      fields: req.body,
+    }
     try {
-      options.select = JSON.parse(req.query.select)
+      res.locals.response = await airtableCreate(options, req.query.authKey)
+      respond(null, req, res, next)
     } catch (err) {
       respond(err, req, res, next)
     }
   }
-  if (req.query.cache) {
-    console.log("Cache flag enabled", cacheKey(req))
-    const cacheResult = cache.get(cacheKey(req))
-    if (cacheResult) {
-      console.log("Found results in cache!")
-      res.locals.meta.cache.pulledFrom = true
-      res.locals.response = cacheResult
+)
+
+router.patch(
+  "/:base/:tableName",
+  rateLimitMiddleware,
+  async (req, res, next) => {
+    const options = {
+      base: req.params.base,
+      tableName: req.params.tableName,
+      record: req.body,
+    }
+    try {
+      res.locals.response = await airtableUpdate(options, req.query.authKey)
       respond(null, req, res, next)
+    } catch (err) {
+      respond(err, req, res, next)
+    }
+  }
+)
+
+router.get(
+  "/:base/:tableName",
+  rateLimitMiddleware,
+  logRequest,
+  async (req, res, next) => {
+    const options = {
+      base: req.params.base,
+      tableName: req.params.tableName,
+    }
+    if (req.query.select) {
+      try {
+        options.select = JSON.parse(req.query.select)
+      } catch (err) {
+        respond(err, req, res, next)
+      }
+    }
+    if (req.query.cache) {
+      console.log("Cache flag enabled", cacheKey(req))
+      const cacheResult = cache.get(cacheKey(req))
+      if (cacheResult) {
+        console.log("Found results in cache!")
+        res.locals.meta.cache.pulledFrom = true
+        res.locals.response = cacheResult
+        respond(null, req, res, next)
+      } else {
+        console.log("Nothing found in cache!")
+        try {
+          res.locals.response = await airtableLookup(
+            options,
+            res.locals.authKey
+          )
+          respond(null, req, res, next)
+        } catch (err) {
+          respond(err, req, res, next)
+        }
+      }
     } else {
-      console.log("Nothing found in cache!")
       try {
         res.locals.response = await airtableLookup(options, res.locals.authKey)
         respond(null, req, res, next)
@@ -133,14 +157,7 @@ router.get("/:base/:tableName", logRequest, async (req, res, next) => {
         respond(err, req, res, next)
       }
     }
-  } else {
-    try {
-      res.locals.response = await airtableLookup(options, res.locals.authKey)
-      respond(null, req, res, next)
-    } catch (err) {
-      respond(err, req, res, next)
-    }
   }
-})
+)
 
 export default router
