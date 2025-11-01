@@ -8,6 +8,8 @@
   # Feel free to PR your own changes in following the example above ^
   Unified YSWS Projects DB:
     baseID: app3A5kJwYqxMLOgh
+    Approved Projects:
+    - Record ID
     YSWS Programs:
     - Name
     - Unweighted–Total
@@ -360,7 +362,3 @@
     baseID: appNasWZkM6JW1nj3
     RSVP:
     - Created At
-  Unified Shared YSWS:
-    baseID: app3A5kJwYqxMLOgh
-    tblzWWGUYHVH7Zyqf:
-    - # this line intentionally left blank
