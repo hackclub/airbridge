@@ -17,7 +17,7 @@ RUN bun install --frozen-lockfile
 COPY . .
 
 # Build the application
-RUN bun run build
+# RUN bun run build
 
 # Expose the port (you'll need to set this in your environment)
 EXPOSE 5000
