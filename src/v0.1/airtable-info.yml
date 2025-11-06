@@ -55,10 +55,10 @@
   Club Map:
     baseID: appUfrUFraxH3D5Ob
     Clubs:
-    - Club Name
+    - club_name
     - venue_lat
     - venue_lng
-    - Club Status
+    - club_status
   golang-z:
     baseID: appsbb0wd5N9AbSP0
     Meetings:
