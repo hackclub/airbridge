@@ -52,6 +52,13 @@
     - Latitude
     - Longitude
     - Status
+  Club-Map:
+    baseID: appUfrUFraxH3D5Ob
+    Clubs:
+    - Club Name
+    - venue_lat
+    - venue_lng
+    - Club Status
   golang-z:
     baseID: appsbb0wd5N9AbSP0
     Meetings:
