@@ -1,4 +1,9 @@
-import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
+import {
+  airtableCreate,
+  airtableLookup,
+  airtableUpdate,
+  ensureFormulaSafe,
+} from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
 import { logRequest } from "../shared/logging.js"
@@ -116,6 +121,22 @@ router.patch(
 router.get(
   "/:base/:tableName",
   rateLimitMiddleware,
+  (req, res, next) => {
+    if (req.query.select) {
+      try {
+        const select = JSON.parse(req.query.select)
+        if (select.filterByFormula) {
+          ensureFormulaSafe(select.filterByFormula)
+        }
+      } catch (err) {
+        if (err.statusCode) {
+          respond(err, req, res, () => {})
+          return
+        }
+      }
+    }
+    next()
+  },
   logRequest,
   async (req, res, next) => {
     const options = {
