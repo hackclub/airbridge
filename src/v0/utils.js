@@ -1,5 +1,6 @@
 import Airtable from "airtable"
 import { allowlistBaseTable, allowlistRecords, baseInfo } from "./allowlist"
+import { ensureFormulaSafe } from "../shared/formula.js"
 
 export function lookupBaseID(baseID) {
   const lookedUpID = baseInfo[baseID]
@@ -8,6 +9,11 @@ export function lookupBaseID(baseID) {
 
 export async function airtableLookup(options, auth) {
   const { base, tableName, select } = options
+
+  if (select?.filterByFormula) {
+    ensureFormulaSafe(select.filterByFormula)
+  }
+
   const baseID = lookupBaseID(base)
 
   if (auth) {

@@ -1,13 +1,9 @@
-import {
-  airtableCreate,
-  airtableLookup,
-  airtableUpdate,
-  ensureFormulaSafe,
-} from "./utils.js"
+import { airtableCreate, airtableLookup, airtableUpdate } from "./utils.js"
 import NodeCache from "node-cache"
 import express from "express"
 import { logRequest } from "../shared/logging.js"
 import { rateLimitMiddleware } from "../shared/rateLimiter.js"
+import { ensureFormulaSafe } from "../shared/formula.js"
 const router = express.Router()
 const cache = new NodeCache()
 

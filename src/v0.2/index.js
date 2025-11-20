@@ -2,6 +2,7 @@ const PUBLIC_AUTH_KEY = "recsxFPWtS57ipww81611873047g41m8dw1t8p" // publicly ava
 
 import Airtable from "airtable"
 import express from "express"
+import { ensureFormulaSafe } from "../shared/formula.js"
 import { getPermissions } from "./permissions"
 import { logRequest } from "../shared/logging.js"
 import { rateLimitMiddleware } from "../shared/rateLimiter.js"
@@ -19,6 +20,20 @@ router.use(async (req, res, next) => {
     params: { ...req.params },
     query: { ...req.query },
     body: req.body,
+  }
+
+  if (req.query.select) {
+    try {
+      const select = JSON.parse(req.query.select)
+      if (select.filterByFormula) {
+        ensureFormulaSafe(select.filterByFormula)
+      }
+    } catch (err) {
+      if (err.statusCode === 400) {
+        return next(err)
+      }
+      // Ignore JSON parse errors here, let the route handler deal with them if needed
+    }
   }
 
   if (req.query.authKey) {
