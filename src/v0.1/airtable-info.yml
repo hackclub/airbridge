@@ -56,8 +56,8 @@
     baseID: appUfrUFraxH3D5Ob
     Clubs:
     - club_name
-    - venue_lat
-    - venue_lng
+    - venue_lat_fuzz
+    - venue_lng_fuzz
     - club_status
   golang-z:
     baseID: appsbb0wd5N9AbSP0
