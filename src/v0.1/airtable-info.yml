@@ -41,6 +41,13 @@
     - Latitude
     - Longitude
     - Status
+  Club Map:
+    baseID: appUfrUFraxH3D5Ob
+    Clubs:
+    - club_name
+    - venue_lat_fuzz
+    - venue_lng_fuzz
+    - club_status
   golang-z:
     baseID: appsbb0wd5N9AbSP0
     Meetings:
