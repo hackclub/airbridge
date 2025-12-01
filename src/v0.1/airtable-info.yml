@@ -356,3 +356,11 @@
     baseID: appNasWZkM6JW1nj3
     RSVP:
     - Created At
+  Parthenon:
+    baseID: appaj11JeqxSi6Aaw
+    projects:
+    - project_name
+    - url_github
+    - url_demo
+    - description
+    - thumbnail
