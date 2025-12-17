@@ -1,0 +1,20 @@
+---
+  Boba Club Dashboard:
+    baseID: app05mIKwNPO2l1vT
+    Websites:
+      get:
+        - Decision reason
+        - Name
+        - Email
+        - Playable Url
+        - Code Url
+        - Event Code
+        - Status
+    Event Codes:
+      get:
+        - Organizer name
+        - Slack ID
+        - Count of approved
+        - Count of Submitted
+        - Status
+    
