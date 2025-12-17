@@ -3,6 +3,7 @@ import friendlyWords from "friendly-words"
 import yaml from "js-yaml"
 import path from "path"
 import fs from "fs"
+import { ensureFormulaSafe } from "../shared/formula.js"
 
 const allowlist = (() => {
   try {
