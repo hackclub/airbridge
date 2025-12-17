@@ -12,7 +12,7 @@ export async function getPermissions(authId) {
   const records = await (
     await fetch(
       "https://airbridge.hackclub.com/v0.1/Airbridge/Authtokens?select=" +
-        JSON.stringify(opts)
+        encodeURIComponent(JSON.stringify(opts))
     )
   ).json()
   const record = records[0]
