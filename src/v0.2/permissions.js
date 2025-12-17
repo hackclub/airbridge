@@ -3,9 +3,10 @@ import path from "path"
 import yaml from "js-yaml"
 
 export async function getPermissions(authId) {
+  const sanitizedAuthId = String(authId).replace(/'/g, "\\'")
   const opts = {
     maxRecords: 1,
-    filterByFormula: `Authtoken='${authId}'`,
+    filterByFormula: `Authtoken='${sanitizedAuthId}'`,
   }
 
   const records = await (
