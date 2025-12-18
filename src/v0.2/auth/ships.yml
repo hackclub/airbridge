@@ -1,0 +1,31 @@
+## for ships.hackclub.com by neon@hackclub.com 
+---
+Ships:
+  baseID: app3A5kJwYqxMLOgh
+  Approved Projects:
+    get:
+      - Approved At
+      - Archive - Code URL
+      - Archive - Live URL
+      - Code URL
+      - Country
+      - Description
+      - Email
+      - GitHub Username
+      - Hours Spent
+      - Override Hours Spent
+      - Playable URL
+      - Repo - Star Count
+      - Screenshot
+      - YSWS Name - Lookup
+      - YSWS Project Mentions - Searches
+  YSWS Project Mentions:
+    get:
+      - Found Project Mentions
+  YSWS Project Mention Searches:
+    get:
+      - Date
+      - Engagement Count
+      - Headline
+      - Source
+      - URL
