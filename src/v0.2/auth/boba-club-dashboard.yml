@@ -3,18 +3,21 @@
     baseID: app05mIKwNPO2l1vT
     Websites:
       get:
-        - Decision reason
+        - Decision Reason (to email)
         - Name
         - Email
-        - Playable Url
-        - Code Url
+        - Playable URL
+        - Code URL
         - Event Code
         - Status
-    Event Codes:
+        - ID
+    Event Code:
       get:
-        - Organizer name
+        - ID
+        - Organizer Name
         - Slack ID
         - Count of approved
         - Count of Submitted
         - Status
+        - Grant Amount
     
