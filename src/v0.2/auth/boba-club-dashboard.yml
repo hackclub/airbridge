@@ -11,9 +11,10 @@
         - Event Code
         - Status
         - ID
-    Event Code:
+    Event Codes:
       get:
         - ID
+        - Event Code
         - Organizer Name
         - Slack ID
         - Count of approved
