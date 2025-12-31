@@ -41,13 +41,6 @@
     - Link
     - Public
     - Name
-  Club Applications:
-    baseID: appSUAc40CDu6bDAp
-    Clubs Dashboard:
-    - Club Name
-    - Latitude
-    - Longitude
-    - Status
   Club Map:
     baseID: appUfrUFraxH3D5Ob
     Clubs:
