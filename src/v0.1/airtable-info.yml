@@ -300,6 +300,9 @@
     - Play link
     - Demo video
     - Description
+    - Short Description
+    - Slack ID
+    - Image
   Hacklet:
     baseID: appzZAYxJ1xm0wYdG
     Hacklet Project Submission:
