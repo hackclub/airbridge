@@ -2,7 +2,7 @@
 
 
 <p align="center"><i>The bridges tying Hack Club's services together. (WIP) Illustrated below by <a href="https://gh.maxwofford.com">@maxwofford</a>.</i></p>
-<p align="center"><img alt="Raft icon" src="https://cloud-gxlnkdt57.vercel.app/0untitled.png"></a>
+<p align="center"><img alt="Raft icon" src="https://user-cdn.hackclub-assets.com/019c258b-e9f4-7a4a-834f-3525610af60c/0untitled.png"></a>
 
 
 [![test](https://github.com/hackclub/airbridge/actions/workflows/test.yml/badge.svg)](https://github.com/hackclub/airbridge/actions/workflows/test.yml)
