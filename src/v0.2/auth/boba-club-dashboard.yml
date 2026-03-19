@@ -11,9 +11,20 @@
         - Event Code
         - Status
         - ID
-    Event Codes:
+      Websites - New Forms:
+      get:
+        - Decision Reason (to email)
+        - Name
+        - Email
+        - Playable URL
+        - Code URL
+        - Event Code
+        - Status
+        - ID
+    Club Workshops:
       get:
         - ID
+        - Club Names
         - Event Code
         - Organizer Name
         - Slack ID
