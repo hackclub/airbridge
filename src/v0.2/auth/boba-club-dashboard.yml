@@ -3,23 +3,16 @@
     baseID: app05mIKwNPO2l1vT
     Websites:
       get:
-        - Decision Reason (to email)
-        - Name
+        - Rejection Reason
+        - First Name
+        - Last Name
         - Email
         - Playable URL
         - Code URL
         - Event Code
-        - Status
-        - ID
-    Websites - New Forms:
-      get:
-        - Decision Reason (to email)
-        - Name
-        - Email
-        - Playable URL
-        - Code URL
-        - Event Code
-        - Status
+        - Project Status
+        - Club
+        - club_name (from Active Clubs) (from Club)
         - ID
     Club Workshops:
       get:
@@ -32,4 +25,3 @@
         - Count of Submitted
         - Status
         - Grant Amount
-    
