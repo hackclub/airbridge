@@ -11,18 +11,18 @@ Unified YSWS Projects DB:
       - Code URL
       - Playable URL
       - Description
-      - Address Line 1
-      - Address Line 2
+      - "Address (Line 1)"
+      - "Address (Line 2)"
       - City
-      - State/Province
+      - "State / Province"
       - Country
-      - Zip/Postal Code
+      - "ZIP / Postal Code"
       - Birthday
       - Approved At
       - YSWS
-      - How Did You Hear About This
-      - What Are We Doing Well
-      - How Can We Improve
+      - "How did you hear about this?"
+      - "What are we doing well?"
+      - "How can we improve?"
     patch:
       - Email
       - First Name
@@ -32,15 +32,15 @@ Unified YSWS Projects DB:
       - Code URL
       - Playable URL
       - Description
-      - Address Line 1
-      - Address Line 2
+      - "Address (Line 1)"
+      - "Address (Line 2)"
       - City
-      - State/Province
+      - "State / Province"
       - Country
-      - Zip/Postal Code
+      - "ZIP / Postal Code"
       - Birthday
       - Approved At
       - YSWS
-      - How Did You Hear About This
-      - What Are We Doing Well
-      - How Can We Improve
+      - "How did you hear about this?"
+      - "What are we doing well?"
+      - "How can we improve?"
