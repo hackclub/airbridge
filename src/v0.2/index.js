@@ -232,11 +232,14 @@ router.post(
     }
 
     // we have permission to use the table, pull the info & leave
+    if (!req.query.airtableKey) {
+      const error = new Error("airtableKey query param required for write operations")
+      error.statusCode = 401
+      return next(error)
+    }
     const ab = res.locals.permissions[req.params.base].baseID
     const at = req.params.tableName
-    const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-      ab
-    )(at)
+    const airinst = new Airtable({ apiKey: req.query.airtableKey }).base(ab)(at)
     const createValues = Array.isArray(req.body)
       ? { fields: req.body }
       : [{ fields: req.body }]
@@ -274,7 +277,128 @@ router.patch(
   "/:base/:tableName",
   rateLimitMiddleware,
   async (req, res, next) => {
-    res.status(501).send("v0.2 PATCH not implemented yet!")
+    const basePermission = Object.keys(res.locals.permissions).includes(
+      req.params.base
+    )
+    if (!basePermission) {
+      const error = new Error("Base not found or permissions insufficient")
+      error.statusCode = 404
+      return next(error)
+    }
+    const tablePermission = Object.keys(
+      res.locals.permissions[req.params.base]
+    ).includes(req.params.tableName)
+    if (!tablePermission) {
+      const error = new Error("Table not found or permissions insufficient")
+      error.statusCode = 404
+      return next(error)
+    }
+
+    const patchPermissions =
+      res.locals.permissions[req.params.base][req.params.tableName].patch
+    if (!patchPermissions) {
+      const error = new Error("PATCH not permitted on this table")
+      error.statusCode = 403
+      return next(error)
+    }
+
+    const bodyArray = Array.isArray(req.body) ? req.body : [req.body]
+    const fieldsToMergeOn = req.query.fieldsToMergeOn
+      ? req.query.fieldsToMergeOn.split(",")
+      : null
+
+    // validate all fields in every record against patch permissions
+    for (const record of bodyArray) {
+      const fieldKeys = Object.keys(record).filter((k) => k !== "id")
+      const unpermittedFields = fieldKeys.filter(
+        (field) => !patchPermissions.includes(field)
+      )
+      if (unpermittedFields.length > 0) {
+        const error = new Error(
+          `Field(s) ${unpermittedFields
+            .map((f) => `'${f}'`)
+            .join(", ")} doesn't exist or permissions insufficient`
+        )
+        error.statusCode = 422
+        return next(error)
+      }
+    }
+
+    // validate merge fields are in the permitted list
+    if (fieldsToMergeOn) {
+      const unpermittedMerge = fieldsToMergeOn.filter(
+        (field) => !patchPermissions.includes(field)
+      )
+      if (unpermittedMerge.length > 0) {
+        const error = new Error(
+          `Merge field(s) ${unpermittedMerge
+            .map((f) => `'${f}'`)
+            .join(", ")} not permitted`
+        )
+        error.statusCode = 422
+        return next(error)
+      }
+    }
+
+    if (!req.query.airtableKey) {
+      const error = new Error("airtableKey query param required for write operations")
+      error.statusCode = 401
+      return next(error)
+    }
+    const ab = res.locals.permissions[req.params.base].baseID
+    const at = req.params.tableName
+    const airinst = new Airtable({ apiKey: req.query.airtableKey }).base(ab)(at)
+
+    // build records for Airtable update/upsert
+    const updateRecords = bodyArray.map((record) => {
+      const { id, ...fields } = record
+      if (fieldsToMergeOn) {
+        // upsert mode — id is optional
+        return { fields }
+      }
+      if (!id) {
+        throw Object.assign(
+          new Error("Each record must include 'id' unless using fieldsToMergeOn for upsert"),
+          { statusCode: 422 }
+        )
+      }
+      return { id, fields }
+    })
+
+    const updateOpts = fieldsToMergeOn
+      ? { performUpsert: { fieldsToMergeOn } }
+      : {}
+
+    const rawResults = await airinst
+      .update(updateRecords, updateOpts)
+      .catch((err) => {
+        console.log(err)
+        return next(err)
+      })
+
+    if (!rawResults) return
+
+    const rawResultArray = Array.isArray(rawResults) ? rawResults : [rawResults]
+    const readPermissions =
+      res.locals.permissions[req.params.base][req.params.tableName]?.get || []
+    const allowedFields = Array.from(
+      new Set([...readPermissions, ...patchPermissions])
+    )
+    const results = rawResultArray.map((rec) => {
+      const result = { id: rec.id, fields: {} }
+      allowedFields.forEach((field) => {
+        result.fields[field] = rec.fields[field]
+      })
+      return result
+    })
+
+    if (Array.isArray(req.body)) {
+      res.locals.response = results
+    } else {
+      res.locals.response = results[0]
+    }
+
+    respond(null, req, res, next)
   }
 )
 

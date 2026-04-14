@@ -45,4 +45,41 @@ curl 'https://api2.hackclub.com/v0.2/Operations/Clubs?select={"maxRecords":1,"fi
 ```
 </details>
 
+# PATCH (Update / Upsert)
+
+PATCH requests let you update existing records or upsert (update-or-create) based on a merge field.
+
+Your auth file needs a `patch` key under the table (similar to `get` and `post`):
+
+```yaml
+Your Base:
+  baseID: appXXXXXXXXXXXXX
+  Your Table:
+    patch:
+      - Email
+      - Name
+```
+
+### Update by record ID
+
+Include `id` in each record in the request body:
+
+```sh
+curl -X PATCH 'https://airbridge.hackclub.com/v0.2/Your%20Base/Your%20Table?authKey=YOUR_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{"id": "recXXXXXXXXXXXXX", "Name": "Updated Name"}'
+```
+
+### Upsert with `fieldsToMergeOn`
+
+Pass `fieldsToMergeOn` as a query param. If a record matching that field exists it gets updated; otherwise a new record is created. No `id` needed.
+
+```sh
+curl -X PATCH 'https://airbridge.hackclub.com/v0.2/Your%20Base/Your%20Table?authKey=YOUR_KEY&fieldsToMergeOn=Email' \
+  -H 'Content-Type: application/json' \
+  -d '{"Email": "max@example.com", "Name": "Max"}'
+```
+
+Both modes accept a single object or an array of objects. You can merge on multiple fields with a comma: `fieldsToMergeOn=Email,YSWS`.
+
 # Development

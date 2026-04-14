@@ -1,0 +1,25 @@
+---
+Unified YSWS Projects DB:
+  baseID: app3a5kjwyqxmlogh
+  Approved Projects:
+    patch:
+      - Email
+      - First Name
+      - Last Name
+      - Override Hours Spent
+      - Override Hours Spent Justification
+      - Code URL
+      - Playable URL
+      - Description
+      - Address Line 1
+      - Address Line 2
+      - City
+      - State/Province
+      - Country
+      - Zip/Postal Code
+      - Birthday
+      - Approved At
+      - YSWS
+      - How Did You Hear About This
+      - What Are We Doing Well
+      - How Can We Improve
