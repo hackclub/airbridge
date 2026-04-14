@@ -233,7 +233,9 @@ router.post(
 
     // we have permission to use the table, pull the info & leave
     if (!req.query.airtableKey) {
-      const error = new Error("airtableKey query param required for write operations")
+      const error = new Error(
+        "airtableKey query param required for write operations"
+      )
       error.statusCode = 401
       return next(error)
     }
@@ -341,7 +343,9 @@ router.patch(
     }
 
     if (!req.query.airtableKey) {
-      const error = new Error("airtableKey query param required for write operations")
+      const error = new Error(
+        "airtableKey query param required for write operations"
+      )
       error.statusCode = 401
       return next(error)
     }
@@ -358,7 +362,9 @@ router.patch(
       }
       if (!id) {
         throw Object.assign(
-          new Error("Each record must include 'id' unless using fieldsToMergeOn for upsert"),
+          new Error(
+            "Each record must include 'id' unless using fieldsToMergeOn for upsert"
+          ),
           { statusCode: 422 }
         )
       }
