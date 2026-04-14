@@ -5,6 +5,10 @@
     baseID: appP3uDe6tFt7cA5r
     Test - All Fields:
       readAllFields: true
+    Test - Patch:
+      patch:
+        - Timestamp
+        - Notes
     Test - Some Fields:
       fields:
       - You should have access to this field
