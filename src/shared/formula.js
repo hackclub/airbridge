@@ -1,5 +1,8 @@
 export function ensureFormulaSafe(formula) {
-  const protectedWords = "SUBSTITUTE LEFT RIGHT MID FIND SEARCH LEN".split(" ")
+  const protectedWords =
+    "SUBSTITUTE LEFT RIGHT MID FIND SEARCH LEN REGEX_MATCH REGEX_EXTRACT REGEX_REPLACE ARRAYJOIN".split(
+      " "
+    )
   // fail if any protected words are found in the formula
   let usedWords = []
 
