@@ -7,7 +7,7 @@ function badRequest(message) {
 
 const ALLOWED_FUNCTIONS = new Set([
   "AND",
-  "OR", 
+  "OR",
   "NOT",
   "XOR",
   "IF",
@@ -191,7 +191,7 @@ function parse(tokens, allowedFieldMap) {
 
     if (!canonicalName) {
       throw badRequest(
-        "references non-permitted field " + JSON.stringify(rawName),
+        "references non-permitted field " + JSON.stringify(rawName)
       )
     }
 
@@ -386,7 +386,7 @@ export function sanitizeSelect(rawSelect, allowedFields) {
 
     if (formula) {
       safeSelect.filterByFormula = serialize(
-        parse(tokenize(formula), allowedFieldMap),
+        parse(tokenize(formula), allowedFieldMap)
       )
     }
   }
@@ -399,13 +399,13 @@ export function sanitizeSelect(rawSelect, allowedFields) {
         throw badRequest("invalid sort entry")
 
       const canonicalName = allowedFieldMap.get(
-        String(entry.field).toLowerCase(),
+        String(entry.field).toLowerCase()
       )
 
       if (!canonicalName) {
         throw badRequest(
           "sort references non-permitted field " +
-            JSON.stringify(entry && entry.field),
+            JSON.stringify(entry && entry.field)
         )
       }
 

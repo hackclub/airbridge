@@ -33,7 +33,7 @@ export async function airtableLookup(options, auth) {
     safeSelect.fields = resultFields
 
     const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-      baseID,
+      baseID
     )(tableName)
 
     const rawResults = await airinst.select(safeSelect).all()
