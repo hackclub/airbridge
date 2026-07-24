@@ -20,6 +20,11 @@
     - Playable URL
     - Approved At
     - YSWS–Name
+    - Country
+    - Description
+    - Repo - Star Count
+    - Archive - Code URL
+    - Archive - Live URL
 
   Assemble:
     baseID: appO6uRegNaw9bfPQ
