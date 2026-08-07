@@ -67,7 +67,7 @@ router.get(
         meta,
       })
     }
-  },
+  }
 )
 router.get("/:base/:tableName", rateLimitMiddleware, async (req, res, next) => {
   /*
