@@ -1,0 +1,10 @@
+## for hackclub.app shipper stats
+---
+Nest:
+    baseID: app3A5kJwYqxMLOgh
+    Approved Projects:
+      get:
+        - Record ID
+        - Email 
+        - Playable URL 
+        - Code URL 
