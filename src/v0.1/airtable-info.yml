@@ -30,10 +30,6 @@
     baseID: appO6uRegNaw9bfPQ
     Prompts:
     - Prompt
-  Airbridge:
-    baseID: appP3uDe6tFt7cA5r
-    Authtokens:
-    - List File Name
   Saved Projects:
     baseID: appYdkBrT3PrwcbJB
     Muse Projects:
@@ -89,16 +85,6 @@
     - Emoji Tag
     - Icon
     - People Slack IDs
-    Awards:
-    - Nominees
-    - Winner
-    - Submission Deadline
-    - Judge Full Name
-    - GP Value
-    Mail Missions:
-    - Status
-    - Mail Team Thread Timestamp
-    - Receiver Country
   Command Center Schedule:
     baseID: appGvXhgsuXhCTrOr
     Schedule:
@@ -134,9 +120,6 @@
     - Approved
     - Canceled
     - Interested Users
-    Users:
-    - Slack ID
-    - Interesting Events
   Draw in the dark:
     baseID: applcpliMnombEJb9
     Deadline:
@@ -197,12 +180,6 @@
     - Message
     - Image URL
     - Project URL
-  Tutorial Island:
-    baseID: appYGt7P3MtotTotg
-    Tutorial Island:
-    - Name
-    - Flow
-    - Pronouns
   SOM Sticker Requests:
     baseID: appnP4GV8lmAuOXpf
     Sticker Requests:

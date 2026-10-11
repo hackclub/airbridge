@@ -1,43 +1,16 @@
-import Airtable from "airtable"
-import { allowlistBaseTable, allowlistRecords, baseInfo } from "./allowlist"
-import { sanitizeSelect } from "../shared/formula.js"
+import { airtableLookup as airtableLookupV0_1 } from "../v0.1/utils.js"
+import { baseInfo } from "./allowlist"
 
 export function lookupBaseID(baseID) {
   const lookedUpID = baseInfo[baseID]
   return lookedUpID || baseID
 }
 
+// Unauthenticated reads go through v0.1's allowlist so the two versions can't
+// drift; v0's legacy base names are only resolved for authenticated requests.
 export async function airtableLookup(options, auth) {
-  const { base, tableName, select } = options
-
-  const baseID = lookupBaseID(base)
-
-  if (auth) {
-    const airinst = new Airtable({ apiKey: auth }).base(baseID)(tableName)
-    const rawResults = await airinst.select(select).all()
-    return rawResults.map((result) => ({
-      id: result.id,
-      fields: result.fields,
-    }))
-  } else {
-    const allowlistedFields = allowlistBaseTable(baseID, tableName, auth)
-
-    let resultFields = []
-    if (select && Array.isArray(select.fields)) {
-      resultFields = allowlistedFields.filter((f) => select.fields.includes(f))
-    } else {
-      resultFields = allowlistedFields
-    }
-
-    const safeSelect = sanitizeSelect(select || {}, allowlistedFields)
-    safeSelect.fields = resultFields
-
-    const airinst = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-      baseID,
-    )(tableName)
-
-    const rawResults = await airinst.select(safeSelect).all()
-
-    return allowlistRecords(rawResults, resultFields)
-  }
+  return airtableLookupV0_1(
+    auth ? { ...options, base: lookupBaseID(options.base) } : options,
+    auth,
+  )
 }
