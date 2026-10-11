@@ -14,18 +14,6 @@ export const baseInfo = {
 }
 
 const allowlistInfo = {
-  "SDP Priority Activations": {
-    "SDP Priority Activations": [
-      "Submission Time",
-      "Approved",
-      "Rejection Reason",
-      "Source type",
-      "Mail Mission",
-      "Address (city)",
-      "Address (state)",
-      "Address (zip code)",
-    ],
-  },
   "CCC Newsfeed": {
     Items: ["Title", "Subtitle", "Notes", "Autonumber", "Attachments"],
   },

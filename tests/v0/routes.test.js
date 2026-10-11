@@ -63,3 +63,20 @@ describe("GET /v0/Operations/Badges (production)", () => {
 })
 
 // Server is managed in test runner
+
+describe("GET /v0/SDP Priority Activations (removed from allowlist) (basic)", () => {
+  test("by name responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(
+      `http://localhost:${port}/v0/SDP%20Priority%20Activations/SDP%20Priority%20Activations`
+    )
+    expect(res.status).toEqual(404)
+  })
+  test("by base ID responds with Not Found", async () => {
+    const port = server.address().port
+    const res = await fetch(
+      `http://localhost:${port}/v0/apple9fiV81JsRytC/SDP%20Priority%20Activations`
+    )
+    expect(res.status).toEqual(404)
+  })
+})
