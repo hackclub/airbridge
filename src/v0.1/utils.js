@@ -113,7 +113,7 @@ export async function airtableUpdate(options, auth) {
   const { base, tableName, record } = options
   const baseID = lookupBaseID(base)
   if (auth) {
-    if (!record.id) {
+    if (!record || !record.id) {
       const err = new Error("Unable to complete request: invalid patch format")
       err.statusCode = 422
       throw err

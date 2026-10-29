@@ -1,20 +1,23 @@
+import Airtable from "airtable"
 import fs from "fs"
 import path from "path"
 import yaml from "js-yaml"
 
+const AIRBRIDGE_BASE_ID = "appP3uDe6tFt7cA5r"
+
 export async function getPermissions(authId) {
   const sanitizedAuthId = String(authId).replace(/'/g, "\\'")
-  const opts = {
-    maxRecords: 1,
-    filterByFormula: `Authtoken='${sanitizedAuthId}'`,
-  }
 
-  const records = await (
-    await fetch(
-      "https://airbridge.hackclub.com/v0.1/Airbridge/Authtokens?select=" +
-        encodeURIComponent(JSON.stringify(opts))
-    )
-  ).json()
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+    AIRBRIDGE_BASE_ID
+  )
+  const records = await base("Authtokens")
+    .select({
+      maxRecords: 1,
+      filterByFormula: `Authtoken='${sanitizedAuthId}'`,
+    })
+    .all()
+
   const record = records[0]
   if (!record) {
     return null
