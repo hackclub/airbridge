@@ -35,7 +35,7 @@ router.use((req, res, next) => {
 
 function cacheKey(req) {
   const { meta, cache, ...filteredQuery } = req.query
-  return req.baseUrl + req._parsedUrl.pathname + JSON.stringify(filteredQuery)
+  return req.baseUrl + req.path + JSON.stringify(filteredQuery)
 }
 
 function respond(err, req, res, next) {

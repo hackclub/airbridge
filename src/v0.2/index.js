@@ -66,7 +66,7 @@ router.get(
     }
     const permittedFields =
       res.locals.permissions[req.params.base][req.params.tableName].get
-    const unpermittedFields = Object.keys(req.body).filter(
+    const unpermittedFields = Object.keys(req.body || {}).filter(
       (field) => !permittedFields.includes(field),
     )
     const fieldPermission = unpermittedFields.length === 0
@@ -147,7 +147,7 @@ router.get(
     }
     const permittedFields =
       res.locals.permissions[req.params.base][req.params.tableName].get
-    const unpermittedFields = Object.keys(req.body).filter(
+    const unpermittedFields = Object.keys(req.body || {}).filter(
       (field) => !permittedFields.includes(field),
     )
     const fieldPermission = unpermittedFields.length === 0
@@ -217,7 +217,7 @@ router.post(
       error.statusCode = 404
       return next(error)
     }
-    const unpermittedFields = Object.keys(req.body).filter(
+    const unpermittedFields = Object.keys(req.body || {}).filter(
       (field) =>
         !res.locals.permissions[req.params.base][
           req.params.tableName
