@@ -35,7 +35,7 @@ router.use((req, res, next) => {
 
 function cacheKey(req) {
   const { meta, cache, ...filteredQuery } = req.query
-  return req.baseUrl + req._parsedUrl.pathname + JSON.stringify(filteredQuery)
+  return req.baseUrl + req.path + JSON.stringify(filteredQuery)
 }
 
 function respond(err, req, res, next) {
@@ -92,7 +92,7 @@ router.post(
     } catch (err) {
       respond(err, req, res, next)
     }
-  },
+  }
 )
 
 router.patch(
@@ -110,7 +110,7 @@ router.patch(
     } catch (err) {
       respond(err, req, res, next)
     }
-  },
+  }
 )
 
 router.get(
@@ -143,7 +143,7 @@ router.get(
         try {
           res.locals.response = await airtableLookup(
             options,
-            res.locals.authKey,
+            res.locals.authKey
           )
           respond(null, req, res, next)
         } catch (err) {
@@ -158,7 +158,7 @@ router.get(
         respond(err, req, res, next)
       }
     }
-  },
+  }
 )
 
 export default router
