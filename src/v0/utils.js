@@ -11,6 +11,6 @@ export function lookupBaseID(baseID) {
 export async function airtableLookup(options, auth) {
   return airtableLookupV0_1(
     auth ? { ...options, base: lookupBaseID(options.base) } : options,
-    auth,
+    auth
   )
 }
