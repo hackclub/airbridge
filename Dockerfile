@@ -1,5 +1,5 @@
 # Use Bun as base image
-FROM oven/bun:1-slim
+FROM oven/bun:1.4.4-slim
 
 # Create app directory
 WORKDIR /app
