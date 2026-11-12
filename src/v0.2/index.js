@@ -32,13 +32,16 @@ router.use(async (req, res, next) => {
     res.locals.meta.query.authKey = "[redacted]"
   }
 
-  res.locals.permissions = await getPermissions(res.locals.authKey)
+  const result = await getPermissions(res.locals.authKey)
 
-  if (!res.locals.permissions) {
+  if (!result) {
     const error = new Error("Invalid authKey provided")
     error.statusCode = 401
     return next(error)
   }
+
+  res.locals.permissions = result.permissions
+  res.locals.airtableKey = result.airtableKey
 
   next()
 })
@@ -235,7 +238,8 @@ router.post(
     }
 
     // we have permission to use the table, pull the info & leave
-    if (!req.query.airtableKey) {
+    const airtableKey = req.query.airtableKey || res.locals.airtableKey
+    if (!airtableKey) {
       const error = new Error(
         "airtableKey query param required for write operations"
       )
@@ -244,7 +248,7 @@ router.post(
     }
     const ab = res.locals.permissions[req.params.base].baseID
     const at = req.params.tableName
-    const airinst = new Airtable({ apiKey: req.query.airtableKey }).base(ab)(at)
+    const airinst = new Airtable({ apiKey: airtableKey }).base(ab)(at)
     const createValues = Array.isArray(req.body)
       ? { fields: req.body }
       : [{ fields: req.body }]
@@ -345,7 +349,8 @@ router.patch(
       }
     }
 
-    if (!req.query.airtableKey) {
+    const airtableKey = req.query.airtableKey || res.locals.airtableKey
+    if (!airtableKey) {
       const error = new Error(
         "airtableKey query param required for write operations"
       )
@@ -354,7 +359,7 @@ router.patch(
     }
     const ab = res.locals.permissions[req.params.base].baseID
     const at = req.params.tableName
-    const airinst = new Airtable({ apiKey: req.query.airtableKey }).base(ab)(at)
+    const airinst = new Airtable({ apiKey: airtableKey }).base(ab)(at)
 
     // build records for Airtable update/upsert
     const updateRecords = bodyArray.map((record) => {
