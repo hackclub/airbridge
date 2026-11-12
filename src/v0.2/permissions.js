@@ -28,5 +28,6 @@ export async function getPermissions(authId) {
     "utf8"
   )
   const doc = yaml.load(file)
-  return doc
+  const airtableKey = record.fields["Airtable Key"] || null
+  return { permissions: doc, airtableKey }
 }
