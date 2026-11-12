@@ -1,0 +1,15 @@
+## for stardance nps yeeter
+---
+Unified YSWS Projects DB:
+  baseID: app3A5kJwYqxMLOgh
+  NPS:
+    post:
+      - "On a scale from 1-10, how likely are you to recommend this YSWS to a friend?"
+      - YSWS
+      - "Email (optional, for prize)"
+      - "What are we doing well?"
+      - "How can we improve?"
+      - "How many hours do you estimate you spent on your project?"
+      - "Custom Fields"
+      - "Override Created At"
+      - "Tags (Comma Separated)"
